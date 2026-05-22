@@ -24,20 +24,3 @@ isPlaque = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_bo1nx")
-
-[node name="Control" type="Control" parent="StaticBody2D"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="TextBox" type="VBoxContainer" parent="StaticBody2D/Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Label" type="Label" parent="StaticBody2D/Control/TextBox"]
-layout_mode = 2
-
-[node name="ChoiceContainer" type="HBoxContainer" parent="StaticBody2D/Control/TextBox"]
-layout_mode = 2
