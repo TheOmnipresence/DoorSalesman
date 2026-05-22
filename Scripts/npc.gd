@@ -61,5 +61,5 @@ func enter_dialouge():
 			if $Control/TextBox/Label.text != "":
 				await get_tree().create_timer(3).timeout
 	
-	Globals.in_dialouge = false
+	Globals.in_dialogue = false
 	$Control/TextBox/Label.visible = false
