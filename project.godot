@@ -18,6 +18,7 @@ config/icon="res://Sprites/icon.svg"
 [autoload]
 
 Globals="*res://Scripts/globals.gd"
+Archipelago="*res://godot_ap/autoloads/archipelago.tscn"
 
 [rendering]
 
