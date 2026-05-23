@@ -10,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_k87ds")
 
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
@@ -19,12 +20,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 dragging_enabled = false
 
 [node name="Tabs" type="Control" parent="HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 6.0
+mouse_filter = 2
 
 [node name="Storage" type="Control" parent="HSplitContainer/Tabs"]
 visible = false
@@ -184,6 +187,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Fade" type="ColorRect" parent="."]
 z_index = 100

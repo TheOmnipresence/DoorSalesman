@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bigfy725ipxb"]
+[gd_scene load_steps=15 format=3 uid="uid://bigfy725ipxb"]
 
 [ext_resource type="Script" uid="uid://c0smdnectwr3" path="res://Scripts/npc_test.gd" id="1_bo1nx"]
 [ext_resource type="Script" uid="uid://dym4am1ghfcs1" path="res://Scripts/npc.gd" id="1_jjgbg"]
@@ -69,13 +69,10 @@ options = Array[ExtResource("3_8gbba")]([SubResource("Resource_d1ilt")])
 action_condition = SubResource("Resource_6iyac")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bo1nx"]
-
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_bo1nx")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(268, 143)
+[node name="Test" type="StaticBody2D" parent="."]
 script = ExtResource("1_jjgbg")
 diaTree = Dictionary[String, ExtResource("3_8gbba")]({
 "/": SubResource("Resource_jjvhh"),
@@ -85,16 +82,16 @@ diaTree = Dictionary[String, ExtResource("3_8gbba")]({
 })
 isPlaque = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("RectangleShape2D_bo1nx")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Test"]
+polygon = PackedVector2Array(0, 0, 34, 43, 34, 44, 41, -3, 41, -3)
 
-[node name="Control" type="Control" parent="StaticBody2D"]
+[node name="Control" type="Control" parent="Test"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextBox" type="VBoxContainer" parent="StaticBody2D/Control"]
+[node name="TextBox" type="VBoxContainer" parent="Test/Control"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 0
 offset_left = -50.0
@@ -102,9 +99,9 @@ offset_top = 20.0
 offset_right = 50.0
 offset_bottom = 60.0
 
-[node name="Label" type="Label" parent="StaticBody2D/Control/TextBox"]
+[node name="Label" type="Label" parent="Test/Control/TextBox"]
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="ChoiceContainer" type="HBoxContainer" parent="StaticBody2D/Control/TextBox"]
+[node name="ChoiceContainer" type="HBoxContainer" parent="Test/Control/TextBox"]
 layout_mode = 2
