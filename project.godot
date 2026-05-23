@@ -20,6 +20,10 @@ config/icon="res://Sprites/icon.svg"
 Globals="*res://Scripts/globals.gd"
 Archipelago="*res://godot_ap/autoloads/archipelago.tscn"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

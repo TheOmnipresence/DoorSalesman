@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=3 uid="uid://w45d4knxebwf"]
+
+[ext_resource type="Script" uid="uid://ciplcwlyjgmy8" path="res://Scripts/warehouse.gd" id="1_k87ds"]
+
+[node name="Warehouse" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k87ds")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+dragging_enabled = false
+
+[node name="Tabs" type="Control" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+
+[node name="Inventory" type="Control" parent="HSplitContainer/Tabs"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="HSplitContainer/Tabs/Inventory"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="HSplitContainer/Tabs/Inventory"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Storage" type="Button" parent="HSplitContainer/VBoxContainer"]
+layout_mode = 2
+text = "Storage"
+
+[node name="Shop" type="Button" parent="HSplitContainer/VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Shop"
