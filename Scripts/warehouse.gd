@@ -2,7 +2,7 @@ extends Control
 
 
 func _ready() -> void:
-	for i in $HSplitContainer/TabButtons.get_children():
+	for i in $HSplitContainer/SideBar/TabButtons.get_children():
 		i.pressed.connect(set_current_tab.bind(str(i.name)))
 	
 	Globals.update_brought_doors.connect(update_brought_doors)
@@ -68,5 +68,5 @@ func update_map() -> void:
 
 
 func update_disabled_tabs() -> void:
-	$HSplitContainer/TabButtons/View.disabled = Globals.current_space == "warehouse"
-	$HSplitContainer/TabButtons/Storage.disabled = Globals.current_space != "warehouse"
+	$HSplitContainer/SideBar/TabButtons/View.disabled = Globals.current_space == "warehouse"
+	$HSplitContainer/SideBar/TabButtons/Storage.disabled = Globals.current_space != "warehouse"
