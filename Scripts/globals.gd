@@ -65,7 +65,7 @@ func send_to_place(place_name: String) -> void:
 		scene_parent.add_child(load("res://Scenes/" + place_name + ".tscn").instantiate())
 	else:
 		scene_parent.add_child(Node.new())
-	get_tree().current_scene.update_disabled_tabs()
+	get_tree().current_scene.update_all()
 	
 	for i in range(100):
 		get_tree().current_scene.get_node("Fade").color.a -= 0.01
@@ -105,7 +105,7 @@ func trigger_popup(text: String, color: Color):
 func get_door_by_name(door_name: String) -> Door:
 	for i in all_doors:
 		if i.door_name == door_name:
-			return i
+			return Door.new(i.door_name, i.description, i.cost, i.sell_for)
 	return null
 
 
@@ -143,7 +143,7 @@ class Door extends Resource:
 	
 	var sell_for: int
 	
-	func _init(name_val: String, des: String, cost_val: int, price_val: int) -> void:
+	func _init(name_val := "", des := "", cost_val := 0, price_val := 0) -> void:
 		door_name = name_val
 		description = des
 		cost = cost_val

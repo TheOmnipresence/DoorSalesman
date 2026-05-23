@@ -18,37 +18,45 @@ func emitButtons(buttonName):
 	anybutton.emit()
 
 
-## Starts the dialouge, called from the player.
+## Starts the dialouge
 func enter_dialouge():
+	run_dialogue(diaTree)
+
+
+## Runs the [param dialogue_tree]
+func run_dialogue(dialogue_tree: Dictionary[String,Dialouge]) -> void:
 	$Control/TextBox/Label.text = ""
 	var path = "/"
 	
 	while true:
-		if not diaTree.has(path): break
+		if not dialogue_tree.has(path): break
 		
-		if not diaTree[path].options.is_empty():
-			diaTree[path].testOptions()
+		#if not dialogue_tree[path].options.is_empty():
+			#dialogue_tree[path].testOptions()
 		
-		if diaTree[path].action_condition != null:
-			var runVal = diaTree[path].action_condition.run()
+		if dialogue_tree[path].action_condition != null:
+			var runVal = dialogue_tree[path].action_condition.run()
 			if runVal != null:
-				if not diaTree.has(path + str(runVal) + "/"):
+				if not dialogue_tree.has(path + str(runVal) + "/"):
 					path += "else/"
 				else:
 					path += str(runVal) + "/"
 				continue
 		
-		$Control/TextBox/Label.text = diaTree[path].text
+		$Control/TextBox/Label.text = dialogue_tree[path].text
 		
-		if diaTree[path].active_speaker != ^"":
-			get_node(diaTree[path].active_speaker).expression = diaTree[path].expression
+		if dialogue_tree[path].active_speaker != ^"":
+			get_node(dialogue_tree[path].active_speaker).expression = dialogue_tree[path].expression
 		
-		if len(diaTree[path].options) > 0:
-			for i in diaTree[path].options:
+		if len(dialogue_tree[path].options) > 0:
+			for i in dialogue_tree[path].options:
 				var button := Button.new()
 				button.custom_minimum_size.x = 100
 				button.text = i.text
 				button.name = i.key
+				if i.action_condition != null:
+					if i.action_condition.type == DialougeActionTransition.types.TRANSITION:
+						button.disabled = not i.action_condition.run()
 				button.pressed.connect(func():emitButtons(button.name))
 				$Control/TextBox/ChoiceContainer.add_child(button)
 			
@@ -57,7 +65,7 @@ func enter_dialouge():
 			for i in $Control/TextBox/ChoiceContainer.get_children():
 				i.queue_free()
 		else:
-			path += diaTree[path].key + "/"
+			path += dialogue_tree[path].key + "/"
 			if $Control/TextBox/Label.text != "":
 				await get_tree().create_timer(3).timeout
 	

@@ -1,12 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://d38xjml56pg4n"]
+[gd_scene load_steps=8 format=3 uid="uid://d38xjml56pg4n"]
 
 [ext_resource type="Script" uid="uid://drk7lqqa0k4bm" path="res://Scripts/clickable_dialogue.gd" id="1_lyanp"]
 [ext_resource type="Script" uid="uid://dvfxph6aeapdn" path="res://Scripts/dia_resource.gd" id="2_bgw1h"]
+[ext_resource type="Script" uid="uid://cf1tkwliq8ivp" path="res://Scripts/dialouge_action_transition.gd" id="3_cgy2h"]
+
+[sub_resource type="Resource" id="Resource_c0cq2"]
+script = ExtResource("3_cgy2h")
+type = 1
+toRun = "Globals.carry_inventory"
+operator = 1
+targetVal = []
+metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
+
+[sub_resource type="Resource" id="Resource_ga05j"]
+script = ExtResource("2_bgw1h")
+key = "y"
+text = "Yes"
+action_condition = SubResource("Resource_c0cq2")
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_vdm02"]
+script = ExtResource("2_bgw1h")
+key = "n"
+text = "No"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
 [sub_resource type="Resource" id="Resource_cgy2h"]
 script = ExtResource("2_bgw1h")
-key = "greet"
-text = "hi"
+key = "q"
+text = "Walk up?"
+options = Array[ExtResource("2_bgw1h")]([SubResource("Resource_ga05j"), SubResource("Resource_vdm02")])
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
 [node name="Shrimpville" type="Control"]

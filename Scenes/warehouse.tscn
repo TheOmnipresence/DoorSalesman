@@ -150,6 +150,36 @@ mouse_filter = 2
 
 [node name="Node2D" type="Node2D" parent="HSplitContainer/Tabs/View"]
 
+[node name="Inventory" type="Control" parent="HSplitContainer/Tabs"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="HSplitContainer/Tabs/Inventory"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer/Tabs/Inventory"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="HSplitContainer/Tabs/Inventory/ScrollContainer"]
+layout_mode = 2
+columns = 6
+
 [node name="SideBar" type="Control" parent="HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -169,6 +199,11 @@ text = "View"
 [node name="Storage" type="Button" parent="HSplitContainer/SideBar/TabButtons"]
 layout_mode = 2
 text = "Storage"
+
+[node name="Inventory" type="Button" parent="HSplitContainer/SideBar/TabButtons"]
+layout_mode = 2
+disabled = true
+text = "Inventory"
 
 [node name="Map" type="Button" parent="HSplitContainer/SideBar/TabButtons"]
 layout_mode = 2

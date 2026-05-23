@@ -49,7 +49,7 @@ func run() -> Variant:
 
 func getValue() -> Variant:
 	# Add new classes here
-	var classes = {"Globals":Globals,"Player":Globals.playerRef,"Camera":Globals.cameraRef,"Data":Globals.npcData}
+	var classes = {"Globals":Globals,"Data":Globals.npc_data}
 	
 	var splitText = toRun.split(".")
 	var value = classes[splitText[0]]

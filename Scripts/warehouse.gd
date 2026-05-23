@@ -6,6 +6,11 @@ func _ready() -> void:
 		i.pressed.connect(set_current_tab.bind(str(i.name)))
 	
 	Globals.update_brought_doors.connect(update_brought_doors)
+	
+	update_all()
+
+
+func update_all() -> void:
 	update_brought_doors()
 	
 	force_update_doors()
@@ -15,7 +20,7 @@ func _ready() -> void:
 	update_disabled_tabs()
 
 
-func force_update_doors():
+func force_update_doors() -> void:
 	for i in $HSplitContainer/Tabs/Storage/ScrollContainer/GridContainer.get_children():
 		i.queue_free()
 	
@@ -24,6 +29,16 @@ func force_update_doors():
 		node.door_res = i
 		node.update_info()
 		$HSplitContainer/Tabs/Storage/ScrollContainer/GridContainer.add_child(node)
+	
+	for i in $HSplitContainer/Tabs/Inventory/ScrollContainer/GridContainer.get_children():
+		i.queue_free()
+	
+	for i in Globals.truck_inventory:
+		var node = preload("res://Scenes/door.tscn").instantiate()
+		node.door_res = i
+		node.in_truck = true
+		node.update_info()
+		$HSplitContainer/Tabs/Inventory/ScrollContainer/GridContainer.add_child(node)
 
 
 func set_current_tab(tab_name: String) -> void:
@@ -68,5 +83,7 @@ func update_map() -> void:
 
 
 func update_disabled_tabs() -> void:
-	$HSplitContainer/SideBar/TabButtons/View.disabled = Globals.current_space == "warehouse"
-	$HSplitContainer/SideBar/TabButtons/Storage.disabled = Globals.current_space != "warehouse"
+	var in_warehouse = Globals.current_space == "warehouse"
+	$HSplitContainer/SideBar/TabButtons/View.disabled = in_warehouse
+	$HSplitContainer/SideBar/TabButtons/Inventory.disabled = in_warehouse
+	$HSplitContainer/SideBar/TabButtons/Storage.disabled = not in_warehouse
