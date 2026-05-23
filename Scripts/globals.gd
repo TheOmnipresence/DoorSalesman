@@ -1,7 +1,7 @@
 extends Node
 
 
-var warehouse_inventory: Array[Door] = []
+@onready var warehouse_inventory: Array[Door] = [get_door_by_name("Base Door")]
 var truck_inventory: Array[Door] = []
 var carry_inventory: Array[Door] = []
 
@@ -22,6 +22,13 @@ var STORAGE_UPGRADES = {
 }
 
 var all_storage_names = map_dict(STORAGE_UPGRADES.duplicate(true), func(type): return type.map(func(e): return e.upgrade_name))
+
+@warning_ignore("unused_signal")
+signal update_doors
+
+var all_doors: Array[Door] = [
+	Door.new("Base Door", "Pretty boring door", 20, 45)
+]
 
 var npc_data := {}
 
@@ -73,6 +80,13 @@ func trigger_popup(text: String, color: Color):
 	pass
 
 
+func get_door_by_name(door_name: String) -> Door:
+	for i in all_doors:
+		if i.door_name == door_name:
+			return i
+	return null
+
+
 func merge_lists(lists: Array[Array]) -> Array:
 	var result = []
 	for i in lists:
@@ -105,7 +119,10 @@ class Door extends Resource:
 	
 	var cost: int
 	
-	func _init(name_val: String, des: String, cost_val: int) -> void:
+	var sell_for: int
+	
+	func _init(name_val: String, des: String, cost_val: int, price_val: int) -> void:
 		door_name = name_val
 		description = des
 		cost = cost_val
+		sell_for = price_val
