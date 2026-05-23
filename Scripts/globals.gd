@@ -25,6 +25,8 @@ var all_storage_names = map_dict(STORAGE_UPGRADES.duplicate(true), func(type): r
 
 @warning_ignore("unused_signal")
 signal update_doors
+@warning_ignore("unused_signal")
+signal update_brought_doors
 
 var all_doors: Array[Door] = [
 	Door.new("Base Door", "Pretty boring door", 20, 45)

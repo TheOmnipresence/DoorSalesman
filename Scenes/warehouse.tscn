@@ -26,6 +26,7 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 6.0
 
 [node name="Storage" type="Control" parent="HSplitContainer/Tabs"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -54,6 +55,32 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 columns = 6
 
+[node name="Map" type="Control" parent="HSplitContainer/Tabs"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="HSplitContainer/Tabs/Map"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BroughtDoors" type="VBoxContainer" parent="HSplitContainer/Tabs/Map"]
+layout_mode = 1
+offset_right = 120.0
+offset_bottom = 40.0
+
+[node name="Heading" type="Label" parent="HSplitContainer/Tabs/Map/BroughtDoors"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Doors Bringing:"
+
 [node name="TabButtons" type="VBoxContainer" parent="HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -62,6 +89,10 @@ alignment = 1
 [node name="Storage" type="Button" parent="HSplitContainer/TabButtons"]
 layout_mode = 2
 text = "Storage"
+
+[node name="Map" type="Button" parent="HSplitContainer/TabButtons"]
+layout_mode = 2
+text = "Map"
 
 [node name="Shop" type="Button" parent="HSplitContainer/TabButtons"]
 layout_mode = 2

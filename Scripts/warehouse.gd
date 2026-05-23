@@ -5,6 +5,9 @@ func _ready() -> void:
 	for i in $HSplitContainer/TabButtons.get_children():
 		i.pressed.connect(set_current_tab.bind(str(i.name)))
 	
+	Globals.update_brought_doors.connect(update_brought_doors)
+	update_brought_doors()
+	
 	force_update_doors()
 
 
@@ -25,3 +28,27 @@ func set_current_tab(tab_name: String) -> void:
 	
 	if $HSplitContainer/Tabs.has_node(tab_name):
 		$HSplitContainer/Tabs.get_node(tab_name).show()
+
+
+func update_brought_doors() -> void:
+	for i in $HSplitContainer/Tabs/Map/BroughtDoors.get_children():
+		if str(i.name) != "Heading":
+			i.queue_free()
+	
+	for i in Globals.truck_inventory:
+		var node = Label.new()
+		node.text = i.door_name
+		$HSplitContainer/Tabs/Map/BroughtDoors.add_child(node)
+	
+	if Globals.truck_inventory.is_empty() and not Globals.warehouse_inventory.is_empty():
+		$HSplitContainer/Tabs/Map/BroughtDoors.add_child(create_warning_label("! No doors selected !"))
+	elif len(Globals.truck_inventory) < Globals.STORAGE_UPGRADES.truck[Globals.truck_storage_level].space and len(Globals.warehouse_inventory) > len(Globals.truck_inventory):
+		$HSplitContainer/Tabs/Map/BroughtDoors.add_child(create_warning_label("! You can fit more doors !"))
+
+
+func create_warning_label(text: String) -> Label:
+	var node = Label.new()
+	node.text = text
+	node.label_settings = LabelSettings.new()
+	node.label_settings.font_color = Color.YELLOW
+	return node
