@@ -25,7 +25,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 6.0
 
-[node name="Inventory" type="Control" parent="HSplitContainer/Tabs"]
+[node name="Storage" type="Control" parent="HSplitContainer/Tabs"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,7 +33,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="HSplitContainer/Tabs/Inventory"]
+[node name="Panel" type="Panel" parent="HSplitContainer/Tabs/Storage"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,7 +41,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer/Tabs/Inventory"]
+[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer/Tabs/Storage"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,7 +50,7 @@ grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0
 
-[node name="GridContainer" type="GridContainer" parent="HSplitContainer/Tabs/Inventory/ScrollContainer"]
+[node name="GridContainer" type="GridContainer" parent="HSplitContainer/Tabs/Storage/ScrollContainer"]
 layout_mode = 2
 columns = 6
 

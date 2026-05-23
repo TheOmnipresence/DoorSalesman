@@ -1,7 +1,7 @@
 extends Node
 
 
-@onready var warehouse_inventory: Array[Door] = [get_door_by_name("Base Door"), get_door_by_name("Base Door")]
+@onready var warehouse_inventory: Array[Door] = [get_door_by_name("Base Door"), get_door_by_name("Base Door"), get_door_by_name("Base Door")]
 var truck_inventory: Array[Door] = []
 var carry_inventory: Array[Door] = []
 
@@ -76,7 +76,8 @@ func archipelago_popup(info: NetworkItem) -> void:
 
 
 func trigger_popup(text: String, color: Color):
-	pass
+	print_rich("[color=" + color.to_html(false) + "]" + text + "[/color]")
+	# actually popup here TODO
 
 
 func get_door_by_name(door_name: String) -> Door:
