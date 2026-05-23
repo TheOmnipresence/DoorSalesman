@@ -23,7 +23,7 @@ dragging_enabled = false
 [node name="Tabs" type="Control" parent="HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 5.0
+size_flags_stretch_ratio = 6.0
 
 [node name="Inventory" type="Control" parent="HSplitContainer/Tabs"]
 layout_mode = 1
@@ -48,21 +48,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+horizontal_scroll_mode = 0
 
 [node name="GridContainer" type="GridContainer" parent="HSplitContainer/Tabs/Inventory/ScrollContainer"]
 layout_mode = 2
-columns = 5
+columns = 6
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer"]
+[node name="TabButtons" type="VBoxContainer" parent="HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Storage" type="Button" parent="HSplitContainer/VBoxContainer"]
+[node name="Storage" type="Button" parent="HSplitContainer/TabButtons"]
 layout_mode = 2
 text = "Storage"
 
-[node name="Shop" type="Button" parent="HSplitContainer/VBoxContainer"]
+[node name="Shop" type="Button" parent="HSplitContainer/TabButtons"]
 layout_mode = 2
 disabled = true
 text = "Shop"

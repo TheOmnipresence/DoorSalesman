@@ -1,7 +1,7 @@
 extends Node
 
 
-@onready var warehouse_inventory: Array[Door] = [get_door_by_name("Base Door")]
+@onready var warehouse_inventory: Array[Door] = [get_door_by_name("Base Door"), get_door_by_name("Base Door")]
 var truck_inventory: Array[Door] = []
 var carry_inventory: Array[Door] = []
 
@@ -42,7 +42,6 @@ var archipelago_locations_found: Array[String] = []
 func _ready() -> void:
 	Archipelago.connected.connect(connect_script)
 	Archipelago.disconnected.connect((func(): is_archipelago = false))
-	print(all_storage_names)
 
 
 func connect_script() -> void:

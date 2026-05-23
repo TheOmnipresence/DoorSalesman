@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://lmpb4fym41qv" path="res://Scripts/door.gd" id="1_w6aom"]
 
 [node name="Door" type="VBoxContainer"]
+custom_minimum_size = Vector2(0, 240)
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_w6aom")
