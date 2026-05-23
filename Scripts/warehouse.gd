@@ -9,6 +9,10 @@ func _ready() -> void:
 	update_brought_doors()
 	
 	force_update_doors()
+	
+	update_map()
+	
+	update_disabled_tabs()
 
 
 func force_update_doors():
@@ -52,3 +56,17 @@ func create_warning_label(text: String) -> Label:
 	node.label_settings = LabelSettings.new()
 	node.label_settings.font_color = Color.YELLOW
 	return node
+
+
+func update_map() -> void:
+	for button in $HSplitContainer/Tabs/Map/Map/Buttons.get_children():
+		for i in button.connections:
+			var line = Line2D.new()
+			line.add_point(button.position + (button.size / 2))
+			line.add_point(i.position + (i.size / 2))
+			$HSplitContainer/Tabs/Map/Map/Lines.add_child(line)
+
+
+func update_disabled_tabs() -> void:
+	$HSplitContainer/TabButtons/View.disabled = Globals.current_space == "warehouse"
+	$HSplitContainer/TabButtons/Storage.disabled = Globals.current_space != "warehouse"

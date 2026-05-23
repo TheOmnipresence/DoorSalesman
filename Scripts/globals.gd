@@ -1,6 +1,8 @@
 extends Node
 
 
+var current_space := "warehouse"
+
 @onready var warehouse_inventory: Array[Door] = [get_door_by_name("Base Door"), get_door_by_name("Base Door"), get_door_by_name("Base Door")]
 var truck_inventory: Array[Door] = []
 var carry_inventory: Array[Door] = []
@@ -51,6 +53,24 @@ func connect_script() -> void:
 
 
 func send_to_place(place_name: String) -> void:
+	current_space = place_name
+	
+	for i in range(100):
+		get_tree().current_scene.get_node("Fade").color.a += 0.01
+		await get_tree().process_frame
+	
+	var scene_parent = get_tree().current_scene.get_child(0).get_node("Tabs/View")
+	scene_parent.get_child(0).queue_free()
+	if place_name != "warehouse":
+		scene_parent.add_child(load("res://Scenes/" + place_name + ".tscn").instantiate())
+	else:
+		scene_parent.add_child(Node.new())
+	get_tree().current_scene.update_disabled_tabs()
+	
+	for i in range(100):
+		get_tree().current_scene.get_node("Fade").color.a -= 0.01
+		await get_tree().process_frame
+	
 	print("send to " + place_name)
 
 
