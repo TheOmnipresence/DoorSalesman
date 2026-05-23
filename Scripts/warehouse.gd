@@ -37,7 +37,7 @@ func update_brought_doors() -> void:
 	
 	for i in Globals.truck_inventory:
 		var node = Label.new()
-		node.text = i.door_name
+		node.text = "- " + i.door_name
 		$HSplitContainer/Tabs/Map/BroughtDoors.add_child(node)
 	
 	if Globals.truck_inventory.is_empty() and not Globals.warehouse_inventory.is_empty():
