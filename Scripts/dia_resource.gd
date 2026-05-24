@@ -24,6 +24,8 @@ class_name Dialouge extends Resource
 
 @export var is_door := false
 
+@export var set_dia_path := ""
+
 
 func _init(key_val := "", text_val := "", options_val: Array[Dialouge] = [], action_condition_val := DialougeActionTransition.new(DialougeActionTransition.types.ACTION, "")) -> void:
 	key = key_val

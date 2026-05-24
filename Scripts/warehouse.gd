@@ -87,3 +87,4 @@ func update_disabled_tabs() -> void:
 	$HSplitContainer/SideBar/TabButtons/View.disabled = in_warehouse
 	$HSplitContainer/SideBar/TabButtons/Inventory.disabled = in_warehouse
 	$HSplitContainer/SideBar/TabButtons/Storage.disabled = not in_warehouse
+	$HSplitContainer/SideBar/TabButtons/Shop.disabled = not Globals.got_money

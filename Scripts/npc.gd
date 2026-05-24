@@ -50,6 +50,10 @@ func run_dialogue(dialogue_tree: Dictionary[String,Dialouge]) -> void:
 		if dialogue_tree[path].active_speaker != ^"":
 			get_node(dialogue_tree[path].active_speaker).expression = dialogue_tree[path].expression
 		
+		for i in dialogue_tree:
+			if dialogue_tree[i].options_doors:
+				dialogue_tree[i].options = []
+		
 		if dialogue_tree[path].options_doors:
 			for i in Globals.carry_inventory:
 				var dialogue = Dialouge.new(i.door_name.to_snake_case(),i.door_name)
@@ -79,16 +83,15 @@ func run_dialogue(dialogue_tree: Dictionary[String,Dialouge]) -> void:
 			for i in $Control/TextBox/ChoiceContainer.get_children():
 				i.queue_free()
 		else:
-			path += dialogue_tree[path].key + "/"
+			if dialogue_tree[path].set_dia_path != "":
+				path = dialogue_tree[path].set_dia_path
+			else:
+				path += dialogue_tree[path].key + "/"
 			if $Control/TextBox/Label.text != "":
 				await get_tree().create_timer(3).timeout
 	
 	Globals.in_dialogue = false
 	$Control/TextBox/Label.text = ""
-	
-	for i in dialogue_tree:
-		if dialogue_tree[i].options_doors:
-			dialogue_tree[i].options = []
 
 
 func get_door_check(options: Array[Dialouge]) -> bool:

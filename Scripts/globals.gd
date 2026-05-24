@@ -3,7 +3,7 @@ extends Node
 
 var current_space := "warehouse"
 
-@onready var warehouse_inventory: Array[Door] = [get_door_by_name("Base Door"), get_door_by_name("Base Door"), get_door_by_name("Base Door")]
+@onready var warehouse_inventory: Array[Door] = [get_door_by_name("Base Door"), get_door_by_name("Base Door"), get_door_by_name("Scratched Door")]
 var truck_inventory: Array[Door] = []
 var carry_inventory: Array[Door] = []
 
@@ -31,12 +31,21 @@ signal update_doors
 signal update_brought_doors
 
 var all_doors: Array[Door] = [
-	Door.new("Base Door", "Pretty boring door", 20, 45)
+	Door.new("Base Door", "Pretty boring door", 20, 45),
+	Door.new("Scratched Door", "A bit beat up", 10, 30),
 ]
 
 var npc_data := {}
 
 var in_dialogue := false
+
+var money: int = 0:
+	set(value):
+		money = value
+		if value > 0:
+			got_money = true
+
+var got_money := false
 
 var is_archipelago := false
 
@@ -50,6 +59,7 @@ func _ready() -> void:
 
 func connect_script() -> void:
 	is_archipelago = true
+	got_money = true
 
 
 func send_to_place(place_name: String) -> void:

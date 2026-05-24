@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d38xjml56pg4n"]
+[gd_scene load_steps=19 format=3 uid="uid://d38xjml56pg4n"]
 
 [ext_resource type="Script" uid="uid://drk7lqqa0k4bm" path="res://Scripts/clickable_dialogue.gd" id="1_lyanp"]
 [ext_resource type="Script" uid="uid://dvfxph6aeapdn" path="res://Scripts/dia_resource.gd" id="2_bgw1h"]
@@ -54,14 +54,8 @@ metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 [sub_resource type="Resource" id="Resource_5f38y"]
 script = ExtResource("2_bgw1h")
 key = "sure"
-text = "Sure! What door?"
+text = "What door?"
 options_doors = true
-metadata/_custom_type_script = "uid://dvfxph6aeapdn"
-
-[sub_resource type="Resource" id="Resource_v1q0i"]
-script = ExtResource("2_bgw1h")
-key = "cool"
-text = "Cool"
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
 [sub_resource type="Resource" id="Resource_5rq42"]
@@ -83,12 +77,29 @@ key = "n"
 text = "No"
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
+[sub_resource type="Resource" id="Resource_daxob"]
+script = ExtResource("2_bgw1h")
+key = "y"
+text = "Yeah"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
 [sub_resource type="Resource" id="Resource_1dtxm"]
 script = ExtResource("2_bgw1h")
 key = "more"
 text = "Do you have any more?"
-options = Array[ExtResource("2_bgw1h")]([SubResource("Resource_pyndp")])
-options_doors = true
+options = Array[ExtResource("2_bgw1h")]([SubResource("Resource_pyndp"), SubResource("Resource_daxob")])
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_v1q0i"]
+script = ExtResource("2_bgw1h")
+key = "cool"
+text = "Cool"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_uwdv8"]
+script = ExtResource("2_bgw1h")
+key = "more"
+set_dia_path = "/y/show/"
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
 [node name="Shrimpville" type="Control"]
@@ -117,6 +128,7 @@ diaTree = Dictionary[String, ExtResource("2_bgw1h")]({
 "/y/show/": SubResource("Resource_5f38y"),
 "/y/show/bad_door/": SubResource("Resource_uxwvd"),
 "/y/show/bad_door/ew/": SubResource("Resource_1dtxm"),
+"/y/show/bad_door/ew/y/": SubResource("Resource_uwdv8"),
 "/y/show/good_door/": SubResource("Resource_v1q0i")
 })
 isPlaque = false
