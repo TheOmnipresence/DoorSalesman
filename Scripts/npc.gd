@@ -53,11 +53,10 @@ func run_dialogue(dialogue_tree: Dictionary[String,Dialouge]) -> void:
 		if dialogue_tree[path].active_speaker != ^"":
 			get_node(dialogue_tree[path].active_speaker).expression = dialogue_tree[path].expression
 		
-		for i in dialogue_tree:
-			if dialogue_tree[i].options_doors:
-				dialogue_tree[i].options = []
-		
 		if dialogue_tree[path].options_doors:
+			for i in dialogue_tree[path].options:
+				if i.is_door:
+					dialogue_tree[path].options.erase(i)
 			for i in Globals.carry_inventory:
 				var dialogue = Dialouge.new(i.door_name.to_snake_case(),i.door_name)
 				dialogue.is_door = true
