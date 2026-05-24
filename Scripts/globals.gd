@@ -6,6 +6,7 @@ var current_space := "warehouse"
 @onready var warehouse_inventory: Array[Door] = [get_door_by_name("Base Door"), get_door_by_name("Base Door"), get_door_by_name("Scratched Door")]
 var truck_inventory: Array[Door] = []
 var carry_inventory: Array[Door] = []
+var upgrades: Array[Upgrade] = []
 
 var warehouse_storage_level = 0
 var truck_storage_level = 0
@@ -34,6 +35,11 @@ var all_doors: Array[Door] = [
 	Door.new("Base Door", "Pretty boring door", 20, 45),
 	Door.new("Scratched Door", "A bit beat up", 10, 30),
 ]
+var all_upgrades: Array[Upgrade] = [
+	Upgrade.new("Double Cash", "Doubles earned money", 45, 2)
+]
+
+@export var shop_inventory: Array = all_upgrades
 
 var npc_data := {}
 
@@ -45,10 +51,24 @@ var money: int = 0:
 		if value > 0:
 			got_money = true
 
+
+func sell(door: Door):
+	var sell_multi = 1
+	for i in upgrades:
+		sell_multi = sell_multi * i.sell_multiplier
+	money += door.sell_for * sell_multi
+	carry_inventory.erase(door)
+	truck_inventory.erase(door)
+	warehouse_inventory.erase(door)
+	get_tree().current_scene.update_all()
+
 func buy(item):
+	money -= item.cost
 	if item is Door:
-		money -= item.cost
-	
+		warehouse_inventory.append(item)
+	if item is Upgrade:
+		upgrades.append(item)
+
 
 var got_money := false
 
@@ -65,14 +85,6 @@ func _ready() -> void:
 func connect_script() -> void:
 	is_archipelago = true
 	got_money = true
-
-
-func sell(door: Door):
-	money += door.sell_for
-	carry_inventory.erase(door)
-	truck_inventory.erase(door)
-	warehouse_inventory.erase(door)
-	get_tree().current_scene.update_all()
 
 
 func send_to_place(place_name: String) -> void:
@@ -131,6 +143,12 @@ func get_door_by_name(door_name: String) -> Door:
 			return Door.new(i.door_name, i.description, i.cost, i.sell_for)
 	return null
 
+func get_upgrade_by_name(upgrade_name: String) -> Upgrade:
+	for i in all_doors:
+		if i.upgrade_name == upgrade_name:
+			return Upgrade.new(i.upgrade_name, i.description, i.cost, i.sell_multi)
+	return null
+
 
 func merge_lists(lists: Array[Array]) -> Array:
 	var result = []
@@ -183,3 +201,15 @@ class Door extends Resource:
 		description = des
 		cost = cost_val
 		sell_for = price_val
+
+class Upgrade extends Resource:
+	var upgrade_name: String
+	var description: String
+	var cost: int
+	var sell_multiplier: int
+	
+	func _init(name_val := "", des := "", cost_val := 0, sell_M := 1) -> void:
+		upgrade_name = name_val
+		description = des
+		cost = cost_val
+		sell_multiplier = sell_M
