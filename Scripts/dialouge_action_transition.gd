@@ -32,9 +32,9 @@ func run() -> Variant:
 		match toRun:
 			# Add new actions here
 			var x when x.left(4) == "recieve_":
-				Globals.money_amount += int(toRun.right(-8))
+				Globals.money += int(toRun.right(-8))
 			var x when x.left(5) == "remove_":
-				Globals.money_amount -= int(toRun.right(-7))
+				Globals.money -= int(toRun.right(-7))
 			#var x when x.left(8) == "reforge_":
 				#for i in Globals.allReforges:
 					#if Globals.allReforges[i].has(x.right(-8).to_camel_case()) and not Globals.availibleReforges[i].has(x.right(-8).to_camel_case()):
