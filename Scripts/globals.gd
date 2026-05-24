@@ -45,6 +45,10 @@ var money: int = 0:
 		if value > 0:
 			got_money = true
 
+func sell(d: Door):
+	money += d.sell_for
+	carry_inventory.erase(d)
+
 var got_money := false
 
 var is_archipelago := false
