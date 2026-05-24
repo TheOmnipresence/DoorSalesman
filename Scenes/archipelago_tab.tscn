@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://ddellr76jwddm"]
+[gd_scene load_steps=0 format=3 uid="uid://ddellr76jwddm"]
 
 [node name="Archipelago" type="Control"]
 layout_mode = 3
