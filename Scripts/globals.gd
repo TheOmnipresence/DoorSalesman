@@ -72,6 +72,7 @@ func sell(door: Door):
 	carry_inventory.erase(door)
 	truck_inventory.erase(door)
 	warehouse_inventory.erase(door)
+	get_tree().current_scene.update_all()
 
 
 func send_to_place(place_name: String) -> void:
