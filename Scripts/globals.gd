@@ -122,6 +122,18 @@ func map_dict(dictionary: Dictionary, method: Callable) -> Dictionary:
 	return dictionary
 
 
+#func ascending_groups(list: Array) -> Array[Array]:
+	#var result: Array[Array] = []
+	#for i in range(list.size()):
+		#if i == 0:
+			#result.append([list[i]])
+		#elif result[-1] == [0] or result[-1][-1] != list[i] - 1:
+			#result.append([list[i]])
+		#else:
+			#result[-1].append(list[i])
+	#return result
+
+
 class Storage extends Resource:
 	var space: int
 	

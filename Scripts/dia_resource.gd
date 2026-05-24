@@ -20,6 +20,10 @@ class_name Dialouge extends Resource
 ## The action or condition that this dialouge uses, is a [DialougeActionTransition]. This variable will be used to check if the option is valid when this is an option in another dialouge.
 @export var action_condition := DialougeActionTransition.new(DialougeActionTransition.types.ACTION,"")
 
+@export var options_doors := false
+
+@export var is_door := false
+
 
 func _init(key_val := "", text_val := "", options_val: Array[Dialouge] = [], action_condition_val := DialougeActionTransition.new(DialougeActionTransition.types.ACTION, "")) -> void:
 	key = key_val

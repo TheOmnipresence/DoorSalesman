@@ -7,15 +7,17 @@ class_name NPC extends StaticBody2D
 @export var isPlaque = true
 
 ## Emits when any dialouge choice is made
-signal anybutton
+signal any_button
 ## Holds the name of the dialouge choice made
-var nameOfButton = ""
+var button_name = ""
+
+@export var approved_doors: Array[String] = []
 
 
 ## Used in [method enterDialouge] to control the pressing of the choice buttons
-func emitButtons(buttonName):
-	nameOfButton = buttonName
-	anybutton.emit()
+func emit_buttons(buttonName):
+	button_name = buttonName
+	any_button.emit()
 
 
 ## Starts the dialouge
@@ -48,6 +50,12 @@ func run_dialogue(dialogue_tree: Dictionary[String,Dialouge]) -> void:
 		if dialogue_tree[path].active_speaker != ^"":
 			get_node(dialogue_tree[path].active_speaker).expression = dialogue_tree[path].expression
 		
+		if dialogue_tree[path].options_doors:
+			for i in Globals.carry_inventory:
+				var dialogue = Dialouge.new(i.door_name.to_snake_case(),i.door_name)
+				dialogue.is_door = true
+				dialogue_tree[path].options.append(dialogue)
+		
 		if len(dialogue_tree[path].options) > 0:
 			for i in dialogue_tree[path].options:
 				var button := Button.new()
@@ -57,11 +65,17 @@ func run_dialogue(dialogue_tree: Dictionary[String,Dialouge]) -> void:
 				if i.action_condition != null:
 					if i.action_condition.type == DialougeActionTransition.types.TRANSITION:
 						button.disabled = not i.action_condition.run()
-				button.pressed.connect(func():emitButtons(button.name))
+				button.pressed.connect(emit_buttons.bind(i.key))
 				$Control/TextBox/ChoiceContainer.add_child(button)
 			
-			await anybutton
-			path += nameOfButton + "/"
+			await any_button
+			if get_door_check(dialogue_tree[path].options):
+				if approved_doors.has(button_name.capitalize()):
+					path += "good_door/"
+				else:
+					path += "bad_door/"
+			else:
+				path += button_name + "/"
 			for i in $Control/TextBox/ChoiceContainer.get_children():
 				i.queue_free()
 		else:
@@ -70,4 +84,15 @@ func run_dialogue(dialogue_tree: Dictionary[String,Dialouge]) -> void:
 				await get_tree().create_timer(3).timeout
 	
 	Globals.in_dialogue = false
-	$Control/TextBox/Label.visible = false
+	$Control/TextBox/Label.text = ""
+	
+	for i in dialogue_tree:
+		if dialogue_tree[i].options_doors:
+			dialogue_tree[i].options = []
+
+
+func get_door_check(options: Array[Dialouge]) -> bool:
+	for i in options:
+		if i.key == button_name:
+			return i.is_door
+	return false

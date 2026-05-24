@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d38xjml56pg4n"]
+[gd_scene load_steps=13 format=3 uid="uid://d38xjml56pg4n"]
 
 [ext_resource type="Script" uid="uid://drk7lqqa0k4bm" path="res://Scripts/clickable_dialogue.gd" id="1_lyanp"]
 [ext_resource type="Script" uid="uid://dvfxph6aeapdn" path="res://Scripts/dia_resource.gd" id="2_bgw1h"]
@@ -32,6 +32,38 @@ text = "Walk up?"
 options = Array[ExtResource("2_bgw1h")]([SubResource("Resource_ga05j"), SubResource("Resource_vdm02")])
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
+[sub_resource type="Resource" id="Resource_ioxou"]
+script = ExtResource("2_bgw1h")
+key = "show"
+text = "Hello, would you like to see a door?"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_ubx8d"]
+script = ExtResource("2_bgw1h")
+key = "hi"
+text = "Hi"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_7rb63"]
+script = ExtResource("2_bgw1h")
+key = "greet"
+text = "Hello"
+options = Array[ExtResource("2_bgw1h")]([SubResource("Resource_ioxou"), SubResource("Resource_ubx8d")])
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_5f38y"]
+script = ExtResource("2_bgw1h")
+key = "sure"
+text = "Sure! What door?"
+options_doors = true
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_v1q0i"]
+script = ExtResource("2_bgw1h")
+key = "cool"
+text = "Cool"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
 [node name="Shrimpville" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -53,9 +85,13 @@ position = Vector2(420, 283)
 input_pickable = true
 script = ExtResource("1_lyanp")
 diaTree = Dictionary[String, ExtResource("2_bgw1h")]({
-"/": SubResource("Resource_cgy2h")
+"/": SubResource("Resource_cgy2h"),
+"/y/": SubResource("Resource_7rb63"),
+"/y/show/": SubResource("Resource_5f38y"),
+"/y/show/good_door/": SubResource("Resource_v1q0i")
 })
 isPlaque = false
+approved_doors = Array[String](["Base Door"])
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Test"]
 polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
