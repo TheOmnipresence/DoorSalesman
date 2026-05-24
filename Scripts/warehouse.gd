@@ -40,6 +40,15 @@ func force_update_doors() -> void:
 		node.update_info()
 		$HSplitContainer/Tabs/Inventory/ScrollContainer/GridContainer.add_child(node)
 
+func force_update_upgrades() -> void:
+	for i in $HSplitContainer/Tabs/Shop/ScrollContainer/GridContainer.get_children():
+		i.queue_free()
+	
+	for i in Globals.shop_inventory:
+		var node = preload("res://Scenes/item.tscn").instantiate()
+		node.door_res = i
+		node.update_info()
+		$HSplitContainer/Tabs/Storage/ScrollContainer/GridContainer.add_child(node)
 
 func set_current_tab(tab_name: String) -> void:
 	for i in $HSplitContainer/Tabs.get_children():

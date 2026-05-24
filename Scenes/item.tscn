@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpjm53colqls6"]
+
+[ext_resource type="Script" uid="uid://w3qf474w1x2q" path="res://Scenes/item.gd" id="1_ys0gr"]
+
+[node name="Item" type="VBoxContainer"]
+custom_minimum_size = Vector2(0, 240)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ys0gr")
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 2
+text = "Name"
+horizontal_alignment = 1
+
+[node name="Texture" type="TextureRect" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(72, 160)
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Description" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 1
+
+[node name="Buy" type="Button" parent="."]
+layout_mode = 2
+text = "Bring"
