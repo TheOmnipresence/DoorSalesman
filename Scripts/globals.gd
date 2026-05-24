@@ -57,7 +57,6 @@ var money: int = 0:
 		if value > 0:
 			got_money = true
 
-
 var got_money := false
 
 var is_archipelago := false
@@ -169,7 +168,7 @@ func get_upgrade_by_name(item_name: String) -> Upgrade:
 	return null
 
 
-func merge_lists(lists: Array[Array]) -> Array:
+func merge_lists(lists: Array) -> Array:
 	var result = []
 	for i in lists:
 		result.append_array(i)
