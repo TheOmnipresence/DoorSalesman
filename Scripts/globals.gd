@@ -6,6 +6,7 @@ var current_space := "warehouse"
 @onready var warehouse_inventory: Array[Door] = [get_door_by_name("Base Door"), get_door_by_name("Base Door"), get_door_by_name("Scratched Door")]
 var truck_inventory: Array[Door] = []
 var carry_inventory: Array[Door] = []
+
 var upgrades: Array[Upgrade] = []
 
 var warehouse_storage_level = 0
@@ -35,18 +36,16 @@ var all_doors: Array[Door] = [
 	Door.new("Base Door", "Pretty boring door", 20, 45),
 	Door.new("Scratched Door", "A bit beat up", 10, 30),
 ]
+@onready var doors_in_shop: Array[Door] = [
+	get_door_by_name("Base Door"),
+	get_door_by_name("Base Door"),
+	get_door_by_name("Base Door"),
+]
 var all_upgrades: Array[Upgrade] = [
 	Upgrade.new("Double Cash", "Doubles earned money", 45, 2)
 ]
-func merge_arrays(array1 : Array, array2 : Array) -> Array:
-	var a = []
-	for i in array1:
-		a.append(i)
-	for i in array2:
-		a.append(i)
-	return a
 
-var shop_inventory: Array = merge_arrays(all_doors, all_upgrades)
+@onready var shop_inventory: Array = all_upgrades + doors_in_shop + merge_lists(STORAGE_UPGRADES.values())
 
 var npc_data := {}
 
@@ -58,7 +57,6 @@ var money: int = 0:
 		if value > 0:
 			got_money = true
 
-
 var got_money := false
 
 var is_archipelago := false
@@ -69,7 +67,6 @@ var archipelago_locations_found: Array[String] = []
 func _ready() -> void:
 	Archipelago.connected.connect(connect_script)
 	Archipelago.disconnected.connect((func(): is_archipelago = false))
-	print(shop_inventory)
 
 
 func connect_script() -> void:
@@ -88,12 +85,9 @@ func sell(door: Door):
 	get_tree().current_scene.update_all()
 
 
-func buy(item):
+func buy(item: Item):
 	money -= item.cost
-	if item is Door:
-		warehouse_inventory.append(item)
-	if item is Upgrade:
-		upgrades.append(item)
+	collect_item(item.item_name)
 
 
 func send_to_place(place_name: String) -> void:
@@ -118,14 +112,28 @@ func send_to_place(place_name: String) -> void:
 	print("send to " + place_name)
 
 
-func collect_item(item_name: String, called_from_archipelago := false) -> void:
-	if merge_lists(all_storage_names.values()).has(item_name):
+func collect_item(item_name: String, shop_item: Item = null, called_from_archipelago := false) -> void:
+	if shop_item is Door:#all_doors.map(func(e): return e.item_name).has(item_name) or shop_item is Door:
 		if is_archipelago and not called_from_archipelago:
-			send_ap_item(item_name, merge_lists(all_storage_names.values()).find(item_name))
+			send_ap_item(item_name, 0) # TODO index this
+		else:
+			warehouse_inventory.append(get_door_by_name(item_name))
+	elif shop_item is Upgrade:
+		if is_archipelago and not called_from_archipelago:
+			send_ap_item(item_name, 0) # TODO index this
+		else:
+			upgrades.append(shop_item)
+	elif shop_item is Storage:#merge_lists(all_storage_names.values()).has(item_name) or shop_item is Storage:
+		if is_archipelago and not called_from_archipelago:
+			send_shop_ap(shop_item) #merge_lists(all_storage_names.values()).find(item_name) + 1000)
 		else:
 			for i in all_storage_names:
 				if all_storage_names[i].has(item_name):
 					set(i + "_storage_level", 1 + get(i + "_storage_level"))
+
+
+func send_shop_ap(item: Item) -> void:
+	send_ap_item(item.item_name, shop_inventory.find(item))
 
 
 func send_ap_item(loc_name: String, loc_id: int) -> void:
@@ -152,6 +160,7 @@ func get_door_by_name(item_name: String) -> Door:
 			return Door.new(i.item_name, i.description, i.cost, i.sell_for)
 	return null
 
+
 func get_upgrade_by_name(item_name: String) -> Upgrade:
 	for i in all_doors:
 		if i.item_name == item_name:
@@ -159,7 +168,7 @@ func get_upgrade_by_name(item_name: String) -> Upgrade:
 	return null
 
 
-func merge_lists(lists: Array[Array]) -> Array:
+func merge_lists(lists: Array) -> Array:
 	var result = []
 	for i in lists:
 		result.append_array(i)
