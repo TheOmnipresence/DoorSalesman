@@ -70,6 +70,8 @@ func connect_script() -> void:
 func sell(door: Door):
 	money += door.sell_for
 	carry_inventory.erase(door)
+	truck_inventory.erase(door)
+	warehouse_inventory.erase(door)
 
 
 func send_to_place(place_name: String) -> void:
