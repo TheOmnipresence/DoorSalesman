@@ -49,6 +49,11 @@ func sell(d: Door):
 	money += d.sell_for
 	carry_inventory.erase(d)
 
+func buy(item):
+	if item is Door:
+		money -= item.cost
+	
+
 var got_money := false
 
 var is_archipelago := false
