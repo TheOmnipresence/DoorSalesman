@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://w45d4knxebwf"]
+[gd_scene load_steps=4 format=3 uid="uid://w45d4knxebwf"]
 
 [ext_resource type="Script" uid="uid://ciplcwlyjgmy8" path="res://Scripts/warehouse.gd" id="1_k87ds"]
 [ext_resource type="Script" uid="uid://1aab4ig58eql" path="res://Scripts/map_button.gd" id="2_nqdwu"]
+[ext_resource type="PackedScene" uid="uid://ddellr76jwddm" path="res://Scenes/archipelago_tab.tscn" id="3_q31fj"]
 
 [node name="Warehouse" type="Control"]
 layout_mode = 3
@@ -190,13 +191,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Archipelago" type="Control" parent="HSplitContainer/Tabs"]
+[node name="Archipelago" parent="HSplitContainer/Tabs" instance=ExtResource("3_q31fj")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="SideBar" type="Control" parent="HSplitContainer"]
 layout_mode = 2
