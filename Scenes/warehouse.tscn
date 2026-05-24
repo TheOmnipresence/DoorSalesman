@@ -105,6 +105,7 @@ layout_mode = 2
 columns = 6
 
 [node name="Shop" type="Control" parent="HSplitContainer/Tabs"]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
