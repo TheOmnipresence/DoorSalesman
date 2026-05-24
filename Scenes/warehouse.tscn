@@ -106,17 +106,18 @@ columns = 6
 
 [node name="Shop" type="Control" parent="HSplitContainer/Tabs"]
 visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="HSplitContainer/Tabs/Shop"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1112.0
-offset_bottom = 608.0
 grow_horizontal = 2
 grow_vertical = 2
 

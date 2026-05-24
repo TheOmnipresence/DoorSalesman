@@ -1,5 +1,7 @@
 extends Control
 
+var window_theme := Theme.new()
+
 
 func _ready() -> void:
 	for i in $HSplitContainer/SideBar/TabButtons.get_children():
@@ -18,6 +20,9 @@ func update_all() -> void:
 	update_map()
 	
 	update_disabled_tabs()
+	
+	get_window().theme = window_theme
+	get_window().theme_changed.connect(func(): if get_window().theme != window_theme: get_window().theme = window_theme)
 
 
 func force_update_doors() -> void:

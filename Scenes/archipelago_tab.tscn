@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ddellr76jwddm"]
+[gd_scene load_steps=3 format=3 uid="uid://ddellr76jwddm"]
 
-[ext_resource type="PackedScene" uid="uid://c51q4vrwhlcl7" path="res://godot_ap/ui/console_container.tscn" id="1_q6mtk"]
+[ext_resource type="PackedScene" uid="uid://cn7ah7d3ep4de" path="res://godot_ap/ui/common_client.tscn" id="1_q6mtk"]
+
+[sub_resource type="Theme" id="Theme_q6mtk"]
 
 [node name="Archipelago" type="Control"]
 layout_mode = 3
@@ -11,5 +13,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Console" parent="." instance=ExtResource("1_q6mtk")]
-layout_mode = 0
+[node name="CommonClient" parent="." instance=ExtResource("1_q6mtk")]
+layout_mode = 1
+theme = SubResource("Theme_q6mtk")
