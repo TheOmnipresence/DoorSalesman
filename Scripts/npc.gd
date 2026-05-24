@@ -58,10 +58,10 @@ func run_dialogue(dialogue_tree: Dictionary[String,Dialouge]) -> void:
 				if i.is_door:
 					dialogue_tree[path].options.erase(i)
 			for i in Globals.carry_inventory:
-				var dialogue = Dialouge.new(i.door_name.to_snake_case(),i.door_name)
+				var dialogue = Dialouge.new(i.item_name.to_snake_case(),i.item_name)
 				dialogue.is_door = true
 				dialogue.action_condition = DialougeActionTransition.new()
-				dialogue.action_condition.toRun = "sell_" + i.door_name.to_snake_case()
+				dialogue.action_condition.toRun = "sell_" + i.item_name.to_snake_case()
 				dialogue_tree[path].options.append(dialogue)
 		
 		if len(dialogue_tree[path].options) > 0:

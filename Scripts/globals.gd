@@ -24,7 +24,7 @@ var STORAGE_UPGRADES = {
 	],
 }
 
-var all_storage_names = map_dict(STORAGE_UPGRADES.duplicate(true), func(type): return type.map(func(e): return e.upgrade_name))
+var all_storage_names = map_dict(STORAGE_UPGRADES.duplicate(true), func(type): return type.map(func(e): return e.item_name))
 
 @warning_ignore("unused_signal")
 signal update_doors
@@ -52,24 +52,6 @@ var money: int = 0:
 			got_money = true
 
 
-func sell(door: Door):
-	var sell_multi = 1
-	for i in upgrades:
-		sell_multi = sell_multi * i.sell_multiplier
-	money += door.sell_for * sell_multi
-	carry_inventory.erase(door)
-	truck_inventory.erase(door)
-	warehouse_inventory.erase(door)
-	get_tree().current_scene.update_all()
-
-func buy(item):
-	money -= item.cost
-	if item is Door:
-		warehouse_inventory.append(item)
-	if item is Upgrade:
-		upgrades.append(item)
-
-
 var got_money := false
 
 var is_archipelago := false
@@ -85,6 +67,25 @@ func _ready() -> void:
 func connect_script() -> void:
 	is_archipelago = true
 	got_money = true
+
+
+func sell(door: Door):
+	var sell_multi = 1
+	for i in upgrades:
+		sell_multi = sell_multi * i.sell_multiplier
+	money += door.sell_for * sell_multi
+	carry_inventory.erase(door)
+	truck_inventory.erase(door)
+	warehouse_inventory.erase(door)
+	get_tree().current_scene.update_all()
+
+
+func buy(item):
+	money -= item.cost
+	if item is Door:
+		warehouse_inventory.append(item)
+	if item is Upgrade:
+		upgrades.append(item)
 
 
 func send_to_place(place_name: String) -> void:
@@ -137,16 +138,16 @@ func trigger_popup(text: String, color: Color):
 	# actually popup here TODO
 
 
-func get_door_by_name(door_name: String) -> Door:
+func get_door_by_name(item_name: String) -> Door:
 	for i in all_doors:
-		if i.door_name == door_name:
-			return Door.new(i.door_name, i.description, i.cost, i.sell_for)
+		if i.item_name == item_name:
+			return Door.new(i.item_name, i.description, i.cost, i.sell_for)
 	return null
 
-func get_upgrade_by_name(upgrade_name: String) -> Upgrade:
+func get_upgrade_by_name(item_name: String) -> Upgrade:
 	for i in all_doors:
-		if i.upgrade_name == upgrade_name:
-			return Upgrade.new(i.upgrade_name, i.description, i.cost, i.sell_multi)
+		if i.item_name == item_name:
+			return Upgrade.new(i.item_name, i.description, i.cost, i.sell_multi)
 	return null
 
 
@@ -175,41 +176,40 @@ func map_dict(dictionary: Dictionary, method: Callable) -> Dictionary:
 	#return result
 
 
-class Storage extends Resource:
+class Item extends Resource:
+	var item_name: String
+	
+	var description: String
+	
+	var cost: int
+
+
+class Storage extends Item:
 	var space: int
 	
 	var carry_sprite: Texture2D
 	
-	var upgrade_name: String
-	
 	func _init(space_amount := 0, u_name := "", carry_image := Texture2D.new()) -> void:
 		space = space_amount
 		carry_sprite = carry_image
-		upgrade_name = u_name
+		item_name = u_name
 
-class Door extends Resource:
-	var door_name: String
-	
-	var description: String
-	
-	var cost: int
-	
+
+class Door extends Item:
 	var sell_for: int
 	
 	func _init(name_val := "", des := "", cost_val := 0, price_val := 0) -> void:
-		door_name = name_val
+		item_name = name_val
 		description = des
 		cost = cost_val
 		sell_for = price_val
 
-class Upgrade extends Resource:
-	var upgrade_name: String
-	var description: String
-	var cost: int
+
+class Upgrade extends Item:
 	var sell_multiplier: int
 	
-	func _init(name_val := "", des := "", cost_val := 0, sell_M := 1) -> void:
-		upgrade_name = name_val
+	func _init(name_val := "", des := "", cost_val := 0, sell_m := 1) -> void:
+		item_name = name_val
 		description = des
 		cost = cost_val
-		sell_multiplier = sell_M
+		sell_multiplier = sell_m

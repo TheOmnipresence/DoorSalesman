@@ -43,7 +43,7 @@ func run() -> Variant:
 				Globals.send_to_place(x.right(-5))
 			var x when x.left(5) == "sell_":
 				for i in Globals.carry_inventory:
-					if i.door_name == x.right(-5).capitalize():
+					if i.item_name == x.right(-5).capitalize():
 						var before = Globals.money
 						print(Globals.carry_inventory)
 						Globals.sell(i)

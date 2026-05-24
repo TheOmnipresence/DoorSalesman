@@ -211,6 +211,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Archipelago" parent="HSplitContainer/Tabs" instance=ExtResource("3_q31fj")]
+visible = false
 layout_mode = 1
 
 [node name="SideBar" type="Control" parent="HSplitContainer"]

@@ -20,9 +20,9 @@ func _process(_delta: float) -> void:
 ## Updates the displayed info
 func update_info() -> void:
 	if door_res != null:
-		$Name.text = door_res.door_name
+		$Name.text = door_res.item_name
 		$Description.text = door_res.description
-		$Texture.texture = load("res://Sprites/" + door_res.door_name.to_snake_case() + ".png")
+		$Texture.texture = load("res://Sprites/" + door_res.item_name.to_snake_case() + ".png")
 		
 		if in_truck:
 			if Globals.carry_inventory.has(door_res):
