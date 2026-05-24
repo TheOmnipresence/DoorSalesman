@@ -45,10 +45,6 @@ var money: int = 0:
 		if value > 0:
 			got_money = true
 
-func sell(d: Door):
-	money += d.sell_for
-	carry_inventory.erase(d)
-
 func buy(item):
 	if item is Door:
 		money -= item.cost
@@ -69,6 +65,11 @@ func _ready() -> void:
 func connect_script() -> void:
 	is_archipelago = true
 	got_money = true
+
+
+func sell(door: Door):
+	money += door.sell_for
+	carry_inventory.erase(door)
 
 
 func send_to_place(place_name: String) -> void:
