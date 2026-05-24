@@ -38,8 +38,15 @@ var all_doors: Array[Door] = [
 var all_upgrades: Array[Upgrade] = [
 	Upgrade.new("Double Cash", "Doubles earned money", 45, 2)
 ]
+func merge_arrays(array1 : Array, array2 : Array) -> Array:
+	var a = []
+	for i in array1:
+		a.append(i)
+	for i in array2:
+		a.append(i)
+	return a
 
-@export var shop_inventory: Array = all_upgrades
+var shop_inventory: Array = merge_arrays(all_doors, all_upgrades)
 
 var npc_data := {}
 
@@ -62,6 +69,7 @@ var archipelago_locations_found: Array[String] = []
 func _ready() -> void:
 	Archipelago.connected.connect(connect_script)
 	Archipelago.disconnected.connect((func(): is_archipelago = false))
+	print(shop_inventory)
 
 
 func connect_script() -> void:
