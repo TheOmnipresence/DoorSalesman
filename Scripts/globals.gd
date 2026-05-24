@@ -36,11 +36,16 @@ var all_doors: Array[Door] = [
 	Door.new("Base Door", "Pretty boring door", 20, 45),
 	Door.new("Scratched Door", "A bit beat up", 10, 30),
 ]
+@onready var doors_in_shop: Array[Door] = [
+	get_door_by_name("Base Door"),
+	get_door_by_name("Base Door"),
+	get_door_by_name("Base Door"),
+]
 var all_upgrades: Array[Upgrade] = [
 	Upgrade.new("Double Cash", "Doubles earned money", 45, 2)
 ]
 
-@export var shop_inventory: Array = all_upgrades
+@onready var shop_inventory: Array = all_upgrades + doors_in_shop + merge_lists(STORAGE_UPGRADES.values())
 
 var npc_data := {}
 
@@ -155,6 +160,7 @@ func get_door_by_name(item_name: String) -> Door:
 		if i.item_name == item_name:
 			return Door.new(i.item_name, i.description, i.cost, i.sell_for)
 	return null
+
 
 func get_upgrade_by_name(item_name: String) -> Upgrade:
 	for i in all_doors:
