@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d38xjml56pg4n"]
+[gd_scene load_steps=19 format=3 uid="uid://d38xjml56pg4n"]
 
 [ext_resource type="Script" uid="uid://drk7lqqa0k4bm" path="res://Scripts/clickable_dialogue.gd" id="1_lyanp"]
 [ext_resource type="Script" uid="uid://dvfxph6aeapdn" path="res://Scripts/dia_resource.gd" id="2_bgw1h"]
@@ -96,23 +96,10 @@ key = "more"
 set_dia_path = "/y/show/"
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
-[sub_resource type="Resource" id="Resource_6iq6q"]
-script = ExtResource("2_bgw1h")
-key = "Sell"
-text = "Sure"
-metadata/_custom_type_script = "uid://dvfxph6aeapdn"
-
-[sub_resource type="Resource" id="Resource_y4ml6"]
-script = ExtResource("2_bgw1h")
-key = "Keep"
-text = "No"
-metadata/_custom_type_script = "uid://dvfxph6aeapdn"
-
 [sub_resource type="Resource" id="Resource_v1q0i"]
 script = ExtResource("2_bgw1h")
 key = "cool"
-text = "Cool, can I buy it?"
-options = Array[ExtResource("2_bgw1h")]([SubResource("Resource_6iq6q"), SubResource("Resource_y4ml6")])
+text = "Thanks for the door"
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
 [node name="Shrimpville" type="Control"]

@@ -15,8 +15,11 @@ var button_name = ""
 
 
 ## Used in [method enterDialouge] to control the pressing of the choice buttons
-func emit_buttons(buttonName):
-	button_name = buttonName
+func emit_buttons(button):
+	button_name = button.key
+	if approved_doors.has(button_name.capitalize()):
+		button.action_condition.run()
+	
 	any_button.emit()
 
 
@@ -58,6 +61,8 @@ func run_dialogue(dialogue_tree: Dictionary[String,Dialouge]) -> void:
 			for i in Globals.carry_inventory:
 				var dialogue = Dialouge.new(i.door_name.to_snake_case(),i.door_name)
 				dialogue.is_door = true
+				dialogue.action_condition = DialougeActionTransition.new()
+				dialogue.action_condition.toRun = "sell_" + i.door_name.to_snake_case()
 				dialogue_tree[path].options.append(dialogue)
 		
 		if len(dialogue_tree[path].options) > 0:
@@ -69,7 +74,7 @@ func run_dialogue(dialogue_tree: Dictionary[String,Dialouge]) -> void:
 				if i.action_condition != null:
 					if i.action_condition.type == DialougeActionTransition.types.TRANSITION:
 						button.disabled = not i.action_condition.run()
-				button.pressed.connect(emit_buttons.bind(i.key))
+				button.pressed.connect(emit_buttons.bind(i))
 				$Control/TextBox/ChoiceContainer.add_child(button)
 			
 			await any_button
