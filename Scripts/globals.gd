@@ -2,8 +2,8 @@ extends Node
 
 
 var current_space := "warehouse"
-var current_shipment := 0
 var visited := ["warehouse"]
+var availible_spaces := ["warehouse", "shrimpville", "fancytown"]
 
 @onready var warehouse_inventory: Array[Door] = [make_door_by_name("Base Door"), make_door_by_name("Base Door"), make_door_by_name("Scratched Door")]
 var truck_inventory: Array[Door] = []
@@ -97,6 +97,11 @@ func sell(door: Door):
 func buy(item: Item):
 	money -= item.cost
 	collect_item(item.item_name)
+
+
+func unlock_place(place_name: String) -> void:
+	availible_spaces.append(place_name)
+	get_tree().current_scene.update_map()
 
 
 func send_to_place(place_name: String) -> void:
@@ -195,7 +200,7 @@ func get_shop_storage() -> Array:
 		var reversed = range(STORAGE_UPGRADES[type].size())
 		reversed.reverse()
 		for i in reversed:
-			result += STORAGE_UPGRADES[type][i]
+			result.append(STORAGE_UPGRADES[type][i])
 		result.remove_at(-1)
 	return result
 

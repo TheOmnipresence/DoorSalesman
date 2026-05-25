@@ -126,7 +126,9 @@ func update_disabled_tabs() -> void:
 func get_reachable_neighborhoods(neighborhood_name: String) -> Array[String]:
 	var result: Array[String] = []
 	result.append(neighborhood_name)
-	if Globals.visited.has(neighborhood_name.to_snake_case()):
+	if Globals.availible_spaces.has(neighborhood_name):
 		for i in $HSplitContainer/Tabs/Map/Map/Buttons.get_node(neighborhood_name.to_pascal_case()).connections:
-			result.append_array(get_reachable_neighborhoods(str(i.name).to_snake_case()))
+			for new in get_reachable_neighborhoods(str(i.name).to_snake_case()):
+				if Globals.availible_spaces.has(new):
+					result.append(new)
 	return result
