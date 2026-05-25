@@ -113,7 +113,25 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_c0cq2")
 
-[node name="Test" type="StaticBody2D" parent="."]
+[node name="Slides" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="May" type="Control" parent="Slides"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="May" type="StaticBody2D" parent="Slides/May"]
 z_index = 1
 position = Vector2(420, 283)
 input_pickable = true
@@ -128,28 +146,28 @@ diaTree = Dictionary[String, ExtResource("2_bgw1h")]({
 "/y/show/good_door/": SubResource("Resource_v1q0i")
 })
 isPlaque = false
-approved_doors = Array[String](["Base Door"])
+approved_doors = Array[String](["Base Door", "Oak Door"])
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Test"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/May/May"]
 polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
 
-[node name="Polygon2D" type="Polygon2D" parent="Test"]
+[node name="Polygon2D" type="Polygon2D" parent="Slides/May/May"]
 z_index = 1
 color = Color(1, 1, 1, 0)
 uv = PackedVector2Array(58, 43, 56, 46)
 
-[node name="Image" type="Polygon2D" parent="Test"]
+[node name="Image" type="Polygon2D" parent="Slides/May/May"]
 color = Color(0, 0, 1, 1)
 polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
 
-[node name="Control" type="Control" parent="Test"]
+[node name="Control" type="Control" parent="Slides/May/May"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="TextBox" type="VBoxContainer" parent="Test/Control"]
+[node name="TextBox" type="VBoxContainer" parent="Slides/May/May/Control"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 0
 offset_left = -50.0
@@ -158,11 +176,11 @@ offset_right = 50.0
 offset_bottom = 60.0
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="Test/Control/TextBox"]
+[node name="Label" type="Label" parent="Slides/May/May/Control/TextBox"]
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="ChoiceContainer" type="HBoxContainer" parent="Test/Control/TextBox"]
+[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/May/May/Control/TextBox"]
 layout_mode = 2
 mouse_filter = 2
 

@@ -64,7 +64,7 @@ func force_update_upgrades() -> void:
 			#if Globals.get(kind + "_storage_level") >= Globals.STORAGE_UPGRADES[kind].find(i):
 				#continue
 		
-		if (not i is Globals.Door) or Globals.visited.has(i.shipment):
+		if Globals.visited.has(i.shipment):
 			var node = preload("res://Scenes/item.tscn").instantiate()
 			node.item_res = i
 			node.update_info()
@@ -104,7 +104,10 @@ func create_warning_label(text: String) -> Label:
 
 
 func update_map() -> void:
+	var reachable = get_reachable_neighborhoods("warehouse")
+	
 	for button in $HSplitContainer/Tabs/Map/Map/Buttons.get_children():
+		button.disabled = not reachable.has(str(button.name).to_snake_case())
 		for i in button.connections:
 			var line = Line2D.new()
 			line.add_point(button.position + (button.size / 2))
@@ -118,3 +121,12 @@ func update_disabled_tabs() -> void:
 	$HSplitContainer/SideBar/TabButtons/Inventory.disabled = in_warehouse
 	$HSplitContainer/SideBar/TabButtons/Storage.disabled = not in_warehouse
 	$HSplitContainer/SideBar/TabButtons/Shop.disabled = not (Globals.got_money and in_warehouse)
+
+
+func get_reachable_neighborhoods(neighborhood_name: String) -> Array[String]:
+	var result: Array[String] = []
+	result.append(neighborhood_name)
+	if Globals.visited.has(neighborhood_name.to_snake_case()):
+		for i in $HSplitContainer/Tabs/Map/Map/Buttons.get_node(neighborhood_name.to_pascal_case()).connections:
+			result.append_array(get_reachable_neighborhoods(str(i.name).to_snake_case()))
+	return result

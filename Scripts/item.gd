@@ -1,15 +1,18 @@
 extends VBoxContainer
 
+var item_res: Globals.Item = null
 
-#func update_info() -> void:
-	#if door_res != null:
-		#$Name.text = door_res.door_name
-		#$Description.text = door_res.description
-		#$Texture.texture = load("res://Sprites/" + door_res.door_name.to_snake_case() + ".png")
-		#
-		#if in_truck:
-			#if Globals.carry_inventory.has(door_res):
-				#$TakeButton.text = "Leave"
-		#else:
-			#if Globals.truck_inventory.has(door_res):
-				#$TakeButton.text = "Leave"
+func update_info() -> void:
+	if item_res != null:
+		$Name.text = item_res.item_name
+		$Description.text = item_res.description
+		$Buy.text = "Buy"
+		$Price.text = str(item_res.cost)
+		if item_res is Globals.Door:
+			$Texture.texture = load("res://Sprites/" + item_res.item_name.to_snake_case() + ".png")
+
+
+func _on_buy_pressed() -> void:
+	if item_res != null:
+		Globals.items_collected_from_shop.append(item_res)
+		Globals.buy(item_res)

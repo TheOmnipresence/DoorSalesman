@@ -23,7 +23,7 @@ var STORAGE_UPGRADES = {
 		Storage.new(2, "Truck Bed")
 	],
 	"carry": [
-		Storage.new(1, "Carry", preload("res://Sprites/icon.svg"))
+		Storage.new(1, "Carry")
 	],
 }
 
@@ -45,7 +45,7 @@ var all_doors: Array[Door] = [
 	make_door_by_name("Oak Door", "fancytown"),
 ]
 var all_upgrades: Array[Upgrade] = [
-	Upgrade.new("Double Cash", "Doubles earned money", 45, 2)
+	Upgrade.new("Double Cash", "Doubles earned money", 45, "warehouse", 2)
 ]
 
 @onready var shop_inventory: Array = all_upgrades + doors_in_shop + merge_lists(STORAGE_UPGRADES.values())
@@ -220,19 +220,14 @@ class Item extends Resource:
 class Storage extends Item:
 	var space: int
 	
-	var carry_sprite: Texture2D
-	
-	func _init(space_amount := 0, u_name := "", carry_image := Texture2D.new()) -> void:
+	func _init(space_amount := 0, u_name := "", neighborhood := "") -> void:
 		space = space_amount
-		carry_sprite = carry_image
 		item_name = u_name
+		shipment = neighborhood
 
 
 class Door extends Item:
 	var sell_for: int
-	
-	var neighborhood_needed: String
-
 	
 	func _init(name_val := "", des := "", cost_val := 0, price_val := 0) -> void:
 		item_name = name_val
@@ -244,8 +239,9 @@ class Door extends Item:
 class Upgrade extends Item:
 	var sell_multiplier: int
 	
-	func _init(name_val := "", des := "", cost_val := 0, sell_m := 1) -> void:
+	func _init(name_val := "", des := "", cost_val := 0, neighborhood := "", sell_m := 1) -> void:
 		item_name = name_val
 		description = des
 		cost = cost_val
 		sell_multiplier = sell_m
+		shipment = neighborhood

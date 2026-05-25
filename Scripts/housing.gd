@@ -1,5 +1,8 @@
 extends Control
 
 
-func _ready() -> void: pass
-	#get_node("Right").pressed
+var slide_index: int = 2
+
+func _ready() -> void:
+	get_node("Right").pressed.connect(func(): slide_index += 1)
+	get_node("Left").pressed.connect(func(): slide_index -= 1)
