@@ -11,6 +11,8 @@ extends Control
 			
 			$Slides.get_child(value).show()
 
+@export var area_doors: Array[String]
+
 
 func _ready() -> void:
 	get_node("Right").pressed.connect(func(): slide_index += 1)

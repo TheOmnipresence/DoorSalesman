@@ -1,9 +1,12 @@
-[gd_scene load_steps=20 format=3 uid="uid://d38xjml56pg4n"]
+[gd_scene load_steps=24 format=3 uid="uid://d38xjml56pg4n"]
 
 [ext_resource type="Script" uid="uid://cmx2so6nuas6h" path="res://Scripts/housing.gd" id="1_c0cq2"]
 [ext_resource type="Script" uid="uid://drk7lqqa0k4bm" path="res://Scripts/clickable_dialogue.gd" id="1_lyanp"]
 [ext_resource type="Script" uid="uid://dvfxph6aeapdn" path="res://Scripts/dia_resource.gd" id="2_bgw1h"]
 [ext_resource type="Script" uid="uid://cf1tkwliq8ivp" path="res://Scripts/dialouge_action_transition.gd" id="3_cgy2h"]
+[ext_resource type="Shader" uid="uid://ckh8q5j0grg38" path="res://Sprites/rowhome.gdshader" id="5_vdm02"]
+[ext_resource type="Texture2D" uid="uid://cpgeit8ulu5l4" path="res://Sprites/rowhome-grayscale.png" id="6_ioxou"]
+[ext_resource type="Script" uid="uid://dtui3hlc6dw34" path="res://Scripts/house_pallette.gd" id="7_ioxou"]
 
 [sub_resource type="Resource" id="Resource_c0cq2"]
 script = ExtResource("3_cgy2h")
@@ -103,6 +106,11 @@ key = "cool"
 text = "Thanks for the door"
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ubx8d"]
+shader = ExtResource("5_vdm02")
+shader_parameter/target_colors = PackedColorArray(1, 1, 1, 1, 0.63529414, 0.63529414, 0.63529414, 1, 0.49019608, 0.49019608, 0.49019608, 1, 0.4, 0.4, 0.4, 1, 0.38039216, 0.38039216, 0.38039216, 1, 0.27450982, 0.27450982, 0.27450982, 1)
+shader_parameter/replace_colors = PackedColorArray(0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1)
+
 [node name="Shrimpville" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -112,6 +120,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_c0cq2")
+area_doors = Array[String](["Scratched Door"])
 
 [node name="Slides" type="Control" parent="."]
 layout_mode = 1
@@ -133,7 +142,7 @@ mouse_filter = 2
 
 [node name="May" type="StaticBody2D" parent="Slides/May"]
 z_index = 1
-position = Vector2(420, 283)
+position = Vector2(522, 348)
 input_pickable = true
 script = ExtResource("1_lyanp")
 diaTree = Dictionary[String, ExtResource("2_bgw1h")]({
@@ -149,7 +158,7 @@ isPlaque = false
 approved_doors = Array[String](["Base Door", "Oak Door"])
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/May/May"]
-polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
+polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)
 
 [node name="Polygon2D" type="Polygon2D" parent="Slides/May/May"]
 z_index = 1
@@ -157,23 +166,26 @@ color = Color(1, 1, 1, 0)
 uv = PackedVector2Array(58, 43, 56, 46)
 
 [node name="Image" type="Polygon2D" parent="Slides/May/May"]
+visible = false
 color = Color(0, 0, 1, 1)
 polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
 
 [node name="Control" type="Control" parent="Slides/May/May"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_top = 194.0
+offset_right = 108.0
+offset_bottom = 234.0
 mouse_filter = 2
 
 [node name="TextBox" type="VBoxContainer" parent="Slides/May/May/Control"]
 custom_minimum_size = Vector2(100, 0)
-layout_mode = 0
-offset_left = -50.0
-offset_top = 20.0
-offset_right = 50.0
-offset_bottom = 60.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 
 [node name="Label" type="Label" parent="Slides/May/May/Control/TextBox"]
@@ -183,6 +195,39 @@ horizontal_alignment = 1
 [node name="ChoiceContainer" type="HBoxContainer" parent="Slides/May/May/Control/TextBox"]
 layout_mode = 2
 mouse_filter = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Slides/May"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ubx8d")
+position = Vector2(576, 258)
+scale = Vector2(3, 3)
+texture = ExtResource("6_ioxou")
+script = ExtResource("7_ioxou")
+
+[node name="Sprite2D" type="Sprite2D" parent="Slides/May/Sprite2D"]
+position = Vector2(0, 70)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Slides/May"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ubx8d")
+position = Vector2(960, 258)
+scale = Vector2(3, 3)
+texture = ExtResource("6_ioxou")
+script = ExtResource("7_ioxou")
+
+[node name="Sprite2D" type="Sprite2D" parent="Slides/May/Sprite2D2"]
+position = Vector2(0, 70)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Slides/May"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ubx8d")
+position = Vector2(192, 258)
+scale = Vector2(3, 3)
+texture = ExtResource("6_ioxou")
+script = ExtResource("7_ioxou")
+
+[node name="Sprite2D" type="Sprite2D" parent="Slides/May/Sprite2D3"]
+position = Vector2(0, 70)
 
 [node name="Right" type="Button" parent="."]
 layout_mode = 1
