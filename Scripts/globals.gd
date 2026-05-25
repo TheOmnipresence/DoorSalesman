@@ -164,10 +164,12 @@ func trigger_popup(text: String, color: Color):
 	# actually popup here TODO
 
 
-func get_door_by_name(item_name: String) -> Door:
+func get_door_by_name(item_name: String, shipment: String = "warehouse") -> Door:
 	for i in all_doors:
 		if i.item_name == item_name:
-			return Door.new(i.item_name, i.description, i.cost, i.sell_for)
+			var result = Door.new(i.item_name, i.description, i.cost, i.sell_for)
+			result.shipment = shipment
+			return result
 	return null
 
 
