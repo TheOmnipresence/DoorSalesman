@@ -110,6 +110,8 @@ func send_to_place(place_name: String) -> void:
 		get_tree().current_scene.get_node("Fade").color.a -= 0.01
 		await get_tree().process_frame
 	
+	in_dialogue = false
+	
 	print("send to " + place_name)
 
 
