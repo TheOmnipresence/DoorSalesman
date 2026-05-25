@@ -49,6 +49,12 @@ var all_upgrades: Array[Upgrade] = [
 
 @onready var shop_inventory: Array = all_upgrades + doors_in_shop + merge_lists(STORAGE_UPGRADES.values())
 
+@onready var items_collected_from_shop: Array[Item] = [
+	STORAGE_UPGRADES["warehouse"][0],
+	STORAGE_UPGRADES["truck"][0],
+	STORAGE_UPGRADES["carry"][0],
+]
+
 var npc_data := {}
 
 var in_dialogue := false

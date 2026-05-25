@@ -14,4 +14,5 @@ func update_info() -> void:
 
 func _on_buy_pressed() -> void:
 	if item_res != null:
+		Globals.items_collected_from_shop.append(item_res)
 		Globals.buy(item_res)
