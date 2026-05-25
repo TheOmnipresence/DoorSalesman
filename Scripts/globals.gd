@@ -3,6 +3,7 @@ extends Node
 
 var current_space := "warehouse"
 var current_shipment := 0
+var visited := ["warehouse"]
 
 @onready var warehouse_inventory: Array[Door] = [get_door_by_name("Base Door"), get_door_by_name("Base Door"), get_door_by_name("Scratched Door")]
 var truck_inventory: Array[Door] = []
@@ -36,7 +37,7 @@ signal update_brought_doors
 var all_doors: Array[Door] = [
 	Door.new("Base Door", "Pretty boring door", 20, 45),
 	Door.new("Scratched Door", "A bit beat up", 10, 30),
-	Door.new("Oak Door", "Kinda fancy", 60, 100, 1),
+	Door.new("Oak Door", "Kinda fancy", 60, 100, "Fancytown"),
 ]
 @onready var doors_in_shop: Array[Door] = [
 	get_door_by_name("Base Door"),
@@ -99,6 +100,7 @@ func buy(item: Item):
 
 
 func send_to_place(place_name: String) -> void:
+	if !visited.has(place_name): visited.append(place_name)
 	current_space = place_name
 	
 	for i in range(100):
@@ -224,14 +226,14 @@ class Storage extends Item:
 
 class Door extends Item:
 	var sell_for: int
-	var shipment: int
+	var neighborhood_needed: String
 	
-	func _init(name_val := "", des := "", cost_val := 0, price_val := 0, shipment_number := 0) -> void:
+	func _init(name_val := "", des := "", cost_val := 0, price_val := 0, neighborhood := "warehouse") -> void:
 		item_name = name_val
 		description = des
 		cost = cost_val
 		sell_for = price_val
-		shipment = shipment_number
+		neighborhood_needed = neighborhood
 
 
 class Upgrade extends Item:

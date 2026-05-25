@@ -64,14 +64,12 @@ func force_update_upgrades() -> void:
 			#if Globals.get(kind + "_storage_level") >= Globals.STORAGE_UPGRADES[kind].find(i):
 				#continue
 		
-		if (not i is Globals.Door) or i.shipment <= Globals.current_shipment:
-			if i is Globals.Door: print(str(i.shipment) + " " + str(Globals.current_shipment) + " " + i.item_name)
-			pass
-		
-		var node = preload("res://Scenes/item.tscn").instantiate()
-		node.item_res = i
-		node.update_info()
-		$HSplitContainer/Tabs/Shop/ScrollContainer/GridContainer.add_child(node)
+		if (not i is Globals.Door) or Globals.visited.has(i.neighborhood_needed):
+			if i is Globals.Door: print(i.neighborhood_needed)
+			var node = preload("res://Scenes/item.tscn").instantiate()
+			node.item_res = i
+			node.update_info()
+			$HSplitContainer/Tabs/Shop/ScrollContainer/GridContainer.add_child(node)
 
 
 func set_current_tab(tab_name: String) -> void:
