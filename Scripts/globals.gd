@@ -208,6 +208,8 @@ class Item extends Resource:
 	
 	var description: String
 	
+	var shipment: int
+	
 	var cost: int
 
 
@@ -224,7 +226,6 @@ class Storage extends Item:
 
 class Door extends Item:
 	var sell_for: int
-	var shipment: int
 	
 	func _init(name_val := "", des := "", cost_val := 0, price_val := 0, shipment_number := 0) -> void:
 		item_name = name_val
