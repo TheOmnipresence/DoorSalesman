@@ -11,6 +11,7 @@ extends Control
 			
 			$Slides.get_child(value).show()
 
+
 func _ready() -> void:
 	get_node("Right").pressed.connect(func(): slide_index += 1)
 	get_node("Left").pressed.connect(func(): slide_index -= 1)

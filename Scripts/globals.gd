@@ -48,7 +48,7 @@ var all_upgrades: Array[Upgrade] = [
 	Upgrade.new("Double Cash", "Doubles earned money", 45, "warehouse", 2)
 ]
 
-@onready var shop_inventory: Array = all_upgrades + doors_in_shop + merge_lists(STORAGE_UPGRADES.values())
+@onready var shop_inventory: Array = all_upgrades + doors_in_shop + get_shop_storage()
 
 @onready var items_collected_from_shop: Array[Item] = [
 	STORAGE_UPGRADES["warehouse"][0],
@@ -186,6 +186,17 @@ func merge_lists(lists: Array) -> Array:
 	var result = []
 	for i in lists:
 		result.append_array(i)
+	return result
+
+
+func get_shop_storage() -> Array:
+	var result = []
+	for type in STORAGE_UPGRADES:
+		var reversed = range(STORAGE_UPGRADES[type].size())
+		reversed.reverse()
+		for i in reversed:
+			result += STORAGE_UPGRADES[type][i]
+		result.remove_at(-1)
 	return result
 
 
