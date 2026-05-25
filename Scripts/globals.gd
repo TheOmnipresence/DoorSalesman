@@ -35,11 +35,12 @@ signal update_brought_doors
 var all_doors: Array[Door] = [
 	Door.new("Base Door", "Pretty boring door", 20, 45),
 	Door.new("Scratched Door", "A bit beat up", 10, 30),
+	Door.new("Oak Door", "Kinda fancy", 60, 100)
 ]
 @onready var doors_in_shop: Array[Door] = [
 	get_door_by_name("Base Door"),
 	get_door_by_name("Base Door"),
-	get_door_by_name("Base Door"),
+	get_door_by_name("Oak Door"),
 ]
 var all_upgrades: Array[Upgrade] = [
 	Upgrade.new("Double Cash", "Doubles earned money", 45, 2)
