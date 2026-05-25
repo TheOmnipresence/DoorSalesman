@@ -166,10 +166,12 @@ func trigger_popup(text: String, color: Color):
 	# actually popup here TODO
 
 
-func get_door_by_name(item_name: String) -> Door:
+func get_door_by_name(item_name: String, shipment: String = "warehouse") -> Door:
 	for i in all_doors:
 		if i.item_name == item_name:
-			return Door.new(i.item_name, i.description, i.cost, i.sell_for)
+			var result = Door.new(i.item_name, i.description, i.cost, i.sell_for)
+			result.shipment = shipment
+			return result
 	return null
 
 
@@ -210,6 +212,8 @@ class Item extends Resource:
 	
 	var description: String
 	
+	var shipment: int
+	
 	var cost: int
 
 
@@ -226,7 +230,9 @@ class Storage extends Item:
 
 class Door extends Item:
 	var sell_for: int
+	
 	var neighborhood_needed: String
+
 	
 	func _init(name_val := "", des := "", cost_val := 0, price_val := 0, neighborhood := "warehouse") -> void:
 		item_name = name_val
