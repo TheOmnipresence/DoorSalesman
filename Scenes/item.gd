@@ -7,7 +7,7 @@ func update_info() -> void:
 		$Name.text = item_res.item_name
 		$Description.text = item_res.description
 		$Buy.text = "Buy"
-		#$Texture.texture = load("res://Sprites/" + item_res.door_name.to_snake_case() + ".png")
+		$Texture.texture = load("res://Sprites/" + item_res.item_name.to_snake_case() + ".png")
 
 
 func _on_buy_pressed() -> void:
