@@ -52,10 +52,12 @@ func force_update_upgrades() -> void:
 		i.queue_free()
 	
 	for i in Globals.shop_inventory:
-		var node = preload("res://Scenes/item.tscn").instantiate()
-		node.item_res = i
-		node.update_info()
-		$HSplitContainer/Tabs/Shop/ScrollContainer/GridContainer.add_child(node)
+		if (not i is Globals.Door) or i.shipment <= Globals.current_shipment:
+			if i is Globals.Door: print(str(i.shipment) + " " + str(Globals.current_shipment) + " " + i.item_name)
+			var node = preload("res://Scenes/item.tscn").instantiate()
+			node.item_res = i
+			node.update_info()
+			$HSplitContainer/Tabs/Shop/ScrollContainer/GridContainer.add_child(node)
 
 func set_current_tab(tab_name: String) -> void:
 	for i in $HSplitContainer/Tabs.get_children():
