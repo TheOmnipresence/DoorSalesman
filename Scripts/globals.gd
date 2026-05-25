@@ -100,7 +100,7 @@ func buy(item: Item):
 
 
 func send_to_place(place_name: String) -> void:
-	if !visited.has(place_name): visited.append(place_name)
+	if not visited.has(place_name): visited.append(place_name)
 	current_space = place_name
 	
 	for i in range(100):
