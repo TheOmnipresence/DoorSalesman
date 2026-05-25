@@ -53,14 +53,16 @@ func force_update_upgrades() -> void:
 		i.queue_free()
 	
 	for i in Globals.shop_inventory:
-		if i is Globals.Storage:
-			var kind = ""
-			for type in Globals.STORAGE_UPGRADES:
-				if Globals.STORAGE_UPGRADES[type].has(i):
-					kind = type
-			
-			if Globals.get(kind + "_storage_level") >= Globals.STORAGE_UPGRADES[kind].find(i):
-				continue
+		if Globals.items_collected_from_shop.has(i):
+			continue
+		#if i is Globals.Storage:
+			#var kind = ""
+			#for type in Globals.STORAGE_UPGRADES:
+				#if Globals.STORAGE_UPGRADES[type].has(i):
+					#kind = type
+			#
+			#if Globals.get(kind + "_storage_level") >= Globals.STORAGE_UPGRADES[kind].find(i):
+				#continue
 		
 		var node = preload("res://Scenes/item.tscn").instantiate()
 		node.item_res = i
