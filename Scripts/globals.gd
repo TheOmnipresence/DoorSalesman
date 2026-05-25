@@ -37,12 +37,12 @@ signal update_brought_doors
 var all_doors: Array[Door] = [
 	Door.new("Base Door", "Pretty boring door", 20, 45),
 	Door.new("Scratched Door", "A bit beat up", 10, 30),
-	Door.new("Oak Door", "Kinda fancy", 60, 100, "Fancytown"),
+	Door.new("Oak Door", "Kinda fancy", 60, 100),
 ]
 @onready var doors_in_shop: Array[Door] = [
 	get_door_by_name("Base Door"),
 	get_door_by_name("Base Door"),
-	get_door_by_name("Oak Door"),
+	get_door_by_name("Oak Door", "fancytown"),
 ]
 var all_upgrades: Array[Upgrade] = [
 	Upgrade.new("Double Cash", "Doubles earned money", 45, 2)
@@ -212,7 +212,7 @@ class Item extends Resource:
 	
 	var description: String
 	
-	var shipment: int
+	var shipment: String
 	
 	var cost: int
 
@@ -234,12 +234,11 @@ class Door extends Item:
 	var neighborhood_needed: String
 
 	
-	func _init(name_val := "", des := "", cost_val := 0, price_val := 0, neighborhood := "warehouse") -> void:
+	func _init(name_val := "", des := "", cost_val := 0, price_val := 0) -> void:
 		item_name = name_val
 		description = des
 		cost = cost_val
 		sell_for = price_val
-		neighborhood_needed = neighborhood
 
 
 class Upgrade extends Item:
