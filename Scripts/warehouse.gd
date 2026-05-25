@@ -17,6 +17,8 @@ func update_all() -> void:
 	
 	force_update_doors()
 	
+	force_update_upgrades()
+	
 	update_map()
 	
 	update_disabled_tabs()
@@ -51,9 +53,9 @@ func force_update_upgrades() -> void:
 	
 	for i in Globals.shop_inventory:
 		var node = preload("res://Scenes/item.tscn").instantiate()
-		node.door_res = i
+		node.item_res = i
 		node.update_info()
-		$HSplitContainer/Tabs/Storage/ScrollContainer/GridContainer.add_child(node)
+		$HSplitContainer/Tabs/Shop/ScrollContainer/GridContainer.add_child(node)
 
 func set_current_tab(tab_name: String) -> void:
 	for i in $HSplitContainer/Tabs.get_children():

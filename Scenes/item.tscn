@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cpjm53colqls6"]
 
-[ext_resource type="Script" uid="uid://w3qf474w1x2q" path="res://Scenes/item.gd" id="1_ys0gr"]
+[ext_resource type="Script" uid="uid://w511h6vtrn52" path="res://Scenes/item.gd" id="1_ys0gr"]
 
 [node name="Item" type="VBoxContainer"]
 custom_minimum_size = Vector2(0, 240)
@@ -25,6 +25,13 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 10
 horizontal_alignment = 1
 
+[node name="Price" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 1
+
 [node name="Buy" type="Button" parent="."]
 layout_mode = 2
 text = "Bring"
+
+[connection signal="pressed" from="Buy" to="." method="_on_buy_pressed"]
