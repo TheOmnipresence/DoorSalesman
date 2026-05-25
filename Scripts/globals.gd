@@ -5,7 +5,7 @@ var current_space := "warehouse"
 var current_shipment := 0
 var visited := ["warehouse"]
 
-@onready var warehouse_inventory: Array[Door] = [get_door_by_name("Base Door"), get_door_by_name("Base Door"), get_door_by_name("Scratched Door")]
+@onready var warehouse_inventory: Array[Door] = [make_door_by_name("Base Door"), make_door_by_name("Base Door"), make_door_by_name("Scratched Door")]
 var truck_inventory: Array[Door] = []
 var carry_inventory: Array[Door] = []
 
@@ -40,9 +40,9 @@ var all_doors: Array[Door] = [
 	Door.new("Oak Door", "Kinda fancy", 60, 100),
 ]
 @onready var doors_in_shop: Array[Door] = [
-	get_door_by_name("Base Door"),
-	get_door_by_name("Base Door"),
-	get_door_by_name("Oak Door", "fancytown"),
+	make_door_by_name("Base Door"),
+	make_door_by_name("Base Door"),
+	make_door_by_name("Oak Door", "fancytown"),
 ]
 var all_upgrades: Array[Upgrade] = [
 	Upgrade.new("Double Cash", "Doubles earned money", 45, 2)
@@ -127,12 +127,12 @@ func send_to_place(place_name: String) -> void:
 func collect_item(item_name: String, shop_item: Item = null, called_from_archipelago := false) -> void:
 	if shop_item is Door:#all_doors.map(func(e): return e.item_name).has(item_name) or shop_item is Door:
 		if is_archipelago and not called_from_archipelago:
-			send_ap_item(item_name, 0) # TODO index this
+			send_shop_ap(shop_item)
 		else:
-			warehouse_inventory.append(get_door_by_name(item_name))
+			warehouse_inventory.append(make_door_by_name(item_name))
 	elif shop_item is Upgrade:
 		if is_archipelago and not called_from_archipelago:
-			send_ap_item(item_name, 0) # TODO index this
+			send_shop_ap(shop_item)
 		else:
 			upgrades.append(shop_item)
 	elif shop_item is Storage:#merge_lists(all_storage_names.values()).has(item_name) or shop_item is Storage:
@@ -166,7 +166,7 @@ func trigger_popup(text: String, color: Color):
 	# actually popup here TODO
 
 
-func get_door_by_name(item_name: String, shipment: String = "warehouse") -> Door:
+func make_door_by_name(item_name: String, shipment: String = "warehouse") -> Door:
 	for i in all_doors:
 		if i.item_name == item_name:
 			var result = Door.new(i.item_name, i.description, i.cost, i.sell_for)
