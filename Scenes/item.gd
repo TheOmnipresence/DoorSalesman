@@ -8,7 +8,8 @@ func update_info() -> void:
 		$Description.text = item_res.description
 		$Buy.text = "Buy"
 		$Price.text = str(item_res.cost)
-		$Texture.texture = load("res://Sprites/" + item_res.item_name.to_snake_case() + ".png")
+		if item_res is Globals.Door:
+			$Texture.texture = load("res://Sprites/" + item_res.item_name.to_snake_case() + ".png")
 
 
 func _on_buy_pressed() -> void:
