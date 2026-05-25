@@ -60,12 +60,18 @@ func getValue() -> Variant:
 	# Add new classes here
 	var classes = {"Globals":Globals,"Data":Globals.npc_data}
 	
+	if toRun == "":
+		return null
+	
 	var splitText = toRun.split(".")
 	var value = classes[splitText[0]]
 	splitText.remove_at(0)
-	for i in splitText:
-		if i in value:
-			value = value[i]
+	for i in range(splitText.size()):
+		if splitText[i] in value:
+			if i == splitText.size() - 1 and operator == OP_MAX and targetVal != null:
+				value.set(splitText[i], targetVal)
+				return null
+			value = value[splitText[i]]
 	
 	var result = comparevals(value,targetVal,operator)
 	if notValue:

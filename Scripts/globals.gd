@@ -56,7 +56,11 @@ var all_upgrades: Array[Upgrade] = [
 	STORAGE_UPGRADES["carry"][0],
 ]
 
-var npc_data := {}
+var npc_data := {
+	"may":{
+		"given": false
+	}
+}
 
 var in_dialogue := false
 
