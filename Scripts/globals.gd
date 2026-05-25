@@ -171,6 +171,10 @@ func trigger_popup(text: String, color: Color):
 	# actually popup here TODO
 
 
+func make_door_texture(door_name: String) -> Texture2D:
+	return load("res://Sprites/" + door_name.to_snake_case() + ".png")
+
+
 func make_door_by_name(item_name: String, shipment: String = "warehouse") -> Door:
 	for i in all_doors:
 		if i.item_name == item_name:

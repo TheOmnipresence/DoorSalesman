@@ -140,7 +140,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="May" type="StaticBody2D" parent="Slides/May"]
+[node name="May" type="StaticBody2D" parent="Slides/May" node_paths=PackedStringArray("house")]
 z_index = 1
 position = Vector2(522, 348)
 input_pickable = true
@@ -156,6 +156,8 @@ diaTree = Dictionary[String, ExtResource("2_bgw1h")]({
 })
 isPlaque = false
 approved_doors = Array[String](["Base Door", "Oak Door"])
+current_door = "Scratched Door"
+house = NodePath("../Sprite2D")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/May/May"]
 polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)

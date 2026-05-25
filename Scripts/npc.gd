@@ -13,12 +13,17 @@ var button_name = ""
 
 @export var approved_doors: Array[String] = []
 
+@export var current_door: String
+
+@export var house: Sprite2D
+
 
 ## Used in [method enterDialouge] to control the pressing of the choice buttons
 func emit_buttons(button):
 	button_name = button.key
 	if approved_doors.has(button_name.capitalize()):
 		button.action_condition.run()
+		house.get_child(0).texture = Globals.make_door_texture(button_name)
 	
 	any_button.emit()
 

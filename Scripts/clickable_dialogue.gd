@@ -14,6 +14,9 @@ func _ready() -> void:
 	$Polygon2D.polygon = $CollisionPolygon2D.polygon
 	mouse_entered.connect(func(): mouse_hovering = true)
 	mouse_exited.connect(func(): mouse_hovering = false)
+	
+	await get_tree().process_frame
+	house.get_child(0).texture = Globals.make_door_texture(current_door)
 
 
 func _process(_delta: float) -> void:

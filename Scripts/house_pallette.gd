@@ -20,7 +20,7 @@ func _ready() -> void:
 	material.set_shader_parameter("replace_colors", colors)
 	
 	var door = get_parent().get_parent().get_parent().area_doors.pick_random()
-	get_child(0).texture = load("res://Sprites/" + door.to_snake_case() + ".png")
+	get_child(0).texture = Globals.make_door_texture(door)
 
 
 func color_from_range(min_val: float, max_val: float) -> Color:
