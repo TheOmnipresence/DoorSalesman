@@ -19,6 +19,7 @@ func _ready() -> void:
 		colors.append(Globals.houses[neighborhood][str(name)].secondary_color)
 		material.set_shader_parameter("replace_colors", colors)
 		
+		print(Globals.houses[neighborhood][str(name)].door, " ", name)
 		get_child(0).texture = Globals.make_door_texture(Globals.houses[neighborhood][str(name)].door)
 
 

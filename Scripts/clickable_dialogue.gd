@@ -17,7 +17,17 @@ func _ready() -> void:
 	
 	await get_tree().process_frame
 	await get_tree().process_frame
-	house.get_child(0).texture = Globals.make_door_texture(current_door)
+	
+	var neighborhood = str(get_parent().get_parent().get_parent().name).to_snake_case()
+	if not Globals.houses.has(neighborhood):
+		Globals.houses[neighborhood] = {}
+	if Globals.houses[neighborhood].has(str(house.name)):
+		if not Globals.npc_data[str(name).to_snake_case()]["given"]:
+			Globals.houses[neighborhood][str(house.name)].door = current_door.to_snake_case()
+		else:
+			current_door = Globals.houses[neighborhood][str(house.name)].door.capitalize()
+	print(Globals.houses[neighborhood][str(house.name)].door)
+	house.get_child(0).texture = Globals.make_door_texture(current_door.to_snake_case())
 
 
 func _process(_delta: float) -> void:

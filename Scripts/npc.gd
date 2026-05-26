@@ -24,6 +24,11 @@ func emit_buttons(button):
 	if approved_doors.has(button_name.capitalize()):
 		button.action_condition.run()
 		house.get_child(0).texture = Globals.make_door_texture(button_name)
+		var neighborhood = str(get_parent().get_parent().get_parent().name).to_snake_case()
+		if not Globals.houses.has(neighborhood):
+			Globals.houses[neighborhood] = {}
+		if Globals.houses[neighborhood].has(str(house.name)):
+			Globals.houses[neighborhood][str(house.name)].door = button_name
 	
 	any_button.emit()
 

@@ -44,11 +44,7 @@ func run() -> Variant:
 			var x when x.left(5) == "sell_":
 				for i in Globals.carry_inventory:
 					if i.item_name == x.right(-5).capitalize():
-						var before = Globals.money
-						print(Globals.carry_inventory)
 						Globals.sell(i)
-						print(Globals.carry_inventory)
-						print("earned " + str(Globals.money - before))
 						break
 		
 		return null
