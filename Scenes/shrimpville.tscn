@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://d38xjml56pg4n"]
+[gd_scene load_steps=40 format=3 uid="uid://d38xjml56pg4n"]
 
 [ext_resource type="Script" uid="uid://cmx2so6nuas6h" path="res://Scripts/housing.gd" id="1_c0cq2"]
 [ext_resource type="Script" uid="uid://drk7lqqa0k4bm" path="res://Scripts/clickable_dialogue.gd" id="1_lyanp"]
@@ -142,6 +142,77 @@ shader = ExtResource("5_vdm02")
 shader_parameter/target_colors = PackedColorArray(1, 1, 1, 1, 0.63529414, 0.63529414, 0.63529414, 1, 0.49019608, 0.49019608, 0.49019608, 1, 0.4, 0.4, 0.4, 1, 0.38039216, 0.38039216, 0.38039216, 1, 0.27450982, 0.27450982, 0.27450982, 1)
 shader_parameter/replace_colors = PackedColorArray(0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1)
 
+[sub_resource type="Resource" id="Resource_agsw7"]
+script = ExtResource("3_cgy2h")
+type = 1
+toRun = "Data.mr_brown.given"
+operator = 23
+targetVal = null
+metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
+
+[sub_resource type="Resource" id="Resource_xv5es"]
+script = ExtResource("2_bgw1h")
+action_condition = SubResource("Resource_agsw7")
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_tnyjc"]
+script = ExtResource("2_bgw1h")
+key = "q"
+text = "Walk up?"
+options = Array[ExtResource("2_bgw1h")]([SubResource("Resource_ga05j"), SubResource("Resource_vdm02")])
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_bkw50"]
+script = ExtResource("2_bgw1h")
+set_dia_path = "/y/"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_wv2h7"]
+script = ExtResource("2_bgw1h")
+set_dia_path = "/ask/"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_d5gy6"]
+script = ExtResource("2_bgw1h")
+key = "sure"
+text = "What door?"
+options_doors = true
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_igdn2"]
+script = ExtResource("2_bgw1h")
+key = "ew"
+text = "Ugh"
+options = Array[ExtResource("2_bgw1h")]([SubResource("Resource_5rq42")])
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_gpgs5"]
+script = ExtResource("2_bgw1h")
+key = "more"
+text = "Any... others?"
+options = Array[ExtResource("2_bgw1h")]([SubResource("Resource_pyndp"), SubResource("Resource_daxob")])
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_1fmjy"]
+script = ExtResource("2_bgw1h")
+key = "more"
+set_dia_path = "/y/show/"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_0nqti"]
+script = ExtResource("3_cgy2h")
+type = 1
+toRun = "Data.mr_brown.given"
+targetVal = true
+metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
+
+[sub_resource type="Resource" id="Resource_8hlrg"]
+script = ExtResource("2_bgw1h")
+key = "cool"
+text = "Great"
+action_condition = SubResource("Resource_0nqti")
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
 [node name="Shrimpville" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -281,16 +352,16 @@ position = Vector2(522, 348)
 input_pickable = true
 script = ExtResource("1_lyanp")
 diaTree = Dictionary[String, ExtResource("2_bgw1h")]({
-"/": SubResource("Resource_y4ml6"),
-"/ask/": SubResource("Resource_cgy2h"),
-"/ask/y/": SubResource("Resource_wfgfr"),
-"/true/": SubResource("Resource_c2tmx"),
+"/": SubResource("Resource_xv5es"),
+"/ask/": SubResource("Resource_tnyjc"),
+"/ask/y/": SubResource("Resource_bkw50"),
+"/true/": SubResource("Resource_wv2h7"),
 "/y/": SubResource("Resource_7rb63"),
-"/y/show/": SubResource("Resource_5f38y"),
-"/y/show/bad_door/": SubResource("Resource_uxwvd"),
-"/y/show/bad_door/ew/": SubResource("Resource_1dtxm"),
-"/y/show/bad_door/ew/y/": SubResource("Resource_uwdv8"),
-"/y/show/good_door/": SubResource("Resource_v1q0i")
+"/y/show/": SubResource("Resource_d5gy6"),
+"/y/show/bad_door/": SubResource("Resource_igdn2"),
+"/y/show/bad_door/ew/": SubResource("Resource_gpgs5"),
+"/y/show/bad_door/ew/y/": SubResource("Resource_1fmjy"),
+"/y/show/good_door/": SubResource("Resource_8hlrg")
 })
 isPlaque = false
 approved_doors = Array[String](["Base Door", "Oak Door", "Scratched Door"])
