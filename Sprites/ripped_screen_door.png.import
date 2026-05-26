@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbp4wujg22fgk"
-path="res://.godot/imported/ripped_door.png-4398eeb2431b863c943657d9b5f7fd2f.ctex"
+uid="uid://bnuwlkt2c7gnh"
+path="res://.godot/imported/ripped_screen_door.png-644990ec7eb50399aef43abddb09d3bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/ripped_door.png"
-dest_files=["res://.godot/imported/ripped_door.png-4398eeb2431b863c943657d9b5f7fd2f.ctex"]
+source_file="res://Sprites/ripped_screen_door.png"
+dest_files=["res://.godot/imported/ripped_screen_door.png-644990ec7eb50399aef43abddb09d3bf.ctex"]
 
 [params]
 

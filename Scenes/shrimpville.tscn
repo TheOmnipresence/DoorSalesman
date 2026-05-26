@@ -349,7 +349,7 @@ diaTree = Dictionary[String, ExtResource("2_bgw1h")]({
 "/y/show/good_door/": SubResource("Resource_627an")
 })
 isPlaque = false
-approved_doors = Array[String](["Base Door", "Oak Door"])
+approved_doors = Array[String](["Base Door", "Oak Door", "Screen Door"])
 current_door = "Scratched Door"
 house = NodePath("../House3")
 
@@ -453,8 +453,8 @@ diaTree = Dictionary[String, ExtResource("2_bgw1h")]({
 "/y/show/good_door/": SubResource("Resource_8hlrg")
 })
 isPlaque = false
-approved_doors = Array[String](["Base Door", "Oak Door", "Scratched Door"])
-current_door = "Ripped Door"
+approved_doors = Array[String](["Base Door", "Oak Door", "Scratched Door", "Screen Door"])
+current_door = "Ripped Screen Door"
 house = NodePath("../House4")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/MrBrown/MrBrown"]

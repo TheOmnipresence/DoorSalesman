@@ -42,7 +42,7 @@ var all_doors: Array[Door] = [
 	Door.new("Oak Door", "Kinda fancy", 60, 100),
 	Door.new("Cracked Oak Door", "Little less fancy", 45, 75, 10, "Oak Door"),
 	Door.new("Hole Oak Door", "oof", 35, 40, 20, "Oak Door"),
-	Door.new("Ripped Door", "In peices", 10, 5, 10, "Screen Door"),
+	Door.new("Ripped Screen Door", "In peices", 10, 5, 10, "Screen Door"),
 	Door.new("Screen Door", "See-through", 25, 55)
 ]
 @onready var doors_in_shop: Array[Door] = [
