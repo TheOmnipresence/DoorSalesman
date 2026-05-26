@@ -28,8 +28,10 @@ func set_apperance() -> void:
 	if randi_range(0,99) < roundi(get_parent().get_parent().get_parent().follow_palette_chance * 100):
 		primary_color = get_parent().get_parent().get_parent().palette
 	var secondary_color: Color
-	if randi_range(0,4) > 0:
+	if randi_range(0,99) < roundi(get_parent().get_parent().get_parent().oppose_palette_chance * 100):
 		secondary_color = Color.WHITE - primary_color
+		if get_parent().get_parent().get_parent().override_opposing_palette != Color.TRANSPARENT:
+			secondary_color = get_parent().get_parent().get_parent().override_opposing_palette
 	else:
 		secondary_color = Color.from_hsv(primary_color.h + randf_range(-0.05,0.05), 0.4, 0.3, 1)
 	var colors = []
