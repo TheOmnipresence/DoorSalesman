@@ -16,6 +16,7 @@ func _ready() -> void:
 	mouse_exited.connect(func(): mouse_hovering = false)
 	
 	await get_tree().process_frame
+	await get_tree().process_frame
 	house.get_child(0).texture = Globals.make_door_texture(current_door)
 
 
