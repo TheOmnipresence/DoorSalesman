@@ -105,7 +105,7 @@ func sell(door: Door):
 
 func buy(item: Item):
 	money -= item.cost
-	collect_item(item.item_name)
+	collect_item(item.item_name, item)
 
 
 func unlock_place(place_name: String) -> void:
@@ -158,6 +158,8 @@ func collect_item(item_name: String, shop_item: Item = null, called_from_archipe
 			for i in all_storage_names:
 				if all_storage_names[i].has(item_name):
 					set(i + "_storage_level", 1 + get(i + "_storage_level"))
+	
+	get_tree().current_scene.update_all()
 
 
 func send_shop_ap(item: Item) -> void:
