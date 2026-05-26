@@ -64,21 +64,7 @@ var all_upgrades: Array[Upgrade] = [
 ]
 
 var npc_data := {
-	"may":{
-		"given": false
-	},
-	"mr_brown":{
-		"given": false
-	},
-	"doug":{
-		"given": false
-	},
-	"poshman":{
-		"given": false
-	},
-	"hole_guy":{
-		"given": false
-	},
+
 }
 
 var in_dialogue := false

@@ -22,11 +22,18 @@ func _ready() -> void:
 	if not Globals.houses.has(neighborhood):
 		Globals.houses[neighborhood] = {}
 	if Globals.houses[neighborhood].has(str(house.name)):
+		if not Globals.npc_data.has(str(name).to_snake_case()):
+			Globals.npc_data[str(name).to_snake_case()] = {
+				"given": false,
+				"taken": false,
+			}
 		if not Globals.npc_data[str(name).to_snake_case()]["given"]:
 			Globals.houses[neighborhood][str(house.name)].door = current_door.to_snake_case()
 		else:
 			current_door = Globals.houses[neighborhood][str(house.name)].door.capitalize()
 	house.get_child(0).texture = Globals.make_door_texture(current_door.to_snake_case())
+	
+	super()
 
 
 func _process(_delta: float) -> void:

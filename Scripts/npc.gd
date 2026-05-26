@@ -19,6 +19,12 @@ var button_name = ""
 
 @export var knock_power_required: int = 0
 
+var old_door: String
+
+
+func _ready() -> void:
+	old_door = current_door
+
 
 ## Used in [method enterDialouge] to control the pressing of the choice buttons
 func emit_buttons(button):
@@ -53,6 +59,12 @@ func run_dialogue(dialogue_tree: Dictionary[String,Dialouge]) -> void:
 		
 		if dialogue_tree[path].key == "knock":
 			path += str(Globals.knock_power >= knock_power_required) + "/"
+			continue
+		elif dialogue_tree[path].key == "take_old":
+			Globals.npc_data[str(name).to_snake_case()]["taken"] = true
+			Globals.warehouse_inventory.append(Globals.make_door_by_name(old_door))
+			
+			path += "take_old/"
 			continue
 		
 		if dialogue_tree[path].action_condition != null:
