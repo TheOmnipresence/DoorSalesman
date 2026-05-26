@@ -26,7 +26,6 @@ func _ready() -> void:
 			Globals.houses[neighborhood][str(house.name)].door = current_door.to_snake_case()
 		else:
 			current_door = Globals.houses[neighborhood][str(house.name)].door.capitalize()
-	print(Globals.houses[neighborhood][str(house.name)].door)
 	house.get_child(0).texture = Globals.make_door_texture(current_door.to_snake_case())
 
 
