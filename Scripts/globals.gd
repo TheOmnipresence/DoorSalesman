@@ -37,8 +37,11 @@ signal update_brought_doors
 
 var all_doors: Array[Door] = [
 	Door.new("Base Door", "Pretty boring door", 20, 45),
-	Door.new("Scratched Door", "A bit beat up", 10, 30),
+	Door.new("Plain Door", "A very boring door", 25, 55),
+	Door.new("Scratched Door", "A bit beat up", 10, 30, 5),
 	Door.new("Oak Door", "Kinda fancy", 60, 100),
+	Door.new("Cracked Oak Door", "Little less fancy", 45, 75, 10),
+	Door.new("Hole Oak Door", "oof", 35, 40, 20),
 	Door.new("Ripped Door", "In peices", 10, 5),
 ]
 @onready var doors_in_shop: Array[Door] = [
@@ -47,7 +50,8 @@ var all_doors: Array[Door] = [
 	make_door_by_name("Oak Door", "fancytown"),
 ]
 var all_upgrades: Array[Upgrade] = [
-	Upgrade.new("Double Cash", "Doubles earned money", 45, "warehouse", 2)
+	Upgrade.new("Double Cash", "Doubles earned money", 45, "warehouse", 2),
+	Upgrade.new("Toolkit", "Basic repairing", 15, "shrimpville"),
 ]
 
 @onready var shop_inventory: Array = all_upgrades + doors_in_shop + get_shop_storage()
@@ -65,6 +69,15 @@ var npc_data := {
 	"mr_brown":{
 		"given": false
 	},
+	"doug":{
+		"given": false
+	},
+	"poshman":{
+		"given": false
+	},
+	"hole_guy":{
+		"given": false
+	},
 }
 
 var in_dialogue := false
@@ -76,6 +89,12 @@ var money: int = 0:
 			got_money = true
 
 var got_money := false
+
+const WORKSHOP_TOOLS = [
+	"Toolkit",
+]
+
+var tools: Array[String] = []
 
 var is_archipelago := false
 
@@ -151,6 +170,8 @@ func collect_item(item_name: String, shop_item: Item = null, called_from_archipe
 			send_shop_ap(shop_item)
 		else:
 			upgrades.append(shop_item)
+			if WORKSHOP_TOOLS.has(item_name):
+				tools.append(item_name)
 	elif shop_item is Storage:#merge_lists(all_storage_names.values()).has(item_name) or shop_item is Storage:
 		if is_archipelago and not called_from_archipelago:
 			send_shop_ap(shop_item) #merge_lists(all_storage_names.values()).find(item_name) + 1000)
@@ -262,11 +283,14 @@ class Storage extends Item:
 class Door extends Item:
 	var sell_for: int
 	
-	func _init(name_val := "", des := "", cost_val := 0, price_val := 0) -> void:
+	var repair_cost: int
+	
+	func _init(name_val := "", des := "", cost_val := 0, price_val := 0, repair_val := -1) -> void:
 		item_name = name_val
 		description = des
 		cost = cost_val
 		sell_for = price_val
+		repair_cost = repair_val
 
 
 class Upgrade extends Item:

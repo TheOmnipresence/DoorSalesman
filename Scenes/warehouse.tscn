@@ -144,6 +144,37 @@ offset_right = 62.0
 grow_vertical = 0
 text = "Money: 0"
 
+[node name="Workshop" type="Control" parent="HSplitContainer/Tabs"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="HSplitContainer/Tabs/Workshop"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer/Tabs/Workshop"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="HSplitContainer/Tabs/Workshop/ScrollContainer"]
+layout_mode = 2
+columns = 6
+
 [node name="Map" type="Control" parent="HSplitContainer/Tabs"]
 layout_mode = 1
 anchors_preset = 15
@@ -279,6 +310,11 @@ text = "Map"
 layout_mode = 2
 disabled = true
 text = "Shop"
+
+[node name="Workshop" type="Button" parent="HSplitContainer/SideBar/TabButtons"]
+layout_mode = 2
+disabled = true
+text = "Workshop"
 
 [node name="Archipelago" type="Button" parent="HSplitContainer/SideBar/TabButtons"]
 layout_mode = 2

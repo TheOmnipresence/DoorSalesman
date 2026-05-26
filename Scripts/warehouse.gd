@@ -122,6 +122,7 @@ func update_disabled_tabs() -> void:
 	$HSplitContainer/SideBar/TabButtons/Inventory.disabled = in_warehouse
 	$HSplitContainer/SideBar/TabButtons/Storage.disabled = not in_warehouse
 	$HSplitContainer/SideBar/TabButtons/Shop.disabled = not (Globals.got_money and in_warehouse)
+	$HSplitContainer/SideBar/TabButtons/Workshop.disabled = not (not Globals.tools.is_empty() and in_warehouse)
 
 
 func get_reachable_neighborhoods(neighborhood_name: String) -> Array[String]:

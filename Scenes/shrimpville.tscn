@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://d38xjml56pg4n"]
+[gd_scene load_steps=44 format=3 uid="uid://d38xjml56pg4n"]
 
 [ext_resource type="Script" uid="uid://cmx2so6nuas6h" path="res://Scripts/housing.gd" id="1_c0cq2"]
 [ext_resource type="Script" uid="uid://drk7lqqa0k4bm" path="res://Scripts/clickable_dialogue.gd" id="1_lyanp"]
@@ -137,6 +137,33 @@ text = "Thanks for the door"
 action_condition = SubResource("Resource_ng401")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
+[sub_resource type="Resource" id="Resource_674qm"]
+script = ExtResource("3_cgy2h")
+type = 1
+toRun = "Data.doug.given"
+operator = 23
+targetVal = null
+metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
+
+[sub_resource type="Resource" id="Resource_yvwxw"]
+script = ExtResource("2_bgw1h")
+action_condition = SubResource("Resource_674qm")
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_vsrh4"]
+script = ExtResource("3_cgy2h")
+type = 1
+toRun = "Data.doug.given"
+targetVal = true
+metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
+
+[sub_resource type="Resource" id="Resource_627an"]
+script = ExtResource("2_bgw1h")
+key = "cool"
+text = "Thanks for the door"
+action_condition = SubResource("Resource_vsrh4")
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ubx8d"]
 shader = ExtResource("5_vdm02")
 shader_parameter/target_colors = PackedColorArray(1, 1, 1, 1, 0.63529414, 0.63529414, 0.63529414, 1, 0.49019608, 0.49019608, 0.49019608, 1, 0.4, 0.4, 0.4, 1, 0.38039216, 0.38039216, 0.38039216, 1, 0.27450982, 0.27450982, 0.27450982, 1)
@@ -222,7 +249,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_c0cq2")
-area_doors = Array[String](["Scratched Door", "Scratched Door", "Ripped Door"])
+area_doors = Array[String](["Scratched Door", "Scratched Door", "Ripped Door", "Plain Door"])
 palette = Color(0.7019608, 0.2784314, 0.34117648, 1)
 
 [node name="Slides" type="Control" parent="."]
@@ -234,7 +261,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="May" type="Control" parent="Slides"]
+[node name="May&Doug" type="Control" parent="Slides"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -243,7 +270,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="May" type="StaticBody2D" parent="Slides/May" node_paths=PackedStringArray("house")]
+[node name="May" type="StaticBody2D" parent="Slides/May&Doug" node_paths=PackedStringArray("house")]
 z_index = 1
 position = Vector2(522, 348)
 input_pickable = true
@@ -265,20 +292,20 @@ approved_doors = Array[String](["Base Door", "Oak Door"])
 current_door = "Scratched Door"
 house = NodePath("../House")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/May/May"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/May&Doug/May"]
 polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)
 
-[node name="Polygon2D" type="Polygon2D" parent="Slides/May/May"]
+[node name="Polygon2D" type="Polygon2D" parent="Slides/May&Doug/May"]
 z_index = 1
 color = Color(1, 1, 1, 0)
 uv = PackedVector2Array(58, 43, 56, 46)
 
-[node name="Image" type="Polygon2D" parent="Slides/May/May"]
+[node name="Image" type="Polygon2D" parent="Slides/May&Doug/May"]
 visible = false
 color = Color(0, 0, 1, 1)
 polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
 
-[node name="Control" type="Control" parent="Slides/May/May"]
+[node name="Control" type="Control" parent="Slides/May&Doug/May"]
 layout_mode = 3
 anchors_preset = 0
 offset_top = 194.0
@@ -286,7 +313,7 @@ offset_right = 108.0
 offset_bottom = 234.0
 mouse_filter = 2
 
-[node name="TextBox" type="VBoxContainer" parent="Slides/May/May/Control"]
+[node name="TextBox" type="VBoxContainer" parent="Slides/May&Doug/May/Control"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -296,15 +323,76 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="Slides/May/May/Control/TextBox"]
+[node name="Label" type="Label" parent="Slides/May&Doug/May/Control/TextBox"]
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/May/May/Control/TextBox"]
+[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/May&Doug/May/Control/TextBox"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="House" type="Sprite2D" parent="Slides/May"]
+[node name="Doug" type="StaticBody2D" parent="Slides/May&Doug" node_paths=PackedStringArray("house")]
+z_index = 1
+position = Vector2(138, 348)
+input_pickable = true
+script = ExtResource("1_lyanp")
+diaTree = Dictionary[String, ExtResource("2_bgw1h")]({
+"/": SubResource("Resource_yvwxw"),
+"/ask/": SubResource("Resource_cgy2h"),
+"/ask/y/": SubResource("Resource_wfgfr"),
+"/true/": SubResource("Resource_c2tmx"),
+"/y/": SubResource("Resource_7rb63"),
+"/y/show/": SubResource("Resource_5f38y"),
+"/y/show/bad_door/": SubResource("Resource_uxwvd"),
+"/y/show/bad_door/ew/": SubResource("Resource_1dtxm"),
+"/y/show/bad_door/ew/y/": SubResource("Resource_uwdv8"),
+"/y/show/good_door/": SubResource("Resource_627an")
+})
+isPlaque = false
+approved_doors = Array[String](["Base Door", "Oak Door"])
+current_door = "Scratched Door"
+house = NodePath("../House3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/May&Doug/Doug"]
+polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="Slides/May&Doug/Doug"]
+z_index = 1
+color = Color(1, 1, 1, 0)
+uv = PackedVector2Array(58, 43, 56, 46)
+
+[node name="Image" type="Polygon2D" parent="Slides/May&Doug/Doug"]
+visible = false
+color = Color(0, 0, 1, 1)
+polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
+
+[node name="Control" type="Control" parent="Slides/May&Doug/Doug"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 194.0
+offset_right = 108.0
+offset_bottom = 234.0
+mouse_filter = 2
+
+[node name="TextBox" type="VBoxContainer" parent="Slides/May&Doug/Doug/Control"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Slides/May&Doug/Doug/Control/TextBox"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/May&Doug/Doug/Control/TextBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="House" type="Sprite2D" parent="Slides/May&Doug"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ubx8d")
 position = Vector2(576, 258)
@@ -312,10 +400,10 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_ioxou")
 script = ExtResource("7_ioxou")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/May/House"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/May&Doug/House"]
 position = Vector2(0, 70)
 
-[node name="House2" type="Sprite2D" parent="Slides/May"]
+[node name="House2" type="Sprite2D" parent="Slides/May&Doug"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ubx8d")
 position = Vector2(960, 258)
@@ -323,10 +411,10 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_ioxou")
 script = ExtResource("7_ioxou")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/May/House2"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/May&Doug/House2"]
 position = Vector2(0, 70)
 
-[node name="House3" type="Sprite2D" parent="Slides/May"]
+[node name="House3" type="Sprite2D" parent="Slides/May&Doug"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ubx8d")
 position = Vector2(192, 258)
@@ -334,7 +422,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_ioxou")
 script = ExtResource("7_ioxou")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/May/House3"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/May&Doug/House3"]
 position = Vector2(0, 70)
 
 [node name="MrBrown" type="Control" parent="Slides"]

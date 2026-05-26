@@ -314,6 +314,67 @@ horizontal_alignment = 1
 layout_mode = 2
 mouse_filter = 2
 
+[node name="Hole Guy" type="StaticBody2D" parent="Slides/Poshman" node_paths=PackedStringArray("house")]
+z_index = 1
+position = Vector2(138, 348)
+input_pickable = true
+script = ExtResource("2_1krux")
+diaTree = Dictionary[String, ExtResource("3_v6xlm")]({
+"/": SubResource("Resource_v6xlm"),
+"/ask/": SubResource("Resource_jha2e"),
+"/ask/y/": SubResource("Resource_hik22"),
+"/true/": SubResource("Resource_j246b"),
+"/y/": SubResource("Resource_g2n5j"),
+"/y/show/": SubResource("Resource_ekhcp"),
+"/y/show/bad_door/": SubResource("Resource_7yc74"),
+"/y/show/bad_door/ew/": SubResource("Resource_21350"),
+"/y/show/bad_door/ew/y/": SubResource("Resource_dgodr"),
+"/y/show/good_door/": SubResource("Resource_g7028")
+})
+isPlaque = false
+approved_doors = Array[String](["Oak Door"])
+current_door = "Hole Oak Door"
+house = NodePath("../House3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/Poshman/Hole Guy"]
+polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="Slides/Poshman/Hole Guy"]
+z_index = 1
+color = Color(1, 1, 1, 0)
+uv = PackedVector2Array(58, 43, 56, 46)
+
+[node name="Image" type="Polygon2D" parent="Slides/Poshman/Hole Guy"]
+visible = false
+color = Color(0, 0, 1, 1)
+polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
+
+[node name="Control" type="Control" parent="Slides/Poshman/Hole Guy"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 194.0
+offset_right = 108.0
+offset_bottom = 234.0
+mouse_filter = 2
+
+[node name="TextBox" type="VBoxContainer" parent="Slides/Poshman/Hole Guy/Control"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Slides/Poshman/Hole Guy/Control/TextBox"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/Poshman/Hole Guy/Control/TextBox"]
+layout_mode = 2
+mouse_filter = 2
+
 [node name="House" type="Sprite2D" parent="Slides/Poshman"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ekhcp")
