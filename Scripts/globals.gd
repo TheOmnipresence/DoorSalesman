@@ -97,6 +97,8 @@ const WORKSHOP_TOOLS = [
 
 var tools: Array[String] = []
 
+var knock_power := 0
+
 var is_archipelago := false
 
 var archipelago_locations_found: Array[String] = []
@@ -173,6 +175,8 @@ func collect_item(item_name: String, shop_item: Item = null, called_from_archipe
 			upgrades.append(shop_item)
 			if WORKSHOP_TOOLS.has(item_name):
 				tools.append(item_name)
+			if item_name.left(12) == "Knock Power ":
+				knock_power += 1
 	elif shop_item is Storage:#merge_lists(all_storage_names.values()).has(item_name) or shop_item is Storage:
 		if is_archipelago and not called_from_archipelago:
 			send_shop_ap(shop_item) #merge_lists(all_storage_names.values()).find(item_name) + 1000)

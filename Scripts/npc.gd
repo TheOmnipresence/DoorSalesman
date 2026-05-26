@@ -17,6 +17,8 @@ var button_name = ""
 
 @export var house: Sprite2D
 
+@export var knock_power_required: int = 0
+
 
 ## Used in [method enterDialouge] to control the pressing of the choice buttons
 func emit_buttons(button):
@@ -48,6 +50,10 @@ func run_dialogue(dialogue_tree: Dictionary[String,Dialouge]) -> void:
 		
 		#if not dialogue_tree[path].options.is_empty():
 			#dialogue_tree[path].testOptions()
+		
+		if dialogue_tree[path].key == "knock":
+			path += str(Globals.knock_power >= knock_power_required) + "/"
+			continue
 		
 		if dialogue_tree[path].action_condition != null:
 			var runVal = dialogue_tree[path].action_condition.run()

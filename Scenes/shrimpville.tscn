@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://d38xjml56pg4n"]
+[gd_scene load_steps=47 format=3 uid="uid://d38xjml56pg4n"]
 
 [ext_resource type="Script" uid="uid://cmx2so6nuas6h" path="res://Scripts/housing.gd" id="1_c0cq2"]
 [ext_resource type="Script" uid="uid://drk7lqqa0k4bm" path="res://Scripts/clickable_dialogue.gd" id="1_lyanp"]
@@ -49,9 +49,23 @@ text = "Walk up?"
 options = Array[ExtResource("2_bgw1h")]([SubResource("Resource_ga05j"), SubResource("Resource_vdm02")])
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
+[sub_resource type="Resource" id="Resource_yh5v0"]
+script = ExtResource("2_bgw1h")
+key = "y"
+text = "Yes"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_qbite"]
+script = ExtResource("2_bgw1h")
+key = "n"
+text = "No"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
 [sub_resource type="Resource" id="Resource_wfgfr"]
 script = ExtResource("2_bgw1h")
-set_dia_path = "/y/"
+key = "knock?"
+text = "Knock?"
+options = Array[ExtResource("2_bgw1h")]([SubResource("Resource_yh5v0"), SubResource("Resource_qbite")])
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
 [sub_resource type="Resource" id="Resource_c2tmx"]
@@ -137,6 +151,16 @@ text = "Thanks for the door"
 action_condition = SubResource("Resource_ng401")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
+[sub_resource type="Resource" id="Resource_edgjg"]
+script = ExtResource("2_bgw1h")
+set_dia_path = "/y/"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_nh8xm"]
+script = ExtResource("2_bgw1h")
+key = "knock"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
 [sub_resource type="Resource" id="Resource_674qm"]
 script = ExtResource("3_cgy2h")
 type = 1
@@ -187,11 +211,6 @@ script = ExtResource("2_bgw1h")
 key = "q"
 text = "Walk up?"
 options = Array[ExtResource("2_bgw1h")]([SubResource("Resource_ga05j"), SubResource("Resource_vdm02")])
-metadata/_custom_type_script = "uid://dvfxph6aeapdn"
-
-[sub_resource type="Resource" id="Resource_bkw50"]
-script = ExtResource("2_bgw1h")
-set_dia_path = "/y/"
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
 [sub_resource type="Resource" id="Resource_wv2h7"]
@@ -249,7 +268,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_c0cq2")
-area_doors = Array[String](["Scratched Door", "Scratched Door", "Ripped Door", "Plain Door"])
+area_doors = Array[String](["Scratched Door", "Scratched Door", "Ripped Screen Door", "Plain Door"])
 palette = Color(0.7019608, 0.2784314, 0.34117648, 1)
 
 [node name="Slides" type="Control" parent="."]
@@ -279,6 +298,8 @@ diaTree = Dictionary[String, ExtResource("2_bgw1h")]({
 "/": SubResource("Resource_y4ml6"),
 "/ask/": SubResource("Resource_cgy2h"),
 "/ask/y/": SubResource("Resource_wfgfr"),
+"/ask/y/y/": SubResource("Resource_nh8xm"),
+"/ask/y/y/true/": SubResource("Resource_edgjg"),
 "/true/": SubResource("Resource_c2tmx"),
 "/y/": SubResource("Resource_7rb63"),
 "/y/show/": SubResource("Resource_5f38y"),
@@ -340,6 +361,8 @@ diaTree = Dictionary[String, ExtResource("2_bgw1h")]({
 "/": SubResource("Resource_yvwxw"),
 "/ask/": SubResource("Resource_cgy2h"),
 "/ask/y/": SubResource("Resource_wfgfr"),
+"/ask/y/y/": SubResource("Resource_nh8xm"),
+"/ask/y/y/true/": SubResource("Resource_edgjg"),
 "/true/": SubResource("Resource_c2tmx"),
 "/y/": SubResource("Resource_7rb63"),
 "/y/show/": SubResource("Resource_5f38y"),
@@ -443,7 +466,9 @@ script = ExtResource("1_lyanp")
 diaTree = Dictionary[String, ExtResource("2_bgw1h")]({
 "/": SubResource("Resource_xv5es"),
 "/ask/": SubResource("Resource_tnyjc"),
-"/ask/y/": SubResource("Resource_bkw50"),
+"/ask/y/": SubResource("Resource_wfgfr"),
+"/ask/y/y/": SubResource("Resource_nh8xm"),
+"/ask/y/y/true/": SubResource("Resource_edgjg"),
 "/true/": SubResource("Resource_wv2h7"),
 "/y/": SubResource("Resource_7rb63"),
 "/y/show/": SubResource("Resource_d5gy6"),
