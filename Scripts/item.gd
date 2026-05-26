@@ -16,9 +16,10 @@ func update_info() -> void:
 
 func _on_buy_pressed() -> void:
 	if item_res != null:
-		print("bought " + item_res.item_name)
-		Globals.items_collected_from_shop.append(item_res)
-		visible = false
-		Globals.buy(item_res)
-		await get_tree().process_frame
-		update_info()
+		if Globals.money >= item_res.cost:
+			print("bought " + item_res.item_name)
+			Globals.items_collected_from_shop.append(item_res)
+			visible = false
+			Globals.buy(item_res)
+			await get_tree().process_frame
+			update_info()
