@@ -223,6 +223,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_c0cq2")
 area_doors = Array[String](["Scratched Door", "Scratched Door", "Ripped Door"])
+palette = Color(0.7019608, 0.2784314, 0.34117648, 1)
 
 [node name="Slides" type="Control" parent="."]
 layout_mode = 1

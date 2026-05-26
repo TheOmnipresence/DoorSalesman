@@ -13,6 +13,10 @@ extends Control
 
 @export var area_doors: Array[String]
 
+@export_range(0,1) var follow_palette_chance: float = 0.25
+
+@export var palette: Color
+
 
 func _ready() -> void:
 	get_node("Right").pressed.connect(func(): slide_index += 1)

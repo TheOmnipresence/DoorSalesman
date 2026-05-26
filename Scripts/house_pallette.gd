@@ -25,8 +25,10 @@ func _ready() -> void:
 func set_apperance() -> void:
 	material = material.duplicate_deep()
 	var primary_color = Color.from_hsv(randf_range(0,1), 0.6, 0.5, 1)
+	if randi_range(0,99) < roundi(get_parent().get_parent().get_parent().follow_palette_chance * 100):
+		primary_color = get_parent().get_parent().get_parent().palette
 	var secondary_color: Color
-	if randi_range(0,1) == 1:
+	if randi_range(0,4) > 0:
 		secondary_color = Color.WHITE - primary_color
 	else:
 		secondary_color = Color.from_hsv(primary_color.h + randf_range(-0.05,0.05), 0.4, 0.3, 1)
