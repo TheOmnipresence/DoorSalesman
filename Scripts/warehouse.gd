@@ -25,7 +25,8 @@ func update_all() -> void:
 	
 	get_window().theme = window_theme
 	get_window().theme_changed.connect(func(): if get_window().theme != window_theme: get_window().theme = window_theme)
-
+	
+	$HSplitContainer/Tabs/Shop/Money.text = "Money: " + str(Globals.money)
 
 func force_update_doors() -> void:
 	for i in $HSplitContainer/Tabs/Storage/ScrollContainer/GridContainer.get_children():

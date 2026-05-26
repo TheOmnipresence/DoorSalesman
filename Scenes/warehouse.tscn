@@ -134,6 +134,16 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 columns = 6
 
+[node name="Money" type="Label" parent="HSplitContainer/Tabs/Shop"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 62.0
+grow_vertical = 0
+text = "Money: 0"
+
 [node name="Map" type="Control" parent="HSplitContainer/Tabs"]
 layout_mode = 1
 anchors_preset = 15
