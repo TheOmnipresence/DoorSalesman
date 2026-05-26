@@ -1,8 +1,28 @@
 extends Sprite2D
 
 
-
 func _ready() -> void:
+	await get_tree().process_frame
+	var neighborhood = str(get_parent().get_parent().get_parent().name).to_snake_case()
+	if not Globals.houses.has(neighborhood):
+		Globals.houses[neighborhood] = {}
+	if not Globals.houses[neighborhood].has(str(name)):
+		set_apperance()
+	else:
+		material = material.duplicate_deep()
+		var colors = []
+		colors.append(Color.WHITE) #stairs
+		colors.append(Globals.houses[neighborhood][str(name)].primary_color)
+		colors.append(darken(Globals.houses[neighborhood][str(name)].primary_color, 0.2))
+		colors.append(darken(Globals.houses[neighborhood][str(name)].secondary_color, -0.2))
+		colors.append(Color.BLACK)
+		colors.append(Globals.houses[neighborhood][str(name)].secondary_color)
+		material.set_shader_parameter("replace_colors", colors)
+		
+		get_child(0).texture = Globals.make_door_texture(Globals.houses[neighborhood][str(name)].door)
+
+
+func set_apperance() -> void:
 	material = material.duplicate_deep()
 	var primary_color = Color.from_hsv(randf_range(0,1), 0.6, 0.5, 1)
 	var secondary_color: Color
@@ -19,8 +39,13 @@ func _ready() -> void:
 	colors.append(secondary_color)
 	material.set_shader_parameter("replace_colors", colors)
 	
-	var door = get_parent().get_parent().get_parent().area_doors.pick_random()
+	var door = get_parent().get_parent().get_parent().area_doors.pick_random().to_snake_case()
 	get_child(0).texture = Globals.make_door_texture(door)
+	
+	var neighborhood = str(get_parent().get_parent().get_parent().name).to_snake_case()
+	if not Globals.houses.has(neighborhood):
+		Globals.houses[neighborhood] = {}
+	Globals.houses[neighborhood][str(name)] = Globals.House.new(door, primary_color, secondary_color)
 
 
 func color_from_range(min_val: float, max_val: float) -> Color:

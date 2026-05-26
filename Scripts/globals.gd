@@ -4,6 +4,7 @@ extends Node
 var current_space := "warehouse"
 var visited := ["warehouse"]
 var availible_spaces := ["warehouse", "shrimpville", "fancytown"]
+var houses: Dictionary[String, Dictionary] = {}
 
 @onready var warehouse_inventory: Array[Door] = [make_door_by_name("Base Door"), make_door_by_name("Base Door"), make_door_by_name("Scratched Door")]
 var truck_inventory: Array[Door] = []
@@ -119,7 +120,9 @@ func send_to_place(place_name: String) -> void:
 	var scene_parent = get_tree().current_scene.get_child(0).get_node("Tabs/View")
 	scene_parent.get_child(0).queue_free()
 	if place_name != "warehouse":
-		scene_parent.add_child(load("res://Scenes/" + place_name + ".tscn").instantiate())
+		var place_node = load("res://Scenes/" + place_name + ".tscn").instantiate()
+		get_tree().process_frame.connect(func(): place_node.name = place_name.to_pascal_case(), CONNECT_ONE_SHOT)
+		scene_parent.add_child(place_node)
 	else:
 		scene_parent.add_child(Node.new())
 	get_tree().current_scene.update_all()
@@ -269,3 +272,15 @@ class Upgrade extends Item:
 		cost = cost_val
 		sell_multiplier = sell_m
 		shipment = neighborhood
+
+
+class House extends Resource:
+	var door: String
+	
+	var primary_color: Color
+	var secondary_color: Color
+	
+	func _init(door_name := "", primary := Color.WHITE, secondary := Color.BLACK) -> void:
+		door = door_name
+		primary_color = primary
+		secondary_color = secondary
