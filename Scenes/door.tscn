@@ -29,4 +29,9 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "Bring"
 
+[node name="RepairButton" type="Button" parent="."]
+layout_mode = 2
+text = "Repair"
+
 [connection signal="pressed" from="TakeButton" to="." method="_on_take_button_pressed"]
+[connection signal="pressed" from="RepairButton" to="." method="_on_repair_button_pressed"]

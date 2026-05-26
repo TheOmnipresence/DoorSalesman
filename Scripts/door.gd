@@ -5,6 +5,8 @@ var door_res: Globals.Door = null
 
 var in_truck := false
 
+var workshop_item := false
+
 
 func _ready() -> void:
 	update_info()
@@ -23,6 +25,9 @@ func update_info() -> void:
 		$Name.text = door_res.item_name
 		$Description.text = door_res.description
 		$Texture.texture = load("res://Sprites/" + door_res.item_name.to_snake_case() + ".png")
+		
+		$TakeButton.visible = not workshop_item
+		$RepairButton.visible = workshop_item
 		
 		if in_truck:
 			if Globals.carry_inventory.has(door_res):
@@ -46,3 +51,11 @@ func _on_take_button_pressed() -> void:
 		else:
 			Globals.truck_inventory.erase(door_res)
 	Globals.update_brought_doors.emit()
+
+
+func _on_repair_button_pressed() -> void:
+	Globals.warehouse_inventory.erase(door_res)
+	Globals.warehouse_inventory.append(Globals.make_door_by_name(door_res.repair_to_door))
+	Globals.money -= door_res.repair_cost
+	queue_free()
+	get_tree().current_scene.update_all()

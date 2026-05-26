@@ -38,10 +38,10 @@ signal update_brought_doors
 var all_doors: Array[Door] = [
 	Door.new("Base Door", "Pretty boring door", 20, 45),
 	Door.new("Plain Door", "A very boring door", 25, 55),
-	Door.new("Scratched Door", "A bit beat up", 10, 30, 5),
+	Door.new("Scratched Door", "A bit beat up", 10, 30, 5, "Plain Door"),
 	Door.new("Oak Door", "Kinda fancy", 60, 100),
-	Door.new("Cracked Oak Door", "Little less fancy", 45, 75, 10),
-	Door.new("Hole Oak Door", "oof", 35, 40, 20),
+	Door.new("Cracked Oak Door", "Little less fancy", 45, 75, 10, "Oak Door"),
+	Door.new("Hole Oak Door", "oof", 35, 40, 20, "Oak Door"),
 	Door.new("Ripped Door", "In peices", 10, 5),
 ]
 @onready var doors_in_shop: Array[Door] = [
@@ -212,7 +212,7 @@ func make_door_texture(door_name: String) -> Texture2D:
 func make_door_by_name(item_name: String, shipment: String = "warehouse") -> Door:
 	for i in all_doors:
 		if i.item_name == item_name:
-			var result = Door.new(i.item_name, i.description, i.cost, i.sell_for)
+			var result = Door.new(i.item_name, i.description, i.cost, i.sell_for, i.repair_cost, i.repair_to_door)
 			result.shipment = shipment
 			return result
 	return null
@@ -285,12 +285,16 @@ class Door extends Item:
 	
 	var repair_cost: int
 	
-	func _init(name_val := "", des := "", cost_val := 0, price_val := 0, repair_val := -1) -> void:
+	var repair_to_door: String
+	
+	
+	func _init(name_val := "", des := "", cost_val := 0, price_val := 0, repair_val := -1, repair_to := "") -> void:
 		item_name = name_val
 		description = des
 		cost = cost_val
 		sell_for = price_val
 		repair_cost = repair_val
+		repair_to_door = repair_to
 
 
 class Upgrade extends Item:

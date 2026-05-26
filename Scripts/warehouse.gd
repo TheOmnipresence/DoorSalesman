@@ -23,6 +23,8 @@ func update_all() -> void:
 	
 	update_disabled_tabs()
 	
+	update_workshop()
+	
 	get_window().theme = window_theme
 	get_window().theme_changed.connect(func(): if get_window().theme != window_theme: get_window().theme = window_theme)
 	
@@ -70,6 +72,18 @@ func force_update_upgrades() -> void:
 			node.item_res = i
 			node.update_info()
 			$HSplitContainer/Tabs/Shop/ScrollContainer/GridContainer.add_child(node)
+
+
+func update_workshop() -> void:
+	for i in $HSplitContainer/Tabs/Workshop/ScrollContainer/GridContainer.get_children():
+		i.queue_free()
+	
+	for i in Globals.warehouse_inventory:
+		if i.repair_cost > -1:
+			var node = preload("res://Scenes/door.tscn").instantiate()
+			node.door_res = i
+			node.workshop_item = true
+			$HSplitContainer/Tabs/Workshop/ScrollContainer/GridContainer.add_child(node)
 
 
 func set_current_tab(tab_name: String) -> void:
