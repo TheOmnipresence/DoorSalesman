@@ -30,6 +30,7 @@ func update_all() -> void:
 	
 	$HSplitContainer/Tabs/Shop/Money.text = "Money: " + str(Globals.money)
 
+
 func force_update_doors() -> void:
 	for i in $HSplitContainer/Tabs/Storage/ScrollContainer/GridContainer.get_children():
 		i.queue_free()
