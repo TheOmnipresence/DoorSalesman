@@ -9,15 +9,16 @@ func _ready() -> void:
 	if not Globals.houses[neighborhood].has(str(name)):
 		set_apperance()
 	else:
-		material = material.duplicate_deep()
-		var colors = []
-		colors.append(Color.WHITE) #stairs
-		colors.append(Globals.houses[neighborhood][str(name)].primary_color)
-		colors.append(darken(Globals.houses[neighborhood][str(name)].primary_color, 0.2))
-		colors.append(darken(Globals.houses[neighborhood][str(name)].secondary_color, -0.2))
-		colors.append(Color.BLACK)
-		colors.append(Globals.houses[neighborhood][str(name)].secondary_color)
-		material.set_shader_parameter("replace_colors", colors)
+		set_colors(Globals.houses[neighborhood][str(name)].primary_color, Globals.houses[neighborhood][str(name)].secondary_color)
+		#material = material.duplicate_deep()
+		#var colors = []
+		#colors.append(Color.WHITE) #stairs
+		#colors.append(Globals.houses[neighborhood][str(name)].primary_color)
+		#colors.append(darken(Globals.houses[neighborhood][str(name)].primary_color, 0.2))
+		#colors.append(darken(Globals.houses[neighborhood][str(name)].secondary_color, -0.2))
+		#colors.append(Color.BLACK)
+		#colors.append(Globals.houses[neighborhood][str(name)].secondary_color)
+		#material.set_shader_parameter("replace_colors", colors)
 		
 		get_child(0).texture = Globals.make_door_texture(Globals.houses[neighborhood][str(name)].door)
 
@@ -59,3 +60,15 @@ func color_from_range(min_val: float, max_val: float) -> Color:
 func darken(color: Color, amount: float) -> Color:
 	color.v -= amount
 	return color
+
+
+func set_colors(primary: Color, secondary: Color) -> void:
+	material = material.duplicate_deep()
+	var colors = []
+	colors.append(Color.WHITE) #stairs
+	colors.append(primary)
+	colors.append(darken(primary, 0.2))
+	colors.append(darken(secondary, -0.2))
+	colors.append(Color.BLACK)
+	colors.append(secondary)
+	material.set_shader_parameter("replace_colors", colors)

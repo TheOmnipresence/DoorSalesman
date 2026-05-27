@@ -50,6 +50,7 @@ var all_doors: Array[Door] = [
 	make_door_by_name("Base Door"),
 	make_door_by_name("Base Door"),
 	make_door_by_name("Oak Door", "fancytown"),
+	make_door_by_name("Ewhs Door","shrimpville"),
 ]
 var all_upgrades: Array[Upgrade] = [
 	Upgrade.new("Double Cash", "Doubles earned money", 45, "warehouse", 2),

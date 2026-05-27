@@ -32,6 +32,9 @@ func _ready() -> void:
 		else:
 			current_door = Globals.houses[neighborhood][str(house.name)].door.capitalize()
 	house.get_child(0).texture = Globals.make_door_texture(current_door.to_snake_case())
+	if override_primary_color != Color.TRANSPARENT and override_secondary_color != Color.TRANSPARENT:
+		house.set_colors(override_primary_color, override_secondary_color)
+	
 	
 	super()
 

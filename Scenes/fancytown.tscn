@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://cu56woltfh57q"]
+[gd_scene load_steps=56 format=3 uid="uid://cu56woltfh57q"]
 
 [ext_resource type="Script" uid="uid://cmx2so6nuas6h" path="res://Scripts/housing.gd" id="1_jnjbb"]
 [ext_resource type="Script" uid="uid://drk7lqqa0k4bm" path="res://Scripts/clickable_dialogue.gd" id="2_1krux"]
@@ -158,17 +158,17 @@ key = "yay"
 text = "Here, take the old one"
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
-[sub_resource type="Resource" id="Resource_bkw50"]
+[sub_resource type="Resource" id="Resource_t8vus"]
 script = ExtResource("4_jha2e")
 type = 1
-toRun = "Data.may.taken"
+toRun = "Data.poshman.taken"
 targetVal = null
 notValue = true
 metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
 
-[sub_resource type="Resource" id="Resource_t8vus"]
+[sub_resource type="Resource" id="Resource_econn"]
 script = ExtResource("3_v6xlm")
-action_condition = SubResource("Resource_bkw50")
+action_condition = SubResource("Resource_t8vus")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
 [sub_resource type="Resource" id="Resource_yh5v0"]
@@ -200,9 +200,17 @@ script = ExtResource("3_v6xlm")
 key = "knock"
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
-[sub_resource type="Resource" id="Resource_econn"]
+[sub_resource type="Resource" id="Resource_r7lb8"]
+script = ExtResource("4_jha2e")
+type = 1
+toRun = "Data.hole_guy.taken"
+targetVal = null
+notValue = true
+metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
+
+[sub_resource type="Resource" id="Resource_tlhjw"]
 script = ExtResource("3_v6xlm")
-action_condition = SubResource("Resource_bkw50")
+action_condition = SubResource("Resource_r7lb8")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
 [sub_resource type="Resource" id="Resource_if77x"]
@@ -343,7 +351,7 @@ diaTree = Dictionary[String, ExtResource("3_v6xlm")]({
 "/ask/y/": SubResource("Resource_hik22"),
 "/ask/y/y/": SubResource("Resource_tqlph"),
 "/ask/y/y/true/": SubResource("Resource_pv6v3"),
-"/false/": SubResource("Resource_t8vus"),
+"/false/": SubResource("Resource_econn"),
 "/false/true/": SubResource("Resource_02d1i"),
 "/false/true/take_old/": SubResource("Resource_h75vn"),
 "/true/": SubResource("Resource_j246b"),
@@ -409,7 +417,7 @@ diaTree = Dictionary[String, ExtResource("3_v6xlm")]({
 "/ask/y/": SubResource("Resource_x61li"),
 "/ask/y/y/": SubResource("Resource_fijbg"),
 "/ask/y/y/true/": SubResource("Resource_8ubwl"),
-"/false/": SubResource("Resource_econn"),
+"/false/": SubResource("Resource_tlhjw"),
 "/false/true/": SubResource("Resource_if77x"),
 "/false/true/take_old/": SubResource("Resource_g3784"),
 "/true/": SubResource("Resource_j246b"),

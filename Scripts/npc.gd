@@ -21,6 +21,9 @@ var button_name = ""
 
 var old_door: String
 
+@export var override_primary_color := Color.TRANSPARENT
+@export var override_secondary_color := Color.TRANSPARENT
+
 
 func _ready() -> void:
 	old_door = current_door
