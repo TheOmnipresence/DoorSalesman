@@ -7,7 +7,17 @@ var hours: int = 12:
 		if hours > 24:
 			hours -= 24
 			days += 1
-var days: int
+var days: int:
+	set(value):
+		days = value
+		
+		for neighborhood in houses:
+			for house in houses[neighborhood]:
+				var current_house = houses[neighborhood][house]
+				if randi_range(0,3) == 0:
+					for i in all_doors:
+						if i.repair_to_door == current_house.door.capitalize():
+							current_house.door = i.item_name.to_snake_case()
 
 var current_space := "warehouse"
 var visited := ["warehouse"]
