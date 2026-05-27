@@ -544,7 +544,7 @@ script = ExtResource("7_ioxou")
 [node name="Sprite2D" type="Sprite2D" parent="Slides/May&Doug/House3"]
 position = Vector2(0, 70)
 
-[node name="MrBrown&LIliana" type="Control" parent="Slides"]
+[node name="MrBrown&Liliana" type="Control" parent="Slides"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -554,7 +554,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MrBrown" type="StaticBody2D" parent="Slides/MrBrown&LIliana" node_paths=PackedStringArray("house")]
+[node name="MrBrown" type="StaticBody2D" parent="Slides/MrBrown&Liliana" node_paths=PackedStringArray("house")]
 z_index = 1
 position = Vector2(522, 348)
 input_pickable = true
@@ -581,20 +581,20 @@ approved_doors = Array[String](["Base Door", "Oak Door", "Scratched Door", "Scre
 current_door = "Ripped Screen Door"
 house = NodePath("../House4")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/MrBrown&LIliana/MrBrown"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/MrBrown&Liliana/MrBrown"]
 polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)
 
-[node name="Polygon2D" type="Polygon2D" parent="Slides/MrBrown&LIliana/MrBrown"]
+[node name="Polygon2D" type="Polygon2D" parent="Slides/MrBrown&Liliana/MrBrown"]
 z_index = 1
 color = Color(1, 1, 1, 0)
 uv = PackedVector2Array(58, 43, 56, 46)
 
-[node name="Image" type="Polygon2D" parent="Slides/MrBrown&LIliana/MrBrown"]
+[node name="Image" type="Polygon2D" parent="Slides/MrBrown&Liliana/MrBrown"]
 visible = false
 color = Color(0, 0, 1, 1)
 polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
 
-[node name="Control" type="Control" parent="Slides/MrBrown&LIliana/MrBrown"]
+[node name="Control" type="Control" parent="Slides/MrBrown&Liliana/MrBrown"]
 layout_mode = 3
 anchors_preset = 0
 offset_top = 194.0
@@ -602,7 +602,7 @@ offset_right = 108.0
 offset_bottom = 234.0
 mouse_filter = 2
 
-[node name="TextBox" type="VBoxContainer" parent="Slides/MrBrown&LIliana/MrBrown/Control"]
+[node name="TextBox" type="VBoxContainer" parent="Slides/MrBrown&Liliana/MrBrown/Control"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -612,15 +612,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="Slides/MrBrown&LIliana/MrBrown/Control/TextBox"]
+[node name="Label" type="Label" parent="Slides/MrBrown&Liliana/MrBrown/Control/TextBox"]
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/MrBrown&LIliana/MrBrown/Control/TextBox"]
+[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/MrBrown&Liliana/MrBrown/Control/TextBox"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Liliana" type="StaticBody2D" parent="Slides/MrBrown&LIliana" node_paths=PackedStringArray("house")]
+[node name="Liliana" type="StaticBody2D" parent="Slides/MrBrown&Liliana" node_paths=PackedStringArray("house")]
 z_index = 1
 position = Vector2(138, 348)
 input_pickable = true
@@ -649,20 +649,20 @@ house = NodePath("../House6")
 override_primary_color = Color(0.44705883, 0.2901961, 0.7294118, 1)
 override_secondary_color = Color(0.164577, 0.36749554, 0.71822435, 1)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/MrBrown&LIliana/Liliana"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/MrBrown&Liliana/Liliana"]
 polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)
 
-[node name="Polygon2D" type="Polygon2D" parent="Slides/MrBrown&LIliana/Liliana"]
+[node name="Polygon2D" type="Polygon2D" parent="Slides/MrBrown&Liliana/Liliana"]
 z_index = 1
 color = Color(1, 1, 1, 0)
 uv = PackedVector2Array(58, 43, 56, 46)
 
-[node name="Image" type="Polygon2D" parent="Slides/MrBrown&LIliana/Liliana"]
+[node name="Image" type="Polygon2D" parent="Slides/MrBrown&Liliana/Liliana"]
 visible = false
 color = Color(0, 0, 1, 1)
 polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
 
-[node name="Control" type="Control" parent="Slides/MrBrown&LIliana/Liliana"]
+[node name="Control" type="Control" parent="Slides/MrBrown&Liliana/Liliana"]
 layout_mode = 3
 anchors_preset = 0
 offset_top = 194.0
@@ -670,7 +670,7 @@ offset_right = 108.0
 offset_bottom = 234.0
 mouse_filter = 2
 
-[node name="TextBox" type="VBoxContainer" parent="Slides/MrBrown&LIliana/Liliana/Control"]
+[node name="TextBox" type="VBoxContainer" parent="Slides/MrBrown&Liliana/Liliana/Control"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -680,15 +680,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="Slides/MrBrown&LIliana/Liliana/Control/TextBox"]
+[node name="Label" type="Label" parent="Slides/MrBrown&Liliana/Liliana/Control/TextBox"]
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/MrBrown&LIliana/Liliana/Control/TextBox"]
+[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/MrBrown&Liliana/Liliana/Control/TextBox"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="House4" type="Sprite2D" parent="Slides/MrBrown&LIliana"]
+[node name="House4" type="Sprite2D" parent="Slides/MrBrown&Liliana"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ubx8d")
 position = Vector2(576, 258)
@@ -696,10 +696,10 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_ioxou")
 script = ExtResource("7_ioxou")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/MrBrown&LIliana/House4"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/MrBrown&Liliana/House4"]
 position = Vector2(0, 70)
 
-[node name="House5" type="Sprite2D" parent="Slides/MrBrown&LIliana"]
+[node name="House5" type="Sprite2D" parent="Slides/MrBrown&Liliana"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ubx8d")
 position = Vector2(960, 258)
@@ -707,10 +707,10 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_ioxou")
 script = ExtResource("7_ioxou")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/MrBrown&LIliana/House5"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/MrBrown&Liliana/House5"]
 position = Vector2(0, 70)
 
-[node name="House6" type="Sprite2D" parent="Slides/MrBrown&LIliana"]
+[node name="House6" type="Sprite2D" parent="Slides/MrBrown&Liliana"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ubx8d")
 position = Vector2(192, 258)
@@ -718,7 +718,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_ioxou")
 script = ExtResource("7_ioxou")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/MrBrown&LIliana/House6"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/MrBrown&Liliana/House6"]
 position = Vector2(0, 70)
 
 [node name="Right" type="Button" parent="."]

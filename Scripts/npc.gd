@@ -25,7 +25,7 @@ var old_door: String
 @export var override_secondary_color := Color.TRANSPARENT
 
 
-func _ready() -> void:
+func _enter_tree() -> void:
 	old_door = current_door
 
 

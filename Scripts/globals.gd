@@ -46,13 +46,14 @@ var all_doors: Array[Door] = [
 	Door.new("Screen Door", "See-through", 25, 55),
 	Door.new("Ewhs Door", "elliptical window handle star door", 90, 115),
 	Door.new("Blue Door", "It's blue", 80, 90),
-	Door.new("Rough Door", "It's a rough blue", 65, 70, 10, "Blue Door"),
-	Door.new("Gold Oak Door", "Shiny", 190, 250), # add to shop or somth
+	Door.new("Rough Blue Door", "It's a rough blue", 65, 70, 10, "Blue Door"),
+	Door.new("Gold Oak Door", "Shiny", 190, 250),
 ]
 @onready var doors_in_shop: Array[Door] = [
 	make_door_by_name("Base Door"),
 	make_door_by_name("Base Door"),
 	make_door_by_name("Oak Door", "fancytown"),
+	make_door_by_name("Gold Oak Door", "fancytown"),
 	make_door_by_name("Ewhs Door","shrimpville"),
 ]
 var all_upgrades: Array[Upgrade] = [
@@ -206,11 +207,13 @@ func make_door_texture(door_name: String) -> Texture2D:
 
 
 func make_door_by_name(item_name: String, shipment: String = "warehouse") -> Door:
+	item_name = item_name.capitalize()
 	for i in all_doors:
 		if i.item_name == item_name:
 			var result = Door.new(i.item_name, i.description, i.cost, i.sell_for, i.repair_cost, i.repair_to_door)
 			result.shipment = shipment
 			return result
+	print(item_name, " is null")
 	return null
 
 
