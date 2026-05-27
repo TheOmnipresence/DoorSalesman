@@ -15,9 +15,13 @@ var days: int:
 			for house in houses[neighborhood]:
 				var current_house = houses[neighborhood][house]
 				if randi_range(0,3) == 0:
+					var possible_replacements = []
 					for i in all_doors:
 						if i.repair_to_door == current_house.door.capitalize():
-							current_house.door = i.item_name.to_snake_case()
+							possible_replacements.append(i)
+					
+					if not possible_replacements.is_empty():
+						current_house.door = possible_replacements.pick_random().item_name.to_snake_case()
 
 var current_space := "warehouse"
 var visited := ["warehouse"]
