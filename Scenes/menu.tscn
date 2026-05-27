@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://yq08hlrxg63v"]
+[gd_scene load_steps=12 format=3 uid="uid://yq08hlrxg63v"]
 
 [ext_resource type="Texture2D" uid="uid://uucl0jty1w6g" path="res://Sprites/name_logo.png" id="1_1rerr"]
 [ext_resource type="Script" uid="uid://bwtcndfpbc0sp" path="res://Scripts/menu.gd" id="1_wwsa2"]
 [ext_resource type="Texture2D" uid="uid://bm3ca22sqd8wh" path="res://Sprites/play_button.png" id="2_158mb"]
 [ext_resource type="Texture2D" uid="uid://dmvnm1pt1a4pd" path="res://Sprites/settings_button.png" id="3_wwsa2"]
 [ext_resource type="Texture2D" uid="uid://fdwio73mqqow" path="res://Sprites/quit.png" id="4_jsrd8"]
+[ext_resource type="Texture2D" uid="uid://bh1dqgojrn71y" path="res://Sprites/play_button_pressed.png" id="4_rfqti"]
+[ext_resource type="Texture2D" uid="uid://bhjdl2ih5ave8" path="res://Sprites/play_button_hover.png" id="5_g8i7c"]
+[ext_resource type="Texture2D" uid="uid://c4nip8iq4k5ho" path="res://Sprites/settings_button_pressed.png" id="7_23t3j"]
+[ext_resource type="Texture2D" uid="uid://du26vu8l073ym" path="res://Sprites/settings_button_hover.png" id="8_8ph6h"]
+[ext_resource type="Texture2D" uid="uid://3350irg34kqs" path="res://Sprites/quit_button_pressed.png" id="10_5ti5v"]
+[ext_resource type="Texture2D" uid="uid://dqjv65hgdmm2b" path="res://Sprites/quit_button_hover.png" id="11_1by5w"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -42,19 +48,35 @@ alignment = 1
 texture_filter = 1
 layout_mode = 2
 texture_normal = ExtResource("2_158mb")
+texture_pressed = ExtResource("4_rfqti")
+texture_hover = ExtResource("5_g8i7c")
 stretch_mode = 3
 
 [node name="Settings" type="TextureButton" parent="VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 texture_normal = ExtResource("3_wwsa2")
+texture_pressed = ExtResource("7_23t3j")
+texture_hover = ExtResource("8_8ph6h")
 stretch_mode = 3
 
 [node name="Quit" type="TextureButton" parent="VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 texture_normal = ExtResource("4_jsrd8")
+texture_pressed = ExtResource("10_5ti5v")
+texture_hover = ExtResource("11_1by5w")
 stretch_mode = 3
+
+[node name="Fade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]
