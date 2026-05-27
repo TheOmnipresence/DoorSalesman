@@ -54,6 +54,40 @@ script = ExtResource("3_v6xlm")
 set_dia_path = "/y/"
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
+[sub_resource type="Resource" id="Resource_tqlph"]
+script = ExtResource("3_v6xlm")
+key = "knock"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_pv6v3"]
+script = ExtResource("3_v6xlm")
+set_dia_path = "/y/"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_t8vus"]
+script = ExtResource("4_jha2e")
+type = 1
+toRun = "Data.poshman.taken"
+targetVal = null
+notValue = true
+metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
+
+[sub_resource type="Resource" id="Resource_econn"]
+script = ExtResource("3_v6xlm")
+action_condition = SubResource("Resource_t8vus")
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_02d1i"]
+script = ExtResource("3_v6xlm")
+key = "take_old"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_h75vn"]
+script = ExtResource("3_v6xlm")
+key = "yay"
+text = "Here, take the old one"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
 [sub_resource type="Resource" id="Resource_j246b"]
 script = ExtResource("3_v6xlm")
 set_dia_path = "/ask/"
@@ -137,40 +171,6 @@ text = "Thanks for the door"
 action_condition = SubResource("Resource_qe4qo")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
-[sub_resource type="Resource" id="Resource_pv6v3"]
-script = ExtResource("3_v6xlm")
-set_dia_path = "/y/"
-metadata/_custom_type_script = "uid://dvfxph6aeapdn"
-
-[sub_resource type="Resource" id="Resource_tqlph"]
-script = ExtResource("3_v6xlm")
-key = "knock"
-metadata/_custom_type_script = "uid://dvfxph6aeapdn"
-
-[sub_resource type="Resource" id="Resource_02d1i"]
-script = ExtResource("3_v6xlm")
-key = "take_old"
-metadata/_custom_type_script = "uid://dvfxph6aeapdn"
-
-[sub_resource type="Resource" id="Resource_h75vn"]
-script = ExtResource("3_v6xlm")
-key = "yay"
-text = "Here, take the old one"
-metadata/_custom_type_script = "uid://dvfxph6aeapdn"
-
-[sub_resource type="Resource" id="Resource_t8vus"]
-script = ExtResource("4_jha2e")
-type = 1
-toRun = "Data.poshman.taken"
-targetVal = null
-notValue = true
-metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
-
-[sub_resource type="Resource" id="Resource_econn"]
-script = ExtResource("3_v6xlm")
-action_condition = SubResource("Resource_t8vus")
-metadata/_custom_type_script = "uid://dvfxph6aeapdn"
-
 [sub_resource type="Resource" id="Resource_ch11r"]
 script = ExtResource("4_jha2e")
 type = 1
@@ -203,28 +203,14 @@ text = "Knock?"
 options = Array[ExtResource("3_v6xlm")]([SubResource("Resource_yh5v0"), SubResource("Resource_qbite")])
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
-[sub_resource type="Resource" id="Resource_qthw3"]
-script = ExtResource("4_jha2e")
-type = 1
-toRun = "Data.hole_guy.given"
-targetVal = true
-metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
-
-[sub_resource type="Resource" id="Resource_l7h1s"]
+[sub_resource type="Resource" id="Resource_fijbg"]
 script = ExtResource("3_v6xlm")
-key = "cool"
-text = "Thanks for the door"
-action_condition = SubResource("Resource_qthw3")
+key = "knock"
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
 [sub_resource type="Resource" id="Resource_8ubwl"]
 script = ExtResource("3_v6xlm")
 set_dia_path = "/y/"
-metadata/_custom_type_script = "uid://dvfxph6aeapdn"
-
-[sub_resource type="Resource" id="Resource_fijbg"]
-script = ExtResource("3_v6xlm")
-key = "knock"
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
 [sub_resource type="Resource" id="Resource_r7lb8"]
@@ -251,6 +237,20 @@ key = "yay"
 text = "Here, take the old one"
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
+[sub_resource type="Resource" id="Resource_qthw3"]
+script = ExtResource("4_jha2e")
+type = 1
+toRun = "Data.hole_guy.given"
+targetVal = true
+metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
+
+[sub_resource type="Resource" id="Resource_l7h1s"]
+script = ExtResource("3_v6xlm")
+key = "cool"
+text = "Thanks for the door"
+action_condition = SubResource("Resource_qthw3")
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ekhcp"]
 shader = ExtResource("5_hik22")
 shader_parameter/target_colors = PackedColorArray(1, 1, 1, 1, 0.63529414, 0.63529414, 0.63529414, 1, 0.49019608, 0.49019608, 0.49019608, 1, 0.4, 0.4, 0.4, 1, 0.38039216, 0.38039216, 0.38039216, 1, 0.27450982, 0.27450982, 0.27450982, 1)
@@ -267,20 +267,6 @@ metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
 [sub_resource type="Resource" id="Resource_dhwxk"]
 script = ExtResource("3_v6xlm")
 action_condition = SubResource("Resource_kwip0")
-metadata/_custom_type_script = "uid://dvfxph6aeapdn"
-
-[sub_resource type="Resource" id="Resource_2crwa"]
-script = ExtResource("4_jha2e")
-type = 1
-toRun = "Data.gold.given"
-targetVal = true
-metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
-
-[sub_resource type="Resource" id="Resource_rhcmw"]
-script = ExtResource("3_v6xlm")
-key = "cool"
-text = "Thanks for the door"
-action_condition = SubResource("Resource_2crwa")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
 [sub_resource type="Resource" id="Resource_7nlax"]
@@ -325,6 +311,20 @@ metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
 [sub_resource type="Resource" id="Resource_lx71l"]
 script = ExtResource("3_v6xlm")
 action_condition = SubResource("Resource_5uyem")
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_2crwa"]
+script = ExtResource("4_jha2e")
+type = 1
+toRun = "Data.gold.given"
+targetVal = true
+metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
+
+[sub_resource type="Resource" id="Resource_rhcmw"]
+script = ExtResource("3_v6xlm")
+key = "cool"
+text = "Thanks for the door"
+action_condition = SubResource("Resource_2crwa")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
 [node name="Fancytown" type="Control"]

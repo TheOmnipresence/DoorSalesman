@@ -1,6 +1,14 @@
 extends Node
 
 
+var hours: int = 12:
+	set(value):
+		hours = value
+		if hours > 24:
+			hours -= 24
+			days += 1
+var days: int
+
 var current_space := "warehouse"
 var visited := ["warehouse"]
 var availible_spaces := ["warehouse", "shrimpville", "fancytown"]
@@ -69,9 +77,7 @@ var all_upgrades: Array[Upgrade] = [
 	STORAGE_UPGRADES["carry"][0],
 ]
 
-var npc_data := {
-
-}
+var npc_data := {}
 
 var in_dialogue := false
 
@@ -150,6 +156,7 @@ func send_to_place(place_name: String) -> void:
 		await get_tree().process_frame
 	
 	in_dialogue = false
+	hours += 6
 	
 	print("send to " + place_name)
 
