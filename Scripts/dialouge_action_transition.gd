@@ -41,6 +41,9 @@ func run() -> Variant:
 						#Globals.availibleReforges[i].append(x.right(-8).to_camel_case())
 			var x when x.left(5) == "send_":
 				Globals.send_to_place(x.right(-5))
+			var x when x.left(7) == "unlock_":
+				if not Globals.availible_spaces.has(x.right(-7)):
+					Globals.availible_spaces.append(x.right(-7))
 			var x when x.left(5) == "sell_":
 				for i in Globals.carry_inventory:
 					if i.item_name == x.right(-5).capitalize():

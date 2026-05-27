@@ -1,4 +1,10 @@
-[gd_scene format=3 uid="uid://yq08hlrxg63v"]
+[gd_scene load_steps=6 format=3 uid="uid://yq08hlrxg63v"]
+
+[ext_resource type="Texture2D" uid="uid://uucl0jty1w6g" path="res://Sprites/name_logo.png" id="1_1rerr"]
+[ext_resource type="Script" uid="uid://bwtcndfpbc0sp" path="res://Scripts/menu.gd" id="1_wwsa2"]
+[ext_resource type="Texture2D" uid="uid://bm3ca22sqd8wh" path="res://Sprites/play_button.png" id="2_158mb"]
+[ext_resource type="Texture2D" uid="uid://dmvnm1pt1a4pd" path="res://Sprites/settings_button.png" id="3_wwsa2"]
+[ext_resource type="Texture2D" uid="uid://fdwio73mqqow" path="res://Sprites/quit.png" id="4_jsrd8"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -7,3 +13,49 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_wwsa2")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_1rerr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -149.99997
+offset_top = -40.0
+offset_right = -50.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+alignment = 1
+
+[node name="Play" type="TextureButton" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture_normal = ExtResource("2_158mb")
+stretch_mode = 3
+
+[node name="Settings" type="TextureButton" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture_normal = ExtResource("3_wwsa2")
+stretch_mode = 3
+
+[node name="Quit" type="TextureButton" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture_normal = ExtResource("4_jsrd8")
+stretch_mode = 3
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

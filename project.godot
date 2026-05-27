@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="DoorSalesman"
-run/main_scene="uid://w45d4knxebwf"
+run/main_scene="uid://yq08hlrxg63v"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://Sprites/icon.svg"
 

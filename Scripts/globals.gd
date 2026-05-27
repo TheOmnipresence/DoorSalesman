@@ -131,8 +131,8 @@ func send_to_place(place_name: String) -> void:
 	if not visited.has(place_name): visited.append(place_name)
 	current_space = place_name
 	
-	for i in range(100):
-		get_tree().current_scene.get_node("Fade").color.a += 0.01
+	for i in range(50):
+		get_tree().current_scene.get_node("Fade").color.a += 0.02
 		await get_tree().process_frame
 	
 	var scene_parent = get_tree().current_scene.get_child(0).get_node("Tabs/View")

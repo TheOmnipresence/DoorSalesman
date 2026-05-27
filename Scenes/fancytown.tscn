@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://cu56woltfh57q"]
+[gd_scene load_steps=59 format=3 uid="uid://cu56woltfh57q"]
 
 [ext_resource type="Script" uid="uid://cmx2so6nuas6h" path="res://Scripts/housing.gd" id="1_jnjbb"]
 [ext_resource type="Script" uid="uid://drk7lqqa0k4bm" path="res://Scripts/clickable_dialogue.gd" id="2_1krux"]
@@ -296,6 +296,37 @@ script = ExtResource("3_v6xlm")
 action_condition = SubResource("Resource_7nlax")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
+[sub_resource type="Resource" id="Resource_fn3la"]
+script = ExtResource("4_jha2e")
+toRun = "unlock_mansion_lane"
+targetVal = null
+metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
+
+[sub_resource type="Resource" id="Resource_mnrpm"]
+script = ExtResource("3_v6xlm")
+key = "unlock"
+text = "yay"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_e5gsm"]
+script = ExtResource("3_v6xlm")
+key = "unlock"
+text = "You should go to mansion lane"
+options = Array[ExtResource("3_v6xlm")]([SubResource("Resource_mnrpm")])
+action_condition = SubResource("Resource_fn3la")
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_5uyem"]
+script = ExtResource("4_jha2e")
+toRun = "send_mansion_lane"
+targetVal = null
+metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
+
+[sub_resource type="Resource" id="Resource_lx71l"]
+script = ExtResource("3_v6xlm")
+action_condition = SubResource("Resource_5uyem")
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
 [node name="Fancytown" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -516,6 +547,8 @@ diaTree = Dictionary[String, ExtResource("3_v6xlm")]({
 "/ask/y/y/": SubResource("Resource_tqlph"),
 "/ask/y/y/true/": SubResource("Resource_pv6v3"),
 "/false/": SubResource("Resource_7rqbr"),
+"/false/false/": SubResource("Resource_e5gsm"),
+"/false/false/unlock/": SubResource("Resource_lx71l"),
 "/false/true/": SubResource("Resource_02d1i"),
 "/false/true/take_old/": SubResource("Resource_h75vn"),
 "/true/": SubResource("Resource_j246b"),
