@@ -331,7 +331,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Poshman" type="Control" parent="Slides"]
+[node name="Poshman&HoleGuy" type="Control" parent="Slides"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -340,7 +340,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Poshman" type="StaticBody2D" parent="Slides/Poshman" node_paths=PackedStringArray("house")]
+[node name="Poshman" type="StaticBody2D" parent="Slides/Poshman&HoleGuy" node_paths=PackedStringArray("house")]
 z_index = 1
 position = Vector2(522, 348)
 input_pickable = true
@@ -367,20 +367,20 @@ approved_doors = Array[String](["Oak Door"])
 current_door = "Cracked Oak Door"
 house = NodePath("../House")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/Poshman/Poshman"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/Poshman&HoleGuy/Poshman"]
 polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)
 
-[node name="Polygon2D" type="Polygon2D" parent="Slides/Poshman/Poshman"]
+[node name="Polygon2D" type="Polygon2D" parent="Slides/Poshman&HoleGuy/Poshman"]
 z_index = 1
 color = Color(1, 1, 1, 0)
 uv = PackedVector2Array(58, 43, 56, 46)
 
-[node name="Image" type="Polygon2D" parent="Slides/Poshman/Poshman"]
+[node name="Image" type="Polygon2D" parent="Slides/Poshman&HoleGuy/Poshman"]
 visible = false
 color = Color(0, 0, 1, 1)
 polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
 
-[node name="Control" type="Control" parent="Slides/Poshman/Poshman"]
+[node name="Control" type="Control" parent="Slides/Poshman&HoleGuy/Poshman"]
 layout_mode = 3
 anchors_preset = 0
 offset_top = 194.0
@@ -388,7 +388,7 @@ offset_right = 108.0
 offset_bottom = 234.0
 mouse_filter = 2
 
-[node name="TextBox" type="VBoxContainer" parent="Slides/Poshman/Poshman/Control"]
+[node name="TextBox" type="VBoxContainer" parent="Slides/Poshman&HoleGuy/Poshman/Control"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -398,15 +398,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="Slides/Poshman/Poshman/Control/TextBox"]
+[node name="Label" type="Label" parent="Slides/Poshman&HoleGuy/Poshman/Control/TextBox"]
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/Poshman/Poshman/Control/TextBox"]
+[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/Poshman&HoleGuy/Poshman/Control/TextBox"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Hole Guy" type="StaticBody2D" parent="Slides/Poshman" node_paths=PackedStringArray("house")]
+[node name="HoleGuy" type="StaticBody2D" parent="Slides/Poshman&HoleGuy" node_paths=PackedStringArray("house")]
 z_index = 1
 position = Vector2(138, 348)
 input_pickable = true
@@ -433,20 +433,20 @@ approved_doors = Array[String](["Oak Door"])
 current_door = "Hole Oak Door"
 house = NodePath("../House3")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/Poshman/Hole Guy"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/Poshman&HoleGuy/HoleGuy"]
 polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)
 
-[node name="Polygon2D" type="Polygon2D" parent="Slides/Poshman/Hole Guy"]
+[node name="Polygon2D" type="Polygon2D" parent="Slides/Poshman&HoleGuy/HoleGuy"]
 z_index = 1
 color = Color(1, 1, 1, 0)
 uv = PackedVector2Array(58, 43, 56, 46)
 
-[node name="Image" type="Polygon2D" parent="Slides/Poshman/Hole Guy"]
+[node name="Image" type="Polygon2D" parent="Slides/Poshman&HoleGuy/HoleGuy"]
 visible = false
 color = Color(0, 0, 1, 1)
 polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
 
-[node name="Control" type="Control" parent="Slides/Poshman/Hole Guy"]
+[node name="Control" type="Control" parent="Slides/Poshman&HoleGuy/HoleGuy"]
 layout_mode = 3
 anchors_preset = 0
 offset_top = 194.0
@@ -454,7 +454,7 @@ offset_right = 108.0
 offset_bottom = 234.0
 mouse_filter = 2
 
-[node name="TextBox" type="VBoxContainer" parent="Slides/Poshman/Hole Guy/Control"]
+[node name="TextBox" type="VBoxContainer" parent="Slides/Poshman&HoleGuy/HoleGuy/Control"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -464,15 +464,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="Slides/Poshman/Hole Guy/Control/TextBox"]
+[node name="Label" type="Label" parent="Slides/Poshman&HoleGuy/HoleGuy/Control/TextBox"]
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/Poshman/Hole Guy/Control/TextBox"]
+[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/Poshman&HoleGuy/HoleGuy/Control/TextBox"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="House" type="Sprite2D" parent="Slides/Poshman"]
+[node name="House" type="Sprite2D" parent="Slides/Poshman&HoleGuy"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ekhcp")
 position = Vector2(576, 258)
@@ -480,10 +480,10 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_j246b")
 script = ExtResource("7_g2n5j")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/Poshman/House"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/Poshman&HoleGuy/House"]
 position = Vector2(0, 70)
 
-[node name="House2" type="Sprite2D" parent="Slides/Poshman"]
+[node name="House2" type="Sprite2D" parent="Slides/Poshman&HoleGuy"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ekhcp")
 position = Vector2(960, 258)
@@ -491,10 +491,10 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_j246b")
 script = ExtResource("7_g2n5j")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/Poshman/House2"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/Poshman&HoleGuy/House2"]
 position = Vector2(0, 70)
 
-[node name="House3" type="Sprite2D" parent="Slides/Poshman"]
+[node name="House3" type="Sprite2D" parent="Slides/Poshman&HoleGuy"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ekhcp")
 position = Vector2(192, 258)
@@ -502,7 +502,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_j246b")
 script = ExtResource("7_g2n5j")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/Poshman/House3"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/Poshman&HoleGuy/House3"]
 position = Vector2(0, 70)
 
 [node name="MrBrown" type="Control" parent="Slides"]

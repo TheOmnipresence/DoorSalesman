@@ -63,6 +63,14 @@ func darken(color: Color, amount: float) -> Color:
 
 
 func set_colors(primary: Color, secondary: Color) -> void:
+	if secondary == Color.TRANSPARENT:
+		if randi_range(0,99) < roundi(get_parent().get_parent().get_parent().oppose_palette_chance * 100):
+			secondary = Color.WHITE - primary
+			if get_parent().get_parent().get_parent().override_opposing_palette != Color.TRANSPARENT:
+				secondary = get_parent().get_parent().get_parent().override_opposing_palette
+		else:
+			secondary = Color.from_hsv(primary.h + randf_range(-0.05,0.05), 0.4, 0.3, 1)
+	
 	material = material.duplicate_deep()
 	var colors = []
 	colors.append(Color.WHITE) #stairs
