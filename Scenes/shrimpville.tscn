@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://d38xjml56pg4n"]
+[gd_scene load_steps=61 format=3 uid="uid://d38xjml56pg4n"]
 
 [ext_resource type="Script" uid="uid://cmx2so6nuas6h" path="res://Scripts/housing.gd" id="1_c0cq2"]
 [ext_resource type="Script" uid="uid://drk7lqqa0k4bm" path="res://Scripts/clickable_dialogue.gd" id="1_lyanp"]
@@ -230,17 +230,17 @@ shader = ExtResource("5_vdm02")
 shader_parameter/target_colors = PackedColorArray(1, 1, 1, 1, 0.63529414, 0.63529414, 0.63529414, 1, 0.49019608, 0.49019608, 0.49019608, 1, 0.4, 0.4, 0.4, 1, 0.38039216, 0.38039216, 0.38039216, 1, 0.27450982, 0.27450982, 0.27450982, 1)
 shader_parameter/replace_colors = PackedColorArray(0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1)
 
-[sub_resource type="Resource" id="Resource_agsw7"]
+[sub_resource type="Resource" id="Resource_fss1q"]
 script = ExtResource("3_cgy2h")
 type = 1
-toRun = "Data.liliana.given"
+toRun = "Data.mr_brown.given"
 operator = 23
 targetVal = null
 metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
 
-[sub_resource type="Resource" id="Resource_xv5es"]
+[sub_resource type="Resource" id="Resource_00ckb"]
 script = ExtResource("2_bgw1h")
-action_condition = SubResource("Resource_agsw7")
+action_condition = SubResource("Resource_fss1q")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
 [sub_resource type="Resource" id="Resource_tnyjc"]
@@ -282,18 +282,18 @@ key = "more"
 set_dia_path = "/y/show/"
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
-[sub_resource type="Resource" id="Resource_0nqti"]
+[sub_resource type="Resource" id="Resource_4b0ru"]
 script = ExtResource("3_cgy2h")
 type = 1
-toRun = "Data.liliana.given"
+toRun = "Data.mr_brown.given"
 targetVal = true
 metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
 
-[sub_resource type="Resource" id="Resource_8hlrg"]
+[sub_resource type="Resource" id="Resource_lfn6o"]
 script = ExtResource("2_bgw1h")
 key = "cool"
 text = "Great"
-action_condition = SubResource("Resource_0nqti")
+action_condition = SubResource("Resource_4b0ru")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
 [sub_resource type="Resource" id="Resource_bwdxc"]
@@ -307,6 +307,33 @@ metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
 [sub_resource type="Resource" id="Resource_2pihu"]
 script = ExtResource("2_bgw1h")
 action_condition = SubResource("Resource_bwdxc")
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_agsw7"]
+script = ExtResource("3_cgy2h")
+type = 1
+toRun = "Data.liliana.given"
+operator = 23
+targetVal = null
+metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
+
+[sub_resource type="Resource" id="Resource_xv5es"]
+script = ExtResource("2_bgw1h")
+action_condition = SubResource("Resource_agsw7")
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_0nqti"]
+script = ExtResource("3_cgy2h")
+type = 1
+toRun = "Data.liliana.given"
+targetVal = true
+metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
+
+[sub_resource type="Resource" id="Resource_8hlrg"]
+script = ExtResource("2_bgw1h")
+key = "cool"
+text = "Great"
+action_condition = SubResource("Resource_0nqti")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
 [sub_resource type="Resource" id="Resource_l1wjw"]
@@ -533,7 +560,7 @@ position = Vector2(522, 348)
 input_pickable = true
 script = ExtResource("1_lyanp")
 diaTree = Dictionary[String, ExtResource("2_bgw1h")]({
-"/": SubResource("Resource_xv5es"),
+"/": SubResource("Resource_00ckb"),
 "/ask/": SubResource("Resource_tnyjc"),
 "/ask/y/": SubResource("Resource_wfgfr"),
 "/ask/y/y/": SubResource("Resource_nh8xm"),
@@ -547,7 +574,7 @@ diaTree = Dictionary[String, ExtResource("2_bgw1h")]({
 "/y/show/bad_door/": SubResource("Resource_igdn2"),
 "/y/show/bad_door/ew/": SubResource("Resource_gpgs5"),
 "/y/show/bad_door/ew/y/": SubResource("Resource_1fmjy"),
-"/y/show/good_door/": SubResource("Resource_8hlrg")
+"/y/show/good_door/": SubResource("Resource_lfn6o")
 })
 isPlaque = false
 approved_doors = Array[String](["Base Door", "Oak Door", "Scratched Door", "Screen Door", "Plain Door"])
@@ -617,7 +644,7 @@ diaTree = Dictionary[String, ExtResource("2_bgw1h")]({
 })
 isPlaque = false
 approved_doors = Array[String](["Ewhs Door"])
-current_door = "Plain Door"
+current_door = "Rough Blue Door"
 house = NodePath("../House6")
 override_primary_color = Color(0.44705883, 0.2901961, 0.7294118, 1)
 override_secondary_color = Color(0.164577, 0.36749554, 0.71822435, 1)

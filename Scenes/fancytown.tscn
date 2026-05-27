@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://cu56woltfh57q"]
+[gd_scene load_steps=66 format=3 uid="uid://cu56woltfh57q"]
 
 [ext_resource type="Script" uid="uid://cmx2so6nuas6h" path="res://Scripts/housing.gd" id="1_jnjbb"]
 [ext_resource type="Script" uid="uid://drk7lqqa0k4bm" path="res://Scripts/clickable_dialogue.gd" id="2_1krux"]
@@ -171,6 +171,19 @@ script = ExtResource("3_v6xlm")
 action_condition = SubResource("Resource_t8vus")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
+[sub_resource type="Resource" id="Resource_ch11r"]
+script = ExtResource("4_jha2e")
+type = 1
+toRun = "Data.hole_guy.given"
+operator = 23
+targetVal = null
+metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
+
+[sub_resource type="Resource" id="Resource_t6c7w"]
+script = ExtResource("3_v6xlm")
+action_condition = SubResource("Resource_ch11r")
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
 [sub_resource type="Resource" id="Resource_yh5v0"]
 script = ExtResource("3_v6xlm")
 key = "y"
@@ -188,6 +201,20 @@ script = ExtResource("3_v6xlm")
 key = "knock?"
 text = "Knock?"
 options = Array[ExtResource("3_v6xlm")]([SubResource("Resource_yh5v0"), SubResource("Resource_qbite")])
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_qthw3"]
+script = ExtResource("4_jha2e")
+type = 1
+toRun = "Data.hole_guy.given"
+targetVal = true
+metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
+
+[sub_resource type="Resource" id="Resource_l7h1s"]
+script = ExtResource("3_v6xlm")
+key = "cool"
+text = "Thanks for the door"
+action_condition = SubResource("Resource_qthw3")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
 [sub_resource type="Resource" id="Resource_8ubwl"]
@@ -228,6 +255,46 @@ metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 shader = ExtResource("5_hik22")
 shader_parameter/target_colors = PackedColorArray(1, 1, 1, 1, 0.63529414, 0.63529414, 0.63529414, 1, 0.49019608, 0.49019608, 0.49019608, 1, 0.4, 0.4, 0.4, 1, 0.38039216, 0.38039216, 0.38039216, 1, 0.27450982, 0.27450982, 0.27450982, 1)
 shader_parameter/replace_colors = PackedColorArray(0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_kwip0"]
+script = ExtResource("4_jha2e")
+type = 1
+toRun = "Data.gold.given"
+operator = 23
+targetVal = null
+metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
+
+[sub_resource type="Resource" id="Resource_dhwxk"]
+script = ExtResource("3_v6xlm")
+action_condition = SubResource("Resource_kwip0")
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_2crwa"]
+script = ExtResource("4_jha2e")
+type = 1
+toRun = "Data.gold.given"
+targetVal = true
+metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
+
+[sub_resource type="Resource" id="Resource_rhcmw"]
+script = ExtResource("3_v6xlm")
+key = "cool"
+text = "Thanks for the door"
+action_condition = SubResource("Resource_2crwa")
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_7nlax"]
+script = ExtResource("4_jha2e")
+type = 1
+toRun = "Data.gold.taken"
+targetVal = null
+notValue = true
+metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
+
+[sub_resource type="Resource" id="Resource_7rqbr"]
+script = ExtResource("3_v6xlm")
+action_condition = SubResource("Resource_7nlax")
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
 [sub_resource type="Resource" id="Resource_e5gsm"]
 script = ExtResource("4_jha2e")
@@ -412,7 +479,7 @@ position = Vector2(138, 348)
 input_pickable = true
 script = ExtResource("2_1krux")
 diaTree = Dictionary[String, ExtResource("3_v6xlm")]({
-"/": SubResource("Resource_v6xlm"),
+"/": SubResource("Resource_t6c7w"),
 "/ask/": SubResource("Resource_jha2e"),
 "/ask/y/": SubResource("Resource_x61li"),
 "/ask/y/y/": SubResource("Resource_fijbg"),
@@ -426,7 +493,7 @@ diaTree = Dictionary[String, ExtResource("3_v6xlm")]({
 "/y/show/bad_door/": SubResource("Resource_7yc74"),
 "/y/show/bad_door/ew/": SubResource("Resource_21350"),
 "/y/show/bad_door/ew/y/": SubResource("Resource_dgodr"),
-"/y/show/good_door/": SubResource("Resource_g7028")
+"/y/show/good_door/": SubResource("Resource_l7h1s")
 })
 isPlaque = false
 approved_doors = Array[String](["Oak Door"])
@@ -503,6 +570,115 @@ texture = ExtResource("6_j246b")
 script = ExtResource("7_g2n5j")
 
 [node name="Sprite2D" type="Sprite2D" parent="Slides/Poshman&HoleGuy/House3"]
+position = Vector2(0, 70)
+
+[node name="Gold" type="Control" parent="Slides"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Gold" type="StaticBody2D" parent="Slides/Gold" node_paths=PackedStringArray("house")]
+z_index = 1
+position = Vector2(522, 348)
+input_pickable = true
+script = ExtResource("2_1krux")
+diaTree = Dictionary[String, ExtResource("3_v6xlm")]({
+"/": SubResource("Resource_dhwxk"),
+"/ask/": SubResource("Resource_jha2e"),
+"/ask/y/": SubResource("Resource_hik22"),
+"/ask/y/y/": SubResource("Resource_tqlph"),
+"/ask/y/y/true/": SubResource("Resource_pv6v3"),
+"/false/": SubResource("Resource_7rqbr"),
+"/false/true/": SubResource("Resource_02d1i"),
+"/false/true/take_old/": SubResource("Resource_h75vn"),
+"/true/": SubResource("Resource_j246b"),
+"/y/": SubResource("Resource_g2n5j"),
+"/y/show/": SubResource("Resource_ekhcp"),
+"/y/show/bad_door/": SubResource("Resource_7yc74"),
+"/y/show/bad_door/ew/": SubResource("Resource_21350"),
+"/y/show/bad_door/ew/y/": SubResource("Resource_dgodr"),
+"/y/show/good_door/": SubResource("Resource_rhcmw")
+})
+isPlaque = false
+approved_doors = Array[String](["Gold Oak Door"])
+current_door = "Oak Door"
+house = NodePath("../House4")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/Gold/Gold"]
+polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="Slides/Gold/Gold"]
+z_index = 1
+color = Color(1, 1, 1, 0)
+uv = PackedVector2Array(58, 43, 56, 46)
+
+[node name="Image" type="Polygon2D" parent="Slides/Gold/Gold"]
+visible = false
+color = Color(0, 0, 1, 1)
+polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
+
+[node name="Control" type="Control" parent="Slides/Gold/Gold"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 194.0
+offset_right = 108.0
+offset_bottom = 234.0
+mouse_filter = 2
+
+[node name="TextBox" type="VBoxContainer" parent="Slides/Gold/Gold/Control"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Slides/Gold/Gold/Control/TextBox"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/Gold/Gold/Control/TextBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="House4" type="Sprite2D" parent="Slides/Gold"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ekhcp")
+position = Vector2(576, 258)
+scale = Vector2(3, 3)
+texture = ExtResource("6_j246b")
+script = ExtResource("7_g2n5j")
+
+[node name="Sprite2D" type="Sprite2D" parent="Slides/Gold/House4"]
+position = Vector2(0, 70)
+
+[node name="House5" type="Sprite2D" parent="Slides/Gold"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ekhcp")
+position = Vector2(960, 258)
+scale = Vector2(3, 3)
+texture = ExtResource("6_j246b")
+script = ExtResource("7_g2n5j")
+
+[node name="Sprite2D" type="Sprite2D" parent="Slides/Gold/House5"]
+position = Vector2(0, 70)
+
+[node name="House6" type="Sprite2D" parent="Slides/Gold"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ekhcp")
+position = Vector2(192, 258)
+scale = Vector2(3, 3)
+texture = ExtResource("6_j246b")
+script = ExtResource("7_g2n5j")
+
+[node name="Sprite2D" type="Sprite2D" parent="Slides/Gold/House6"]
 position = Vector2(0, 70)
 
 [node name="MrBrown" type="Control" parent="Slides"]
