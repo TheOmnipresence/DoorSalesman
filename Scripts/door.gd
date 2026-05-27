@@ -50,6 +50,7 @@ func _on_take_button_pressed() -> void:
 			Globals.carry_inventory.erase(door_res)
 		else:
 			Globals.truck_inventory.erase(door_res)
+			Globals.carry_inventory.erase(door_res)
 	Globals.update_brought_doors.emit()
 
 
