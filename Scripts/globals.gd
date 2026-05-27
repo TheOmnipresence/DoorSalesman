@@ -67,6 +67,7 @@ var all_doors: Array[Door] = [
 	Door.new("Ripped Screen Door", "In peices", 10, 5, 10, "Screen Door"),
 	Door.new("Screen Door", "See-through", 25, 55),
 	Door.new("Ewhs Door", "elliptical window handle star door", 90, 115),
+	Door.new("Fractured Ewhs Door", "fractured elliptical window handle star door", 70, 90, 15, "Ewhs Door", ["Glassworking"]),
 	Door.new("Blue Door", "It's blue", 80, 90),
 	Door.new("Rough Blue Door", "It's a rough blue", 65, 70, 10, "Blue Door"),
 	Door.new("Gold Oak Door", "Shiny", 190, 250),
@@ -81,6 +82,7 @@ var all_doors: Array[Door] = [
 var all_upgrades: Array[Upgrade] = [
 	Upgrade.new("Double Cash", "Doubles earned money", 45, "warehouse", 2),
 	Upgrade.new("Toolkit", "Basic repairing", 15, "shrimpville"),
+	Upgrade.new("Glassworking", "Repair glass", 45, "mansion_lane"),
 ]
 
 @onready var shop_inventory: Array = all_upgrades + doors_in_shop + get_shop_storage()
@@ -105,6 +107,7 @@ var got_money := false
 
 const WORKSHOP_TOOLS = [
 	"Toolkit",
+	"Glassworking",
 ]
 
 var tools: Array[String] = []
@@ -269,6 +272,13 @@ func map_dict(dictionary: Dictionary, method: Callable) -> Dictionary:
 	return dictionary
 
 
+func array_has_all(array: Array, all: Array) -> bool:
+	for i in all:
+		if not array.has(i):
+			return false
+	return true
+
+
 #func ascending_groups(list: Array) -> Array[Array]:
 	#var result: Array[Array] = []
 	#for i in range(list.size()):
@@ -307,14 +317,17 @@ class Door extends Item:
 	
 	var repair_to_door: String
 	
+	var equipment_needed: Array[String]
 	
-	func _init(name_val := "", des := "", cost_val := 0, price_val := 0, repair_val := -1, repair_to := "") -> void:
+	
+	func _init(name_val := "", des := "", cost_val := 0, price_val := 0, repair_val := -1, repair_to := "", repair_tools: Array[String] = []) -> void:
 		item_name = name_val
 		description = des
 		cost = cost_val
 		sell_for = price_val
 		repair_cost = repair_val
 		repair_to_door = repair_to
+		equipment_needed = repair_tools
 
 
 class Upgrade extends Item:
