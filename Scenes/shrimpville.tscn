@@ -554,6 +554,72 @@ horizontal_alignment = 1
 layout_mode = 2
 mouse_filter = 2
 
+[node name="Liliana" type="StaticBody2D" parent="Slides/MrBrown" node_paths=PackedStringArray("house")]
+z_index = 1
+position = Vector2(522, 348)
+input_pickable = true
+script = ExtResource("1_lyanp")
+diaTree = Dictionary[String, ExtResource("2_bgw1h")]({
+"/": SubResource("Resource_xv5es"),
+"/ask/": SubResource("Resource_tnyjc"),
+"/ask/y/": SubResource("Resource_wfgfr"),
+"/ask/y/y/": SubResource("Resource_nh8xm"),
+"/ask/y/y/true/": SubResource("Resource_edgjg"),
+"/false/": SubResource("Resource_w30xc"),
+"/false/true/": SubResource("Resource_wwg7w"),
+"/false/true/take_old/": SubResource("Resource_mxf21"),
+"/true/": SubResource("Resource_wv2h7"),
+"/y/": SubResource("Resource_7rb63"),
+"/y/show/": SubResource("Resource_d5gy6"),
+"/y/show/bad_door/": SubResource("Resource_igdn2"),
+"/y/show/bad_door/ew/": SubResource("Resource_gpgs5"),
+"/y/show/bad_door/ew/y/": SubResource("Resource_1fmjy"),
+"/y/show/good_door/": SubResource("Resource_8hlrg")
+})
+isPlaque = false
+approved_doors = Array[String](["Ewhs Door"])
+current_door = "Plain Door"
+house = NodePath("../House6")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/MrBrown/Liliana"]
+polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="Slides/MrBrown/Liliana"]
+z_index = 1
+color = Color(1, 1, 1, 0)
+uv = PackedVector2Array(58, 43, 56, 46)
+
+[node name="Image" type="Polygon2D" parent="Slides/MrBrown/Liliana"]
+visible = false
+color = Color(0, 0, 1, 1)
+polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
+
+[node name="Control" type="Control" parent="Slides/MrBrown/Liliana"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 194.0
+offset_right = 108.0
+offset_bottom = 234.0
+mouse_filter = 2
+
+[node name="TextBox" type="VBoxContainer" parent="Slides/MrBrown/Liliana/Control"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Slides/MrBrown/Liliana/Control/TextBox"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/MrBrown/Liliana/Control/TextBox"]
+layout_mode = 2
+mouse_filter = 2
+
 [node name="House4" type="Sprite2D" parent="Slides/MrBrown"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ubx8d")
