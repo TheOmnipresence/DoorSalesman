@@ -68,6 +68,40 @@ text = "Knock?"
 options = Array[ExtResource("2_bgw1h")]([SubResource("Resource_yh5v0"), SubResource("Resource_qbite")])
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
+[sub_resource type="Resource" id="Resource_nh8xm"]
+script = ExtResource("2_bgw1h")
+key = "knock"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_edgjg"]
+script = ExtResource("2_bgw1h")
+set_dia_path = "/y/"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_lrwkc"]
+script = ExtResource("3_cgy2h")
+type = 1
+toRun = "Data.may.taken"
+targetVal = null
+notValue = true
+metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
+
+[sub_resource type="Resource" id="Resource_tv2td"]
+script = ExtResource("2_bgw1h")
+action_condition = SubResource("Resource_lrwkc")
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_wwg7w"]
+script = ExtResource("2_bgw1h")
+key = "take_old"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_mxf21"]
+script = ExtResource("2_bgw1h")
+key = "yay"
+text = "Here, take the old one"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
 [sub_resource type="Resource" id="Resource_c2tmx"]
 script = ExtResource("2_bgw1h")
 set_dia_path = "/ask/"
@@ -151,40 +185,6 @@ text = "Thanks for the door"
 action_condition = SubResource("Resource_ng401")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
-[sub_resource type="Resource" id="Resource_edgjg"]
-script = ExtResource("2_bgw1h")
-set_dia_path = "/y/"
-metadata/_custom_type_script = "uid://dvfxph6aeapdn"
-
-[sub_resource type="Resource" id="Resource_nh8xm"]
-script = ExtResource("2_bgw1h")
-key = "knock"
-metadata/_custom_type_script = "uid://dvfxph6aeapdn"
-
-[sub_resource type="Resource" id="Resource_lrwkc"]
-script = ExtResource("3_cgy2h")
-type = 1
-toRun = "Data.may.taken"
-targetVal = null
-notValue = true
-metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
-
-[sub_resource type="Resource" id="Resource_tv2td"]
-script = ExtResource("2_bgw1h")
-action_condition = SubResource("Resource_lrwkc")
-metadata/_custom_type_script = "uid://dvfxph6aeapdn"
-
-[sub_resource type="Resource" id="Resource_wwg7w"]
-script = ExtResource("2_bgw1h")
-key = "take_old"
-metadata/_custom_type_script = "uid://dvfxph6aeapdn"
-
-[sub_resource type="Resource" id="Resource_mxf21"]
-script = ExtResource("2_bgw1h")
-key = "yay"
-text = "Here, take the old one"
-metadata/_custom_type_script = "uid://dvfxph6aeapdn"
-
 [sub_resource type="Resource" id="Resource_674qm"]
 script = ExtResource("3_cgy2h")
 type = 1
@@ -196,6 +196,19 @@ metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
 [sub_resource type="Resource" id="Resource_yvwxw"]
 script = ExtResource("2_bgw1h")
 action_condition = SubResource("Resource_674qm")
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_bkw50"]
+script = ExtResource("3_cgy2h")
+type = 1
+toRun = "Data.doug.taken"
+targetVal = null
+notValue = true
+metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
+
+[sub_resource type="Resource" id="Resource_w30xc"]
+script = ExtResource("2_bgw1h")
+action_condition = SubResource("Resource_bkw50")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
 [sub_resource type="Resource" id="Resource_vsrh4"]
@@ -210,19 +223,6 @@ script = ExtResource("2_bgw1h")
 key = "cool"
 text = "Thanks for the door"
 action_condition = SubResource("Resource_vsrh4")
-metadata/_custom_type_script = "uid://dvfxph6aeapdn"
-
-[sub_resource type="Resource" id="Resource_bkw50"]
-script = ExtResource("3_cgy2h")
-type = 1
-toRun = "Data.doug.taken"
-targetVal = null
-notValue = true
-metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
-
-[sub_resource type="Resource" id="Resource_w30xc"]
-script = ExtResource("2_bgw1h")
-action_condition = SubResource("Resource_bkw50")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ubx8d"]
@@ -248,6 +248,19 @@ script = ExtResource("2_bgw1h")
 key = "q"
 text = "Walk up?"
 options = Array[ExtResource("2_bgw1h")]([SubResource("Resource_ga05j"), SubResource("Resource_vdm02")])
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_bwdxc"]
+script = ExtResource("3_cgy2h")
+type = 1
+toRun = "Data.mr_brown.taken"
+targetVal = null
+notValue = true
+metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
+
+[sub_resource type="Resource" id="Resource_2pihu"]
+script = ExtResource("2_bgw1h")
+action_condition = SubResource("Resource_bwdxc")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
 [sub_resource type="Resource" id="Resource_wv2h7"]
@@ -296,19 +309,6 @@ text = "Great"
 action_condition = SubResource("Resource_4b0ru")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
-[sub_resource type="Resource" id="Resource_bwdxc"]
-script = ExtResource("3_cgy2h")
-type = 1
-toRun = "Data.mr_brown.taken"
-targetVal = null
-notValue = true
-metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
-
-[sub_resource type="Resource" id="Resource_2pihu"]
-script = ExtResource("2_bgw1h")
-action_condition = SubResource("Resource_bwdxc")
-metadata/_custom_type_script = "uid://dvfxph6aeapdn"
-
 [sub_resource type="Resource" id="Resource_agsw7"]
 script = ExtResource("3_cgy2h")
 type = 1
@@ -320,6 +320,19 @@ metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
 [sub_resource type="Resource" id="Resource_xv5es"]
 script = ExtResource("2_bgw1h")
 action_condition = SubResource("Resource_agsw7")
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_l1wjw"]
+script = ExtResource("3_cgy2h")
+type = 1
+toRun = "Data.liliana.taken"
+targetVal = null
+notValue = true
+metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
+
+[sub_resource type="Resource" id="Resource_m82gi"]
+script = ExtResource("2_bgw1h")
+action_condition = SubResource("Resource_l1wjw")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
 [sub_resource type="Resource" id="Resource_0nqti"]
@@ -334,19 +347,6 @@ script = ExtResource("2_bgw1h")
 key = "cool"
 text = "Great"
 action_condition = SubResource("Resource_0nqti")
-metadata/_custom_type_script = "uid://dvfxph6aeapdn"
-
-[sub_resource type="Resource" id="Resource_l1wjw"]
-script = ExtResource("3_cgy2h")
-type = 1
-toRun = "Data.liliana.taken"
-targetVal = null
-notValue = true
-metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
-
-[sub_resource type="Resource" id="Resource_m82gi"]
-script = ExtResource("2_bgw1h")
-action_condition = SubResource("Resource_l1wjw")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
 [node name="Shrimpville" type="Control"]
@@ -643,7 +643,7 @@ diaTree = Dictionary[String, ExtResource("2_bgw1h")]({
 "/y/show/good_door/": SubResource("Resource_8hlrg")
 })
 isPlaque = false
-approved_doors = Array[String](["Ewhs Door"])
+approved_doors = Array[String](["Ewhs Door", "Blue Door"])
 current_door = "Rough Blue Door"
 house = NodePath("../House6")
 override_primary_color = Color(0.44705883, 0.2901961, 0.7294118, 1)
