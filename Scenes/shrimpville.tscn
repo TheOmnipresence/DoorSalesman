@@ -550,7 +550,7 @@ diaTree = Dictionary[String, ExtResource("2_bgw1h")]({
 "/y/show/good_door/": SubResource("Resource_8hlrg")
 })
 isPlaque = false
-approved_doors = Array[String](["Base Door", "Oak Door", "Scratched Door", "Screen Door"])
+approved_doors = Array[String](["Base Door", "Oak Door", "Scratched Door", "Screen Door", "Plain Door"])
 current_door = "Ripped Screen Door"
 house = NodePath("../House4")
 
