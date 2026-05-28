@@ -274,7 +274,7 @@ approved_doors = Array[String](["Oak Door", "Blue Door"])
 current_door = "Cracked Oak Door"
 house = NodePath("../House")
 override_primary_color = Color(0.26666668, 0, 1, 1)
-override_secondary_color = Color(1, 1, 1, 1)
+override_secondary_color = Color(0.5803922, 0.5803922, 0.5803922, 1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/John/JohnBottom"]
 polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)
@@ -290,6 +290,7 @@ color = Color(0, 0, 1, 1)
 polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
 
 [node name="Control" type="Control" parent="Slides/John/JohnBottom"]
+z_index = 2
 layout_mode = 3
 anchors_preset = 0
 offset_top = 194.0

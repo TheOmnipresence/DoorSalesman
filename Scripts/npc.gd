@@ -123,7 +123,7 @@ func run_dialogue(dialogue_tree: Dictionary[String,Dialouge]) -> void:
 			else:
 				path += dialogue_tree[path].key + "/"
 			if $Control/TextBox/Label.text != "":
-				await get_tree().create_timer(3).timeout
+				await get_tree().create_timer(1.5).timeout
 	
 	Globals.in_dialogue = false
 	$Control/TextBox/Label.text = ""

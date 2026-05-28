@@ -177,8 +177,8 @@ func send_to_place(place_name: String) -> void:
 		scene_parent.add_child(Node.new())
 	get_tree().current_scene.update_all()
 	
-	for i in range(100):
-		get_tree().current_scene.get_node("Fade").color.a -= 0.01
+	for i in range(50):
+		get_tree().current_scene.get_node("Fade").color.a -= 0.02
 		await get_tree().process_frame
 	
 	in_dialogue = false
