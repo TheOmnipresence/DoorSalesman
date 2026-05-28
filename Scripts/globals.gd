@@ -24,6 +24,10 @@ var days: int:
 					
 					if not possible_replacements.is_empty():
 						current_house.door = possible_replacements.pick_random().item_name.to_snake_case()
+					
+					if npc_data.has(current_house.npc):
+						npc_data[current_house.npc]["given"] = false
+						npc_data[current_house.npc]["taken"] = false
 
 var current_space := "warehouse"
 var visited := ["warehouse"]
@@ -353,7 +357,10 @@ class House extends Resource:
 	var primary_color: Color
 	var secondary_color: Color
 	
-	func _init(door_name := "", primary := Color.WHITE, secondary := Color.BLACK) -> void:
+	var npc: String
+	
+	func _init(door_name := "", primary := Color.WHITE, secondary := Color.BLACK, npc_val := "") -> void:
 		door = door_name
 		primary_color = primary
 		secondary_color = secondary
+		npc = npc_val
