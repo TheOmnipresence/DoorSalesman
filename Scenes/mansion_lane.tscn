@@ -225,7 +225,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_1btw6")
-area_doors = Array[String]([""])
+area_doors = Array[String](["Oak Door"])
 palette = Color(0, 0.46666667, 1, 1)
 oppose_palette_chance = 1.0
 
