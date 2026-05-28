@@ -253,6 +253,16 @@ offset_bottom = 190.0
 text = "Mansion Lane"
 script = ExtResource("2_nqdwu")
 
+[node name="IndustrialZone" type="Button" parent="HSplitContainer/Tabs/Map/Map/Buttons"]
+z_index = 1
+layout_mode = 0
+offset_left = 574.0
+offset_top = 291.0
+offset_right = 690.0
+offset_bottom = 322.0
+text = "Industrial Zone"
+script = ExtResource("2_nqdwu")
+
 [node name="Warehouse" type="Button" parent="HSplitContainer/Tabs/Map/Map/Buttons" node_paths=PackedStringArray("connections")]
 z_index = 1
 layout_mode = 0
@@ -262,7 +272,7 @@ offset_right = 479.0
 offset_bottom = 285.0
 text = "Warehouse"
 script = ExtResource("2_nqdwu")
-connections = [NodePath("../Shrimpville"), NodePath("../Fancytown")]
+connections = [NodePath("../Shrimpville"), NodePath("../Fancytown"), NodePath("../IndustrialZone")]
 
 [node name="Lines" type="Control" parent="HSplitContainer/Tabs/Map/Map"]
 layout_mode = 1

@@ -12,6 +12,8 @@ var days: int:
 		days = value
 		
 		for neighborhood in houses:
+			if not visited.has(neighborhood):
+				continue
 			for house in houses[neighborhood]:
 				var current_house = houses[neighborhood][house]
 				if randi_range(0,3) == 0:
@@ -71,18 +73,22 @@ var all_doors: Array[Door] = [
 	Door.new("Blue Door", "It's blue", 80, 90),
 	Door.new("Rough Blue Door", "It's a rough blue", 65, 70, 10, "Blue Door"),
 	Door.new("Gold Oak Door", "Shiny", 190, 250),
+	Door.new("Glass Door", "It's you!", 110, 130),
+	Door.new("Fractured Glass Door", "Is it?", 40, 40, 40, "Glass Door", ["Glassworking"]),
 ]
 @onready var doors_in_shop: Array[Door] = [
 	make_door_by_name("Base Door"),
 	make_door_by_name("Base Door"),
 	make_door_by_name("Oak Door", "fancytown"),
 	make_door_by_name("Gold Oak Door", "fancytown"),
-	make_door_by_name("Ewhs Door","shrimpville"),
+	make_door_by_name("Ewhs Door", "shrimpville"),
+	make_door_by_name("Glass Door", "mansion_lane"),
 ]
 var all_upgrades: Array[Upgrade] = [
 	Upgrade.new("Double Cash", "Doubles earned money", 45, "warehouse", 2),
 	Upgrade.new("Toolkit", "Basic repairing", 15, "shrimpville"),
 	Upgrade.new("Glassworking", "Repair glass", 45, "mansion_lane"),
+	Upgrade.new("Welding", "Repair metal", 50, "industrial_zone"),
 ]
 
 @onready var shop_inventory: Array = all_upgrades + doors_in_shop + get_shop_storage()
