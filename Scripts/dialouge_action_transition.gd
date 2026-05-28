@@ -19,11 +19,12 @@ enum types {ACTION, TRANSITION}
 @export var notValue := false
 
 
-func _init(type_val := types.ACTION, run_val := "", operator_val := OP_MAX, target_val: Variant = "") -> void:
+func _init(type_val := types.ACTION, run_val := "", operator_val := OP_MAX, target_val: Variant = "", not_val := false) -> void:
 	type = type_val
 	toRun = run_val
 	operator = operator_val
 	targetVal = target_val
+	notValue = not_val
 
 
 ## Runs actions (things that effect the world and player) and transitions (pushes the dialouge on depending on the world and player).

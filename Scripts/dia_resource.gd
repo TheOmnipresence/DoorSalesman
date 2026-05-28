@@ -27,11 +27,14 @@ class_name Dialouge extends Resource
 @export var set_dia_path := ""
 
 
-func _init(key_val := "", text_val := "", options_val: Array[Dialouge] = [], action_condition_val := DialougeActionTransition.new(DialougeActionTransition.types.ACTION, "")) -> void:
+func _init(key_val := "", text_val := "", options_val: Array[Dialouge] = [], action_condition_val := DialougeActionTransition.new(DialougeActionTransition.types.ACTION, ""), to_path := "", doors_as_options := false, is_a_door := false) -> void:
 	key = key_val
 	text = text_val
 	options = options_val
 	action_condition = action_condition_val
+	set_dia_path = to_path
+	options_doors = doors_as_options
+	is_door = is_a_door
 
 
 func testOptions() -> void:
@@ -42,3 +45,11 @@ func testOptions() -> void:
 				toErase.append(option)
 	for option in toErase:
 		options.erase(option)
+
+
+static func new_from_dict(values: Dictionary[String,Variant]) -> Dialouge:
+	var result := Dialouge.new()
+	for i in values:
+		if i in result:
+			result.set(i, values[i])
+	return result
