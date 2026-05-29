@@ -51,7 +51,8 @@ var STORAGE_UPGRADES = {
 		Storage.new(2, "Truck Bed")
 	],
 	"carry": [
-		Storage.new(1, "Carry")
+		Storage.new(1, "Carry"),
+		Storage.new(3, "Wheelbarrow", "Fit more doors!", "mansion_lane", 30),
 	],
 }
 
@@ -315,10 +316,12 @@ class Item extends Resource:
 class Storage extends Item:
 	var space: int
 	
-	func _init(space_amount := 0, u_name := "", neighborhood := "") -> void:
+	func _init(space_amount := 0, u_name := "", description_val := "", neighborhood := "", cost_val := 0) -> void:
 		space = space_amount
 		item_name = u_name
+		description = description_val
 		shipment = neighborhood
+		cost = cost_val
 
 
 class Door extends Item:
