@@ -32,6 +32,7 @@ var days: int:
 var current_space := "warehouse"
 var visited := ["warehouse"]
 var availible_spaces := ["warehouse", "shrimpville", "fancytown"]
+const ALL_SPACES = ["warehouse", "shrimpville", "fancytown", "mansion_lane", "coldington", "industrial_zone"]
 var houses: Dictionary[String, Dictionary] = {}
 
 @onready var warehouse_inventory: Array[Door] = [make_door_by_name("Base Door"), make_door_by_name("Base Door"), make_door_by_name("Scratched Door")]
@@ -95,6 +96,7 @@ var all_doors: Array[Door] = [
 	make_door_by_name("Ewhs Door", "shrimpville"),
 	make_door_by_name("Ice Door", "shrimpville"),
 	make_door_by_name("Glass Door", "mansion_lane"),
+	make_door_by_name("Wheelless Steel Door", "industrial_zone"),
 ]
 var all_upgrades: Array[Upgrade] = [
 	Upgrade.new("Double Cash", "Doubles earned money", 45, "warehouse", 2),
@@ -104,7 +106,7 @@ var all_upgrades: Array[Upgrade] = [
 	Upgrade.new("Freezer", "Make things cold", 190, "industrial_zone")
 ]
 
-@onready var shop_inventory: Array = all_upgrades + doors_in_shop + get_shop_storage()
+@onready var shop_inventory: Array = sort_by_shipment(all_upgrades + doors_in_shop + get_shop_storage())
 
 @onready var items_collected_from_shop: Array[Item] = [
 	STORAGE_UPGRADES["warehouse"][0],
@@ -153,6 +155,20 @@ func _ready() -> void:
 func connect_script() -> void:
 	is_archipelago = true
 	got_money = true
+
+
+func sort_by_shipment(list: Array) -> Array:
+	var result = []
+	var current_shipment = "warehouse"
+	while result.size() < list.size():
+		for i: Item in list:
+			if not result.has(i):
+				if i.shipment == current_shipment:
+					result.append(i)
+		if current_shipment == ALL_SPACES[-1]:
+			break
+		current_shipment = ALL_SPACES[ALL_SPACES.find(current_shipment) + 1]
+	return result
 
 
 func sell(door: Door):
