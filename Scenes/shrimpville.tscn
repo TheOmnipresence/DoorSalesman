@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://d38xjml56pg4n"]
+[gd_scene load_steps=66 format=3 uid="uid://d38xjml56pg4n"]
 
 [ext_resource type="Script" uid="uid://cmx2so6nuas6h" path="res://Scripts/housing.gd" id="1_c0cq2"]
 [ext_resource type="Script" uid="uid://drk7lqqa0k4bm" path="res://Scripts/clickable_dialogue.gd" id="1_lyanp"]
@@ -347,6 +347,37 @@ script = ExtResource("2_bgw1h")
 key = "cool"
 text = "Great"
 action_condition = SubResource("Resource_0nqti")
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_3p8fw"]
+script = ExtResource("3_cgy2h")
+toRun = "unlock_coldington"
+targetVal = null
+metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
+
+[sub_resource type="Resource" id="Resource_mnrpm"]
+script = ExtResource("2_bgw1h")
+key = "unlock"
+text = "yay"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_ov7vi"]
+script = ExtResource("2_bgw1h")
+key = "unlock"
+text = "You should go to coldington"
+options = Array[ExtResource("2_bgw1h")]([SubResource("Resource_mnrpm")])
+action_condition = SubResource("Resource_3p8fw")
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_qqc4d"]
+script = ExtResource("3_cgy2h")
+toRun = "send_coldington"
+targetVal = null
+metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
+
+[sub_resource type="Resource" id="Resource_n26oy"]
+script = ExtResource("2_bgw1h")
+action_condition = SubResource("Resource_qqc4d")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
 [node name="Shrimpville" type="Control"]
@@ -719,6 +750,104 @@ texture = ExtResource("6_ioxou")
 script = ExtResource("7_ioxou")
 
 [node name="Sprite2D" type="Sprite2D" parent="Slides/MrBrown&Liliana/House6"]
+position = Vector2(0, 70)
+
+[node name="IceMan" type="Control" parent="Slides"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="IceMan" type="StaticBody2D" parent="Slides/IceMan" node_paths=PackedStringArray("house")]
+z_index = 1
+position = Vector2(522, 348)
+input_pickable = true
+script = ExtResource("1_lyanp")
+diaTree = Dictionary[String, ExtResource("2_bgw1h")]({
+"/false/false/": SubResource("Resource_ov7vi"),
+"/false/false/unlock/": SubResource("Resource_n26oy")
+})
+isPlaque = false
+approved_doors = Array[String](["Ice Door"])
+current_door = "Melted Door"
+house = NodePath("../House7")
+override_primary_color = Color(0.32941177, 0.70980394, 1, 1)
+override_secondary_color = Color(0.6901961, 1, 0.9843137, 1)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/IceMan/IceMan"]
+polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="Slides/IceMan/IceMan"]
+z_index = 1
+color = Color(1, 1, 1, 0)
+uv = PackedVector2Array(58, 43, 56, 46)
+
+[node name="Image" type="Polygon2D" parent="Slides/IceMan/IceMan"]
+visible = false
+color = Color(0, 0, 1, 1)
+polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
+
+[node name="Control" type="Control" parent="Slides/IceMan/IceMan"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 194.0
+offset_right = 108.0
+offset_bottom = 234.0
+mouse_filter = 2
+
+[node name="TextBox" type="VBoxContainer" parent="Slides/IceMan/IceMan/Control"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Slides/IceMan/IceMan/Control/TextBox"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/IceMan/IceMan/Control/TextBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="House7" type="Sprite2D" parent="Slides/IceMan"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ubx8d")
+position = Vector2(576, 258)
+scale = Vector2(3, 3)
+texture = ExtResource("6_ioxou")
+script = ExtResource("7_ioxou")
+
+[node name="Sprite2D" type="Sprite2D" parent="Slides/IceMan/House7"]
+position = Vector2(0, 70)
+
+[node name="House8" type="Sprite2D" parent="Slides/IceMan"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ubx8d")
+position = Vector2(960, 258)
+scale = Vector2(3, 3)
+texture = ExtResource("6_ioxou")
+script = ExtResource("7_ioxou")
+
+[node name="Sprite2D" type="Sprite2D" parent="Slides/IceMan/House8"]
+position = Vector2(0, 70)
+
+[node name="House9" type="Sprite2D" parent="Slides/IceMan"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ubx8d")
+position = Vector2(192, 258)
+scale = Vector2(3, 3)
+texture = ExtResource("6_ioxou")
+script = ExtResource("7_ioxou")
+
+[node name="Sprite2D" type="Sprite2D" parent="Slides/IceMan/House9"]
 position = Vector2(0, 70)
 
 [node name="Right" type="Button" parent="."]

@@ -12,6 +12,11 @@ func _ready() -> void:
 	update_all()
 
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("mouse2"):
+		Globals.money += 100
+
+
 func update_all() -> void:
 	update_brought_doors()
 	
@@ -59,6 +64,11 @@ func force_update_upgrades() -> void:
 	for i in Globals.shop_inventory:
 		if Globals.items_collected_from_shop.has(i):
 			continue
+		if i is Globals.Storage and not Globals.is_archipelago:
+			for type in Globals.STORAGE_UPGRADES:
+				if Globals.STORAGE_UPGRADES[type].has(i):
+					if Globals.get(type + "_storage_level") + 1 < Globals.STORAGE_UPGRADES[type].find(i):
+						continue
 		#if i is Globals.Storage:
 			#var kind = ""
 			#for type in Globals.STORAGE_UPGRADES:

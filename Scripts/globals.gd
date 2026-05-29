@@ -16,7 +16,8 @@ var days: int:
 				continue
 			for house in houses[neighborhood]:
 				var current_house = houses[neighborhood][house]
-				if randi_range(0,3) == 0:
+				
+				if randi_range(0,99) < make_door_by_name(current_house.door).breakability and not (current_house.door == "ice_door" and neighborhood == "coldington"):
 					var possible_replacements = []
 					for i in all_doors:
 						if i.repair_to_door == current_house.door.capitalize():
@@ -83,6 +84,8 @@ var all_doors: Array[Door] = [
 	Door.new("Cracked Mansion Door", "Slightly broken", 60, 85, 15, "Mansion Door"),
 	Door.new("Steel Door", "Big wheel", 600, 750),
 	Door.new("Wheelless Steel Door", "Aw no wheel", 540, 600, 30, "Steel Door", ["Welding"]),
+	Door.new("Ice Door", "Very cold", 210, 235, -1, "", [], 100),
+	Door.new("Melted Door", "It's dripping", 130, 135, 5, "Ice Door", ["Freezer"]),
 ]
 @onready var doors_in_shop: Array[Door] = [
 	make_door_by_name("Base Door"),
@@ -90,6 +93,7 @@ var all_doors: Array[Door] = [
 	make_door_by_name("Oak Door", "fancytown"),
 	make_door_by_name("Gold Oak Door", "fancytown"),
 	make_door_by_name("Ewhs Door", "shrimpville"),
+	make_door_by_name("Ice Door", "shrimpville"),
 	make_door_by_name("Glass Door", "mansion_lane"),
 ]
 var all_upgrades: Array[Upgrade] = [
@@ -97,6 +101,7 @@ var all_upgrades: Array[Upgrade] = [
 	Upgrade.new("Toolkit", "Basic repairing", 15, "shrimpville"),
 	Upgrade.new("Glassworking", "Repair glass", 45, "mansion_lane"),
 	Upgrade.new("Welding", "Repair metal", 50, "industrial_zone"),
+	Upgrade.new("Freezer", "Make things cold", 190, "industrial_zone")
 ]
 
 @onready var shop_inventory: Array = all_upgrades + doors_in_shop + get_shop_storage()
@@ -127,6 +132,8 @@ var got_money := false
 const WORKSHOP_TOOLS = [
 	"Toolkit",
 	"Glassworking",
+	"Welding",
+	"Freezer",
 ]
 
 var tools: Array[String] = []
@@ -340,8 +347,10 @@ class Door extends Item:
 	
 	var equipment_needed: Array[String]
 	
+	var breakability: int = 25
 	
-	func _init(name_val := "", des := "", cost_val := 0, price_val := 0, repair_val := -1, repair_to := "", repair_tools: Array[String] = []) -> void:
+	
+	func _init(name_val := "", des := "", cost_val := 0, price_val := 0, repair_val := -1, repair_to := "", repair_tools: Array[String] = [], break_chance := 25) -> void:
 		item_name = name_val
 		description = des
 		cost = cost_val
@@ -349,6 +358,7 @@ class Door extends Item:
 		repair_cost = repair_val
 		repair_to_door = repair_to
 		equipment_needed = repair_tools
+		breakability = break_chance
 
 
 class Upgrade extends Item:

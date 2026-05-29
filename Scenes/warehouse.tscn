@@ -222,7 +222,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Shrimpville" type="Button" parent="HSplitContainer/Tabs/Map/Map/Buttons"]
+[node name="Shrimpville" type="Button" parent="HSplitContainer/Tabs/Map/Map/Buttons" node_paths=PackedStringArray("connections")]
 z_index = 1
 layout_mode = 0
 offset_left = 466.0
@@ -231,6 +231,7 @@ offset_right = 561.0
 offset_bottom = 174.0
 text = "Shrimpville"
 script = ExtResource("2_nqdwu")
+connections = [NodePath("../Coldington")]
 
 [node name="Fancytown" type="Button" parent="HSplitContainer/Tabs/Map/Map/Buttons" node_paths=PackedStringArray("connections")]
 z_index = 1
@@ -261,6 +262,16 @@ offset_top = 291.0
 offset_right = 690.0
 offset_bottom = 322.0
 text = "Industrial Zone"
+script = ExtResource("2_nqdwu")
+
+[node name="Coldington" type="Button" parent="HSplitContainer/Tabs/Map/Map/Buttons"]
+z_index = 1
+layout_mode = 0
+offset_left = 606.0
+offset_top = 77.0
+offset_right = 722.0
+offset_bottom = 108.0
+text = "Coldington"
 script = ExtResource("2_nqdwu")
 
 [node name="Warehouse" type="Button" parent="HSplitContainer/Tabs/Map/Map/Buttons" node_paths=PackedStringArray("connections")]
