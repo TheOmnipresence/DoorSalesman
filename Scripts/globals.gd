@@ -219,6 +219,9 @@ func collect_item(item_name: String, shop_item: Item = null, called_from_archipe
 				tools.append(item_name)
 			if item_name.left(12) == "Knock Power ":
 				knock_power += 1
+			if tools.has("Toolkit") and tools.has("Glassworking"):
+				if not Globals.availible_spaces.has("industrial_zone"):
+					Globals.availible_spaces.append("industrial_zone")
 	elif shop_item is Storage:#merge_lists(all_storage_names.values()).has(item_name) or shop_item is Storage:
 		if is_archipelago and not called_from_archipelago:
 			send_shop_ap(shop_item) #merge_lists(all_storage_names.values()).find(item_name) + 1000)
