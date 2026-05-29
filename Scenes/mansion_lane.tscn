@@ -270,8 +270,8 @@ diaTree = Dictionary[String, ExtResource("3_qgfsf")]({
 "/y/show/good_door/": SubResource("Resource_ici5d")
 })
 isPlaque = false
-approved_doors = Array[String](["Oak Door", "Blue Door"])
-current_door = "Cracked Oak Door"
+approved_doors = Array[String](["Blue Door", "Mansion Door"])
+current_door = "Mansion Door"
 house = NodePath("../House")
 override_primary_color = Color(0.26666668, 0, 1, 1)
 override_secondary_color = Color(0.5803922, 0.5803922, 0.5803922, 1)

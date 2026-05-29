@@ -78,6 +78,8 @@ var all_doors: Array[Door] = [
 	Door.new("Gold Oak Door", "Shiny", 190, 250),
 	Door.new("Glass Door", "It's you!", 110, 130),
 	Door.new("Fractured Glass Door", "Is it?", 40, 40, 40, "Glass Door", ["Glassworking"]),
+	Door.new("Mansion Door", "Suprisingly simple", 80, 110),
+	Door.new("Cracked Mansion Door", "Slightly broken", 60, 85, 15, "Mansion Door")
 ]
 @onready var doors_in_shop: Array[Door] = [
 	make_door_by_name("Base Door"),
