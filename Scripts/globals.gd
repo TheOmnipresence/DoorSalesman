@@ -80,7 +80,9 @@ var all_doors: Array[Door] = [
 	Door.new("Glass Door", "It's you!", 110, 130),
 	Door.new("Fractured Glass Door", "Is it?", 40, 40, 40, "Glass Door", ["Glassworking"]),
 	Door.new("Mansion Door", "Suprisingly simple", 80, 110),
-	Door.new("Cracked Mansion Door", "Slightly broken", 60, 85, 15, "Mansion Door")
+	Door.new("Cracked Mansion Door", "Slightly broken", 60, 85, 15, "Mansion Door"),
+	Door.new("Steel Door", "Big wheel", 600, 750),
+	Door.new("Wheelless Steel Door", "Aw no wheel", 540, 600, 30, "Steel Door", ["Welding"]),
 ]
 @onready var doors_in_shop: Array[Door] = [
 	make_door_by_name("Base Door"),
@@ -105,7 +107,12 @@ var all_upgrades: Array[Upgrade] = [
 	STORAGE_UPGRADES["carry"][0],
 ]
 
-var npc_data := {}
+var npc_data := {
+	"john_bottom":{
+		"given": true,
+		"taken": true
+	}
+}
 
 var in_dialogue := false
 

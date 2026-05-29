@@ -273,6 +273,7 @@ isPlaque = false
 approved_doors = Array[String](["Blue Door", "Mansion Door"])
 current_door = "Mansion Door"
 house = NodePath("../House")
+knock_power_required = 1
 override_primary_color = Color(0.26666668, 0, 1, 1)
 override_secondary_color = Color(0.5803922, 0.5803922, 0.5803922, 1)
 
