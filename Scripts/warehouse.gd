@@ -8,7 +8,8 @@ func _ready() -> void:
 		i.pressed.connect(set_current_tab.bind(str(i.name)))
 	
 	Globals.update_brought_doors.connect(update_brought_doors)
-	
+	for i in Globals.all_doors.map(func(e: Globals.Door): return "\"" + e.item_name + "\": " + str(e.sell_for) + ","):
+		print(i)
 	update_all()
 
 

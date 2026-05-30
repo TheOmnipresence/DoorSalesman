@@ -67,6 +67,7 @@ signal update_brought_doors
 
 var all_doors: Array[Door] = [
 	Door.new("Base Door", "Pretty boring door", 20, 45),
+	Door.new("Knobless Base Door", "Can't open :(", 10, 35, 5, "Base Door"),
 	Door.new("Plain Door", "A very boring door", 25, 55),
 	Door.new("Scratched Door", "A bit beat up", 10, 30, 5, "Plain Door"),
 	Door.new("Oak Door", "Kinda fancy", 60, 100),
@@ -86,7 +87,7 @@ var all_doors: Array[Door] = [
 	Door.new("Steel Door", "Big wheel", 600, 750),
 	Door.new("Wheelless Steel Door", "Aw no wheel", 540, 600, 30, "Steel Door", ["Welding"]),
 	Door.new("Ice Door", "Very cold", 210, 235, -1, "", [], 100),
-	Door.new("Melted Door", "It's dripping", 130, 135, 5, "Ice Door", ["Freezer"]),
+	Door.new("Melted Door", "It's dripping", 130, 140, 5, "Ice Door", ["Freezer"]),
 ]
 @onready var doors_in_shop: Array[Door] = [
 	make_door_by_name("Base Door"),
