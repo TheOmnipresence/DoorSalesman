@@ -7,6 +7,10 @@ var in_truck := false
 
 var workshop_item := false
 
+var disabled_from_bringing := false
+
+var disabled_from_overload := false
+
 
 func _ready() -> void:
 	update_info()
@@ -14,9 +18,13 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if in_truck:
-		$TakeButton.disabled = len(Globals.carry_inventory) >= Globals.STORAGE_UPGRADES.carry[Globals.carry_storage_level].space and not $TakeButton.text == "Leave"
+		disabled_from_bringing = len(Globals.carry_inventory) >= Globals.STORAGE_UPGRADES.carry[Globals.carry_storage_level].space and not $TakeButton.text == "Leave"
 	else:
-		$TakeButton.disabled = len(Globals.truck_inventory) >= Globals.STORAGE_UPGRADES.truck[Globals.truck_storage_level].space and not $TakeButton.text == "Leave"
+		disabled_from_bringing = len(Globals.truck_inventory) >= Globals.STORAGE_UPGRADES.truck[Globals.truck_storage_level].space and not $TakeButton.text == "Leave"
+	
+	disabled_from_overload = get_index() + 1 > Globals.STORAGE_UPGRADES["warehouse"][Globals.warehouse_storage_level].space and not Globals.is_archipelago
+	
+	$TakeButton.disabled = disabled_from_bringing or disabled_from_overload
 
 
 ## Updates the displayed info

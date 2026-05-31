@@ -47,10 +47,12 @@ var carry_storage_level = 0
 
 var STORAGE_UPGRADES = {
 	"warehouse": [
-		Storage.new(9, "Warehouse Storage 1")
+		Storage.new(9, "Warehouse Storage 1"),
+		#Storage.new(18, "Warehouse Storage 2", "More doors in the warehouse", "industrial_zone", 400)
 	],
 	"truck": [
-		Storage.new(2, "Truck Bed")
+		Storage.new(2, "Car Trunk"),
+		#Storage.new(8, "Truck Bed", "Bring more doors!", "")
 	],
 	"carry": [
 		Storage.new(1, "Carry"),
@@ -206,9 +208,9 @@ func get_ap_item(item: NetworkItem) -> void:
 	
 	if item_name == "Day Advance":
 		hours += 24
-	if all_doors.map(func(e): return e.item_name).has(item_name):
+	elif all_doors.map(func(e): return e.item_name).has(item_name):
 		collect_item(item_name, make_door_by_name(item_name), true)
-	if WORKSHOP_TOOLS.has(item_name):
+	elif WORKSHOP_TOOLS.has(item_name):
 		var upgrade = null
 		for i in all_upgrades:
 			if i.item_name == item_name:
@@ -218,8 +220,14 @@ func get_ap_item(item: NetworkItem) -> void:
 			collect_item(item_name, upgrade, true)
 		else:
 			collect_item(item_name, Upgrade.new(item_name, "Item collected from archipelago"), true)
-	if item_name.contains(" neighborhood unlock"):
+	elif item_name.contains(" neighborhood unlock"):
 		availible_spaces.append(item_name.get_slice(" neighborhood unlock",0))
+	else:
+		for i in all_storage_names:
+			if all_storage_names[i].has(item_name):
+				set(i + "_storage_level", 1 + get(i + "_storage_level"))
+				break
+	
 	trigger_popup("Item: " + item_name + " from " + Archipelago.conn.get_player_name(item.src_player_id), Color.GREEN)
 
 
@@ -311,6 +319,7 @@ func collect_item(item_name: String, shop_item: Item = null, called_from_archipe
 			for i in all_storage_names:
 				if all_storage_names[i].has(item_name):
 					set(i + "_storage_level", 1 + get(i + "_storage_level"))
+					break
 	
 	get_tree().current_scene.update_all()
 
