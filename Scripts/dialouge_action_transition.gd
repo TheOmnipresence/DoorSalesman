@@ -43,8 +43,13 @@ func run() -> Variant:
 			var x when x.left(5) == "send_":
 				Globals.send_to_place(x.right(-5))
 			var x when x.left(7) == "unlock_":
-				if not Globals.availible_spaces.has(x.right(-7)):
-					Globals.availible_spaces.append(x.right(-7))
+				var space = x.right(-7)
+				if Globals.is_archipelago:
+					var list = Globals.ALL_SPACES.filter(func(e): return not ["warehouse", "shrimpville", "fancytown", "industrial_zone"].has(e))
+					Globals.send_ap_item(space.capitalize() + " neighborhood unlock", list.find(space) + 2000)
+				else:
+					if not Globals.availible_spaces.has(space):
+						Globals.availible_spaces.append(space)
 			var x when x.left(5) == "sell_":
 				for i in Globals.carry_inventory:
 					if i.item_name == x.right(-5).capitalize():

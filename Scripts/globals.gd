@@ -17,7 +17,7 @@ var days: int:
 			for house in houses[neighborhood]:
 				var current_house = houses[neighborhood][house]
 				
-				if randi_range(0,99) < make_door_by_name(current_house.door).breakability and not (current_house.door == "ice_door" and neighborhood == "coldington"):
+				if randi_range(0,99) < make_door_by_name(current_house.door).breakability and (not (current_house.door == "ice_door" and neighborhood == "coldington") or randi_range(0,3) == 0):
 					var possible_replacements = []
 					for i in all_doors:
 						if i.repair_to_door == current_house.door.capitalize():
@@ -87,7 +87,7 @@ var all_doors: Array[Door] = [
 	Door.new("Steel Door", "Big wheel", 600, 750),
 	Door.new("Wheelless Steel Door", "Aw no wheel", 540, 600, 30, "Steel Door", ["Welding"]),
 	Door.new("Ice Door", "Very cold", 210, 235, -1, "", [], 100),
-	Door.new("Melted Door", "It's dripping", 130, 140, 5, "Ice Door", ["Freezer"]),
+	Door.new("Melted Door", "It's dripping", 130, 135, 5, "Ice Door", ["Freezer"]),
 ]
 @onready var doors_in_shop: Array[Door] = [
 	make_door_by_name("Base Door"),
@@ -143,6 +143,23 @@ var tools: Array[String] = []
 
 var knock_power := 0
 
+const ALL_NPCS = [
+	"May",
+	"Doug",
+	"Mr Brown",
+	"Liliana",
+	"Ice Man",
+	
+	"Poshman",
+	"Hole Guy",
+	"Gold",
+	
+	"John Bottom",
+	"John Top",
+	
+	"Dr Lebut",
+]
+
 var is_archipelago := false
 
 var archipelago_locations_found: Array[String] = []
@@ -156,6 +173,28 @@ func _ready() -> void:
 func connect_script() -> void:
 	is_archipelago = true
 	got_money = true
+	Archipelago.conn.obtained_item.connect(get_ap_item)
+
+
+func get_ap_item(item: NetworkItem) -> void:
+	var item_name = item.get_name()
+	if item_name == "Day Advance":
+		hours += 24
+	if all_doors.map(func(e): return e.item_name).has(item_name):
+		collect_item(item_name, make_door_by_name(item_name), true)
+	if WORKSHOP_TOOLS.has(item_name):
+		var upgrade = null
+		for i in all_upgrades:
+			if i.item_name == item_name:
+				upgrade = i
+				break
+		if upgrade != null:
+			collect_item(item_name, upgrade, true)
+		else:
+			collect_item(item_name, Upgrade.new(item_name, "Item collected from archipelago"), true)
+	if item_name.contains(" neighborhood unlock"):
+		availible_spaces.append(item_name.get_slice(" neighborhood unlock",0))
+	trigger_popup("Item: " + item_name + " from " + Archipelago.conn.get_player_name(item.src_player_id), Color.GREEN)
 
 
 func sort_by_shipment(list: Array) -> Array:
