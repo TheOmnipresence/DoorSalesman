@@ -182,7 +182,6 @@ func scout(location: int, create_as_hint: int, proc: Callable) -> void:
 		if not _scout_queue.has(location):
 			_scout_queue[location] = [proc]
 		else: _scout_queue[location].append(proc)
-		print(_scout_queue)
 func _on_locinfo(json: Dictionary) -> void:
 	var locs = json.get("locations", [])
 	for loc in locs:
