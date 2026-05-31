@@ -185,8 +185,12 @@ func connect_script(_conn: ConnectionInfo, _json: Dictionary) -> void:
 
 func go_bankrupt() -> void:
 	money = 0
+	knock_power = 0
+	warehouse_storage_level = 0
 	warehouse_inventory = []
+	truck_storage_level = 0
 	truck_inventory = []
+	carry_storage_level = 0
 	carry_inventory = []
 	tools = []
 	npc_data = {}
@@ -222,6 +226,8 @@ func get_ap_item(item: NetworkItem) -> void:
 			collect_item(item_name, Upgrade.new(item_name, "Item collected from archipelago"), true)
 	elif item_name.contains(" neighborhood unlock"):
 		availible_spaces.append(item_name.get_slice(" neighborhood unlock",0))
+	elif item_name.contains("Knock Power "):
+		knock_power += 1
 	else:
 		for i in all_storage_names:
 			if all_storage_names[i].has(item_name):
