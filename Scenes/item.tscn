@@ -3,15 +3,17 @@
 [ext_resource type="Script" uid="uid://w511h6vtrn52" path="res://Scripts/item.gd" id="1_ys0gr"]
 
 [node name="Item" type="VBoxContainer"]
-custom_minimum_size = Vector2(0, 240)
+custom_minimum_size = Vector2(120, 240)
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_ys0gr")
 
 [node name="Name" type="Label" parent="."]
+custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 text = "Name"
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="Texture" type="TextureRect" parent="."]
 texture_filter = 1

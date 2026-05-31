@@ -28,7 +28,7 @@ func update_info() -> void:
 		
 		$TakeButton.visible = not workshop_item
 		$RepairButton.visible = workshop_item
-		$RepairButton.disabled = not Globals.array_has_all(Globals.tools, door_res.equipment_needed)
+		$RepairButton.disabled = not Globals.array_has_all(Globals.tools, door_res.equipment_needed + ["Toolkit"])
 		
 		if in_truck:
 			if Globals.carry_inventory.has(door_res):

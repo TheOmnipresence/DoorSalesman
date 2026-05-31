@@ -164,6 +164,8 @@ var is_archipelago := false
 
 var archipelago_locations_found: Array[String] = []
 
+var ap_items_recieved: Array[NetworkItem] = []
+
 
 func _ready() -> void:
 	Archipelago.connected.connect(connect_script)
@@ -175,15 +177,30 @@ func connect_script(_conn: ConnectionInfo, _json: Dictionary) -> void:
 	got_money = true
 	Archipelago.conn.obtained_item.connect(get_ap_item)
 	Archipelago.conn.force_scout_all()
+	warehouse_inventory = []
 	#get_tree().current_scene.update_all()
+
+
+func go_bankrupt() -> void:
+	money = 0
+	warehouse_inventory = []
+	truck_inventory = []
+	carry_inventory = []
+	tools = []
+	for i in ap_items_recieved:
+		get_ap_item(i)
 
 
 func get_ap_item(item: NetworkItem) -> void:
 	var item_name = item.get_name()
 	
-	if item_name == "0":
-		await get_tree().process_frame
-		item_name = "Base Door"
+	if not ap_items_recieved.has(item):
+		ap_items_recieved.append(item)
+	
+	await get_tree().process_frame
+	#if item_name == "0":
+		#await get_tree().process_frame
+		#item_name = "Base Door"
 	
 	if item_name == "Day Advance":
 		hours += 24
@@ -297,7 +314,7 @@ func collect_item(item_name: String, shop_item: Item = null, called_from_archipe
 
 
 func send_shop_ap(item: Item) -> void:
-	send_ap_item(item.item_name, shop_inventory.find(item))
+	send_ap_item(item.item_name, shop_inventory.find(item) + 1)
 
 
 func send_ap_item(loc_name: String, loc_id: int) -> void:
@@ -315,7 +332,16 @@ func archipelago_popup(info: NetworkItem) -> void:
 
 func trigger_popup(text: String, color: Color):
 	print_rich("[color=" + color.to_html(false) + "]" + text + "[/color]")
-	# actually popup here TODO
+	var panel = PanelContainer.new()
+	var label = Label.new()
+	label.label_settings = LabelSettings.new()
+	label.label_settings.font_color = color
+	label.text = text
+	panel.add_child(label)
+	get_tree().current_scene.get_node("PopupContainer").add_child(panel)
+	await get_tree().create_timer(5).timeout
+	if is_instance_valid(panel):
+		panel.queue_free()
 
 
 func make_door_texture(door_name: String) -> Texture2D:

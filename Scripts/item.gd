@@ -2,6 +2,8 @@ extends VBoxContainer
 
 var item_res: Globals.Item = null
 
+static var shop_texts = {}
+
 
 func update_info() -> void:
 	if item_res != null:
@@ -9,7 +11,11 @@ func update_info() -> void:
 			$Name.text = "AP item"
 			$Description.text = "Cool"
 			if Globals.shop_inventory.has(item_res):
-				Archipelago.conn.scout(Globals.shop_inventory.find(item_res), 2, set_ap_info)
+				var index = Globals.shop_inventory.find(item_res) + 1
+				if shop_texts.has(index):
+					$Name.text = shop_texts[index]
+				else:
+					Archipelago.conn.scout(index, 2, set_ap_info)
 		else:
 			$Name.text = item_res.item_name
 			$Description.text = item_res.description
@@ -23,6 +29,7 @@ func update_info() -> void:
 
 func set_ap_info(item: NetworkItem) -> void:
 	$Name.text = Archipelago.conn.get_player_name(item.dest_player_id) + "'s " + item.get_name()
+	shop_texts[Globals.shop_inventory.find(item_res) + 1] = $Name.text
 
 
 func _on_buy_pressed() -> void:
