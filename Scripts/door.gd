@@ -56,10 +56,11 @@ func _on_take_button_pressed() -> void:
 
 
 func _on_repair_button_pressed() -> void:
-	Globals.warehouse_inventory.erase(door_res)
-	Globals.truck_inventory.erase(door_res)
-	Globals.carry_inventory.erase(door_res)
-	Globals.warehouse_inventory.append(Globals.make_door_by_name(door_res.repair_to_door))
-	Globals.money -= door_res.repair_cost
-	queue_free()
-	get_tree().current_scene.update_all()
+	if Globals.money > door_res.repair_cost:
+		Globals.warehouse_inventory.erase(door_res)
+		Globals.truck_inventory.erase(door_res)
+		Globals.carry_inventory.erase(door_res)
+		Globals.warehouse_inventory.append(Globals.make_door_by_name(door_res.repair_to_door))
+		Globals.money -= door_res.repair_cost
+		queue_free()
+		get_tree().current_scene.update_all()

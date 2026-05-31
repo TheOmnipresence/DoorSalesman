@@ -187,6 +187,8 @@ func go_bankrupt() -> void:
 	truck_inventory = []
 	carry_inventory = []
 	tools = []
+	npc_data = {}
+	send_to_place("warehouse")
 	for i in ap_items_recieved:
 		get_ap_item(i)
 

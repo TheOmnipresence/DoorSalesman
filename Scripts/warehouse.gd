@@ -7,6 +7,8 @@ func _ready() -> void:
 	for i in $HSplitContainer/SideBar/TabButtons.get_children():
 		i.pressed.connect(set_current_tab.bind(str(i.name)))
 	
+	$HSplitContainer/Tabs/Map/BankruptButton.pressed.connect(Globals.go_bankrupt)
+	
 	Globals.update_brought_doors.connect(update_brought_doors)
 	#for i in Globals.all_doors.map(func(e: Globals.Door): return "\"" + e.item_name + "\": " + str(e.sell_for) + ","):
 		#print(i)
