@@ -180,6 +180,11 @@ func connect_script(_conn: ConnectionInfo, _json: Dictionary) -> void:
 
 func get_ap_item(item: NetworkItem) -> void:
 	var item_name = item.get_name()
+	
+	if item_name == "0":
+		await get_tree().process_frame
+		item_name = "Base Door"
+	
 	if item_name == "Day Advance":
 		hours += 24
 	if all_doors.map(func(e): return e.item_name).has(item_name):

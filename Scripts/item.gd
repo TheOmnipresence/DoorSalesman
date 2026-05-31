@@ -9,7 +9,6 @@ func update_info() -> void:
 			$Name.text = "AP item"
 			$Description.text = "Cool"
 			if Globals.shop_inventory.has(item_res):
-				print(Globals.shop_inventory.find(item_res))
 				Archipelago.conn.scout(Globals.shop_inventory.find(item_res), 2, set_ap_info)
 		else:
 			$Name.text = item_res.item_name
