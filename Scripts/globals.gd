@@ -369,7 +369,7 @@ func make_door_by_name(item_name: String, shipment: String = "warehouse") -> Doo
 	item_name = item_name.capitalize()
 	for i in all_doors:
 		if i.item_name == item_name:
-			var result = Door.new(i.item_name, i.description, i.cost, i.sell_for, i.repair_cost, i.repair_to_door)
+			var result = Door.new(i.item_name, i.description, i.cost, i.sell_for, i.repair_cost, i.repair_to_door, i.equipment_needed)
 			result.shipment = shipment
 			return result
 	print(item_name, " is null")
