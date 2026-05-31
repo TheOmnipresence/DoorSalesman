@@ -225,7 +225,7 @@ func get_ap_item(item: NetworkItem) -> void:
 		else:
 			collect_item(item_name, Upgrade.new(item_name, "Item collected from archipelago"), true)
 	elif item_name.contains(" neighborhood unlock"):
-		availible_spaces.append(item_name.get_slice(" neighborhood unlock",0))
+		availible_spaces.append(item_name.get_slice(" neighborhood unlock",0).to_snake_case())
 	elif item_name.contains("Knock Power "):
 		knock_power += 1
 	else:

@@ -41,7 +41,8 @@ func run() -> Variant:
 					#if Globals.allReforges[i].has(x.right(-8).to_camel_case()) and not Globals.availibleReforges[i].has(x.right(-8).to_camel_case()):
 						#Globals.availibleReforges[i].append(x.right(-8).to_camel_case())
 			var x when x.left(5) == "send_":
-				Globals.send_to_place(x.right(-5))
+				if Globals.availible_spaces.has(x.right(-5)):
+					Globals.send_to_place(x.right(-5))
 			var x when x.left(7) == "unlock_":
 				var space = x.right(-7)
 				if Globals.is_archipelago:
