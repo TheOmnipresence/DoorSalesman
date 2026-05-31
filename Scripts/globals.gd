@@ -170,10 +170,12 @@ func _ready() -> void:
 	Archipelago.disconnected.connect((func(): is_archipelago = false))
 
 
-func connect_script() -> void:
+func connect_script(_conn: ConnectionInfo, _json: Dictionary) -> void:
 	is_archipelago = true
 	got_money = true
 	Archipelago.conn.obtained_item.connect(get_ap_item)
+	Archipelago.conn.force_scout_all()
+	#get_tree().current_scene.update_all()
 
 
 func get_ap_item(item: NetworkItem) -> void:

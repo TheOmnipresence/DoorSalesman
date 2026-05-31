@@ -54,7 +54,7 @@ func pop_dropdown(target: Control) -> VBoxContainer:
 	target.resized.connect(resize_window)
 	window.add_child(vbox)
 	window.ready.connect(resize_window)
-	#window.tree_exiting.connect(func(): resized.disconnect(resize_window))
+	window.tree_exiting.connect(target.resized.disconnect.bind(resize_window))
 	add_child.call_deferred(window) # Defer adding it, to allow caller to add things to the vbox
 	vbox.set_anchors_preset(Control.PRESET_FULL_RECT)
 	return vbox
@@ -200,6 +200,9 @@ func _gui_input(event):
 					scroll_by_abs(-size.y)
 				KEY_PAGEDOWN:
 					scroll_by_abs(size.y)
+				_:
+					return
+			accept_event()
 
 func queue_locked_redraw() -> void:
 	is_max_scroll = false
