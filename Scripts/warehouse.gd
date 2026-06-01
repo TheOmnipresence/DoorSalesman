@@ -144,6 +144,8 @@ func update_map() -> void:
 			line.add_point(button.position + (button.size / 2))
 			line.add_point(i.position + (i.size / 2))
 			$HSplitContainer/Tabs/Map/Map/Lines.add_child(line)
+	
+	$HSplitContainer/Tabs/Map/Time.text = "Day %s, %s:00" % [str(Globals.days), str(Globals.hours)]
 
 
 func update_disabled_tabs() -> void:

@@ -168,27 +168,39 @@ var archipelago_locations_found: Array[String] = []
 
 var ap_items_recieved: Array[NetworkItem] = []
 
+var deathlink_amnesty: int = 0
+
+const DEATHLINK_MESSAGES = [
+	"%s went bankrupt",
+	"%s didn't sell enough doors",
+	"%s's rent was due",
+]
+
 
 func _ready() -> void:
 	Archipelago.connected.connect(connect_script)
 	Archipelago.disconnected.connect((func(): is_archipelago = false))
 
 
+## The connection script for archipelago
 func connect_script(_conn: ConnectionInfo, _json: Dictionary) -> void:
 	is_archipelago = true
 	got_money = true
+	Archipelago.conn.deathlink.connect(go_bankrupt.bind(true))
+	Archipelago.set_deathlink(is_equal_approx(Archipelago.conn.slot_data["death_link"], 1.0))
 	Archipelago.conn.obtained_item.connect(get_ap_item)
 	Archipelago.conn.force_scout_all()
 	warehouse_inventory = []
 	#get_tree().current_scene.update_all()
 
 
-func go_bankrupt() -> void:
+func go_bankrupt(from_deathlink := false) -> void:
 	npc_data = {}
 	houses = {}
 	money = 0
 	got_money = false
 	hours = 12
+	days = 0
 	if is_archipelago:
 		knock_power = 0
 		warehouse_storage_level = 0
@@ -214,6 +226,18 @@ func go_bankrupt() -> void:
 	if is_archipelago:
 		for i in ap_items_recieved:
 			get_ap_item(i)
+		
+		if not from_deathlink:
+			send_deathlink()
+
+
+## Sends the deathlink packet, accounting for amnesty
+func send_deathlink() -> void:
+	deathlink_amnesty += 1
+	if deathlink_amnesty >= Archipelago.conn.slot_data["death_link_amnesty"]:
+		deathlink_amnesty = 0
+		var death_cause = DEATHLINK_MESSAGES.pick_random() % Archipelago.conn.get_player().get_name()
+		Archipelago.conn.send_deathlink(death_cause)
 
 
 ## Sends the Archipelago goal signal

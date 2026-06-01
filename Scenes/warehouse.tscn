@@ -304,6 +304,16 @@ offset_bottom = 8.0
 grow_horizontal = 0
 text = "Go Bankrupt"
 
+[node name="Time" type="Label" parent="HSplitContainer/Tabs/Map"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 62.0
+grow_vertical = 0
+text = "Day 0, 12:00"
+
 [node name="Archipelago" parent="HSplitContainer/Tabs" instance=ExtResource("3_q31fj")]
 visible = false
 layout_mode = 1
