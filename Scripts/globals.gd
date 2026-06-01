@@ -184,19 +184,45 @@ func connect_script(_conn: ConnectionInfo, _json: Dictionary) -> void:
 
 
 func go_bankrupt() -> void:
-	money = 0
-	knock_power = 0
-	warehouse_storage_level = 0
-	warehouse_inventory = []
-	truck_storage_level = 0
-	truck_inventory = []
-	carry_storage_level = 0
-	carry_inventory = []
-	tools = []
 	npc_data = {}
+	houses = {}
+	money = 0
+	got_money = false
+	hours = 12
+	if is_archipelago:
+		knock_power = 0
+		warehouse_storage_level = 0
+		warehouse_inventory = []
+		truck_storage_level = 0
+		truck_inventory = []
+		carry_storage_level = 0
+		carry_inventory = []
+		tools = []
+		upgrades = []
+		availible_spaces = ["warehouse", "shrimpville", "fancytown"]
+	else:
+		warehouse_inventory = [make_door_by_name("Base Door"), make_door_by_name("Base Door"), make_door_by_name("Scratched Door")]
+		var remove_items = []
+		for i in items_collected_from_shop:
+			if i is Door:
+				remove_items.append(i)
+		for i in remove_items:
+			items_collected_from_shop.erase(i)
+	
 	send_to_place("warehouse")
-	for i in ap_items_recieved:
-		get_ap_item(i)
+	
+	if is_archipelago:
+		for i in ap_items_recieved:
+			get_ap_item(i)
+
+
+## Sends the Archipelago goal signal
+func finish_archipelago() -> void:
+	Archipelago.set_client_status(AP.ClientStatus.CLIENT_GOAL)
+	
+	if not Globals.finished_archipelago:
+		trigger_popup("Finished Archipelago", Color.DARK_GOLDENROD)
+		Globals.finished_archipelago = true
 
 
 func get_ap_item(item: NetworkItem) -> void:
