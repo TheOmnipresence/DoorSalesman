@@ -194,7 +194,7 @@ func connect_script(_conn: ConnectionInfo, _json: Dictionary) -> void:
 	#get_tree().current_scene.update_all()
 
 
-func go_bankrupt(from_deathlink := false) -> void:
+func go_bankrupt(from_deathlink := false, source := "", cause := "", _json := {}) -> void:
 	npc_data = {}
 	houses = {}
 	money = 0
@@ -221,7 +221,7 @@ func go_bankrupt(from_deathlink := false) -> void:
 		for i in remove_items:
 			items_collected_from_shop.erase(i)
 	
-	send_to_place("warehouse")
+	await send_to_place("warehouse")
 	
 	if is_archipelago:
 		for i in ap_items_recieved:
@@ -229,6 +229,8 @@ func go_bankrupt(from_deathlink := false) -> void:
 		
 		if not from_deathlink:
 			send_deathlink()
+		else:
+			trigger_popup("Death from %s: %s" % [source, cause], Color.FIREBRICK)
 
 
 ## Sends the deathlink packet, accounting for amnesty
