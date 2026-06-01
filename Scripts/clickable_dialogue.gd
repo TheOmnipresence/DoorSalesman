@@ -26,9 +26,11 @@ func _ready() -> void:
 			Globals.npc_data[str(name).to_snake_case()] = {
 				"given": false,
 				"taken": false,
+				"first": true,
 			}
-		if not Globals.npc_data[str(name).to_snake_case()]["given"]:
+		if Globals.npc_data[str(name).to_snake_case()]["first"]:
 			Globals.houses[neighborhood][str(house.name)].door = current_door.to_snake_case()
+			Globals.npc_data[str(name).to_snake_case()]["first"] = false
 		else:
 			current_door = Globals.houses[neighborhood][str(house.name)].door.capitalize()
 		Globals.houses[neighborhood][str(house.name)].npc = str(name).to_snake_case()

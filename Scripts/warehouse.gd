@@ -86,8 +86,8 @@ func force_update_upgrades() -> void:
 		if Globals.visited.has(i.shipment):
 			var node = preload("res://Scenes/item.tscn").instantiate()
 			node.item_res = i
-			node.update_info()
 			$HSplitContainer/Tabs/Shop/ScrollContainer/GridContainer.add_child(node)
+			node.update_info()
 
 
 func update_workshop() -> void:

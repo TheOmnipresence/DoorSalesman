@@ -225,7 +225,7 @@ func go_bankrupt(from_deathlink := false, source := "", cause := "", _json := {}
 	
 	if is_archipelago:
 		for i in ap_items_recieved:
-			get_ap_item(i)
+			get_ap_item(i, false)
 		
 		if not from_deathlink:
 			send_deathlink()
@@ -251,10 +251,10 @@ func finish_archipelago() -> void:
 		Globals.finished_archipelago = true
 
 
-func get_ap_item(item: NetworkItem) -> void:
+func get_ap_item(item: NetworkItem, add_to_recieved := true) -> void:
 	var item_name = item.get_name()
 	
-	if not ap_items_recieved.has(item):
+	if not ap_items_recieved.has(item) and add_to_recieved:
 		ap_items_recieved.append(item)
 	
 	await get_tree().process_frame
@@ -332,6 +332,8 @@ func send_to_place(place_name: String) -> void:
 		get_tree().current_scene.get_node("Fade").color.a += 0.02
 		await get_tree().process_frame
 	
+	hours += 6
+	
 	var scene_parent = get_tree().current_scene.get_child(0).get_node("Tabs/View")
 	scene_parent.get_child(0).queue_free()
 	if place_name != "warehouse":
@@ -347,7 +349,6 @@ func send_to_place(place_name: String) -> void:
 		await get_tree().process_frame
 	
 	in_dialogue = false
-	hours += 6
 	
 	print("send to " + place_name)
 

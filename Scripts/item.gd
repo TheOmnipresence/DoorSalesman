@@ -15,6 +15,9 @@ func update_info() -> void:
 				if shop_texts.has(index):
 					$Name.text = shop_texts[index]
 				else:
+					if not is_inside_tree():
+						return
+					await get_tree().process_frame
 					Archipelago.conn.scout(index, 2, set_ap_info)
 		else:
 			$Name.text = item_res.item_name
