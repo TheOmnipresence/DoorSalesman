@@ -23,11 +23,13 @@ var days: int:
 						if i.repair_to_door == current_house.door.capitalize():
 							possible_replacements.append(i)
 					
-					if not possible_replacements.is_empty():
-						current_house.door = possible_replacements.pick_random().item_name.to_snake_case()
-						if npc_data.has(current_house.npc):
-							npc_data[current_house.npc]["given"] = false
-							npc_data[current_house.npc]["taken"] = false
+					if possible_replacements.is_empty():
+						continue
+					
+					current_house.door = possible_replacements.pick_random().item_name.to_snake_case()
+					if npc_data.has(current_house.npc):
+						npc_data[current_house.npc]["given"] = false
+						npc_data[current_house.npc]["taken"] = false
 
 var current_space := "warehouse"
 var visited := ["warehouse"]
@@ -52,7 +54,7 @@ var STORAGE_UPGRADES = {
 	],
 	"truck": [
 		Storage.new(2, "Car Trunk"),
-		#Storage.new(8, "Truck Bed", "Bring more doors!", "")
+		Storage.new(8, "Truck Bed", "Bring more doors!", "coldington", 800)
 	],
 	"carry": [
 		Storage.new(1, "Carry"),
@@ -333,7 +335,10 @@ func unlock_place(place_name: String) -> void:
 
 
 func send_to_place(place_name: String) -> void:
-	if not visited.has(place_name): visited.append(place_name)
+	var had_place = true
+	if not visited.has(place_name): 
+		had_place = false
+		visited.append(place_name)
 	current_space = place_name
 	
 	for i in range(50):
@@ -355,6 +360,9 @@ func send_to_place(place_name: String) -> void:
 	for i in range(50):
 		get_tree().current_scene.get_node("Fade").color.a -= 0.02
 		await get_tree().process_frame
+	
+	if not had_place:
+		trigger_popup("New shipment recieved", Color.AQUAMARINE)
 	
 	in_dialogue = false
 	
