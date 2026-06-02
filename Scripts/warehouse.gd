@@ -138,8 +138,10 @@ func update_map() -> void:
 	var reachable = get_reachable_neighborhoods("warehouse")
 	
 	for button: Button in $HSplitContainer/Tabs/Map/Map/Buttons.get_children():
-		button.disabled = not reachable.has(str(button.name).to_snake_case())
-		if button.text.to_snake_case() == Globals.current_space:
+		var neighborhood = button.text.to_snake_case()
+		
+		button.disabled = not reachable.has(neighborhood)
+		if neighborhood == Globals.current_space:
 			button.add_theme_color_override("font_color", Color.YELLOW)
 			button.add_theme_color_override("font_focus_color", Color.YELLOW)
 		else:
@@ -150,8 +152,37 @@ func update_map() -> void:
 			line.add_point(button.position + (button.size / 2))
 			line.add_point(i.position + (i.size / 2))
 			$HSplitContainer/Tabs/Map/Map/Lines.add_child(line)
+		
+		if Globals.is_archipelago:
+			var max_checks = len(Globals.NEIGHBORHOOD_INHABITANTS[neighborhood])
+			for i in Globals.NEIGHBORHOOD_UNLOCK_NPCS:
+				if Globals.NEIGHBORHOOD_INHABITANTS[neighborhood].has(i):
+					max_checks += 1
+			
+			var checked_checks = 0
+			for i in Globals.archipelago_locations_found:
+				if i.contains(" Old Door"):
+					if Globals.NEIGHBORHOOD_INHABITANTS[neighborhood].has(i.replace(" Old Door", "")):
+						checked_checks += 1
+				elif i.contains(" neighborhood unlock"):
+					for npc in Globals.NEIGHBORHOOD_UNLOCK_NPCS:
+						if Globals.NEIGHBORHOOD_INHABITANTS[neighborhood].has(npc):
+							if Globals.NEIGHBORHOOD_UNLOCK_NPCS[npc] == i.replace(" neighborhood unlock", "").to_snake_case():
+								checked_checks += 1
+			
+			var label = Label.new()
+			if button.get_child_count() > 0:
+				label = button.get_child(0)
+			else:
+				button.add_child(label)
+			label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			label.size.x = button.size.x
+			label.position.y = 30
+			label.label_settings = LabelSettings.new()
+			label.label_settings.font_color = Color.WEB_GRAY
+			label.text = "Checks: " + str(checked_checks) + " / " + str(max_checks)
 	
-	$HSplitContainer/Tabs/Map/Time.text = "Day %s, %s:00" % [str(Globals.days), str(Globals.hours)]
+	$HSplitContainer/Tabs/Map/Time.text = "Day %s, %s:00" % [Globals.days, Globals.hours].map(str)
 
 
 func update_disabled_tabs() -> void:

@@ -32,7 +32,7 @@ var days: int:
 var current_space := "warehouse"
 var visited := ["warehouse"]
 var availible_spaces := ["warehouse", "shrimpville", "fancytown"]
-const ALL_SPACES = ["warehouse", "shrimpville", "fancytown", "mansion_lane", "coldington", "industrial_zone"]
+var ALL_SPACES = NEIGHBORHOOD_INHABITANTS.keys()
 var houses: Dictionary[String, Dictionary] = {}
 
 @onready var warehouse_inventory: Array[Door] = [make_door_by_name("Base Door"), make_door_by_name("Base Door"), make_door_by_name("Scratched Door")]
@@ -119,12 +119,7 @@ var all_upgrades: Array[Upgrade] = [
 	STORAGE_UPGRADES["carry"][0],
 ]
 
-var npc_data := {
-	"john_bottom":{
-		"given": true,
-		"taken": true
-	}
-}
+var npc_data := {}
 
 var in_dialogue := false
 
@@ -163,6 +158,20 @@ const ALL_NPCS = [
 	
 	"Dr Lebut",
 ]
+
+const NEIGHBORHOOD_INHABITANTS = {
+	"warehouse": [],
+	"shrimpville": ["May", "Doug", "Mr Brown", "Liliana", "Ice Man"],
+	"fancytown": ["Poshman", "Hole Guy", "Gold"],
+	"mansion_lane": ["John Bottom", "John Top"],
+	"coldington": ["Dr Lebut"],
+	"industrial_zone": [],
+}
+
+const NEIGHBORHOOD_UNLOCK_NPCS = {
+	"Gold": "mansion_lane",
+	"Ice Man": "coldington",
+}
 
 var is_archipelago := false
 
@@ -260,9 +269,6 @@ func get_ap_item(item: NetworkItem, add_to_recieved := true) -> void:
 		ap_items_recieved.append(item)
 	
 	await get_tree().process_frame
-	#if item_name == "0":
-		#await get_tree().process_frame
-		#item_name = "Base Door"
 	
 	if item_name == "Day Advance":
 		hours += 24
@@ -394,6 +400,7 @@ func send_ap_item(loc_name: String, loc_id: int) -> void:
 		#print("Outgoing location: ", id)
 		Archipelago.collect_location(loc_id)
 		Archipelago.conn.scout(loc_id,0,archipelago_popup)
+		archipelago_locations_found.append(loc_name)
 
 
 func archipelago_popup(info: NetworkItem) -> void:
