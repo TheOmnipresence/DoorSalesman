@@ -137,8 +137,14 @@ func create_warning_label(text: String) -> Label:
 func update_map() -> void:
 	var reachable = get_reachable_neighborhoods("warehouse")
 	
-	for button in $HSplitContainer/Tabs/Map/Map/Buttons.get_children():
+	for button: Button in $HSplitContainer/Tabs/Map/Map/Buttons.get_children():
 		button.disabled = not reachable.has(str(button.name).to_snake_case())
+		if button.text.to_snake_case() == Globals.current_space:
+			button.add_theme_color_override("font_color", Color.YELLOW)
+			button.add_theme_color_override("font_focus_color", Color.YELLOW)
+		else:
+			button.remove_theme_color_override("font_color")
+			button.remove_theme_color_override("font_focus_color")
 		for i in button.connections:
 			var line = Line2D.new()
 			line.add_point(button.position + (button.size / 2))
