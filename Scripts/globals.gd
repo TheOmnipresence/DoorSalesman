@@ -101,6 +101,7 @@ var all_doors: Array[Door] = [
 	make_door_by_name("Ice Door", "shrimpville"),
 	make_door_by_name("Glass Door", "mansion_lane"),
 	make_door_by_name("Wheelless Steel Door", "industrial_zone"),
+	make_door_by_name("Brick Door", "industrial_zone")
 ]
 var all_upgrades: Array[Upgrade] = [
 	Upgrade.new("Double Cash", "Doubles earned money", 45, "warehouse", 2),
