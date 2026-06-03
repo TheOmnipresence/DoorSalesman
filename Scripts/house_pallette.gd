@@ -40,7 +40,7 @@ func set_apperance() -> void:
 	colors.append(primary_color)
 	colors.append(darken(primary_color, 0.2))
 	colors.append(darken(secondary_color, -0.2))
-	colors.append(darken(primary_color, 0.4))
+	colors.append(darken(primary_color, 0.2))
 	colors.append(secondary_color)
 	material.set_shader_parameter("replace_colors", colors)
 	
@@ -77,6 +77,6 @@ func set_colors(primary: Color, secondary: Color) -> void:
 	colors.append(primary)
 	colors.append(darken(primary, 0.2))
 	colors.append(darken(secondary, -0.2))
-	colors.append(darken(primary, 0.4))
+	colors.append(darken(primary, 0.2))
 	colors.append(secondary)
 	material.set_shader_parameter("replace_colors", colors)
