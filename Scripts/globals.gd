@@ -50,7 +50,8 @@ var carry_storage_level = 0
 var STORAGE_UPGRADES = {
 	"warehouse": [
 		Storage.new(9, "Warehouse Storage 1"),
-		Storage.new(18, "Warehouse Storage 2", "More doors in the warehouse", "industrial_zone", 400)
+		Storage.new(18, "Warehouse Storage 2", "More doors in the warehouse", "industrial_zone", 400),
+		Storage.new(26, "Warehouse Storage 3", "Even more doors in the warehouse", "junk_pit", 520),
 	],
 	"truck": [
 		Storage.new(2, "Car Trunk"),
@@ -159,6 +160,7 @@ const ALL_NPCS = [
 	"John Top",
 	
 	"Dr Lebut",
+	"Soccer Player"
 ]
 
 const NEIGHBORHOOD_INHABITANTS = {
@@ -166,13 +168,15 @@ const NEIGHBORHOOD_INHABITANTS = {
 	"shrimpville": ["May", "Doug", "Mr Brown", "Liliana", "Ice Man"],
 	"fancytown": ["Poshman", "Hole Guy", "Gold"],
 	"mansion_lane": ["John Bottom", "John Top"],
-	"coldington": ["Dr Lebut"],
-	"industrial_zone": [],
+	"coldington": ["Dr Lebut", "Soccer Player"],
+	"industrial_zone": ["Jeff"],
+	"junk_pit": ["Bathroom Buy"],
 }
 
 const NEIGHBORHOOD_UNLOCK_NPCS = {
 	"Gold": "mansion_lane",
 	"Ice Man": "coldington",
+	"Soccer Player": "junk_pit",
 }
 
 var is_archipelago := false

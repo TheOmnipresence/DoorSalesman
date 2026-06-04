@@ -1,0 +1,129 @@
+[gd_scene load_steps=6 format=3 uid="uid://bs7vhlltuv1n2"]
+
+[ext_resource type="Script" uid="uid://cmx2so6nuas6h" path="res://Scripts/housing.gd" id="1_v4kx7"]
+[ext_resource type="Script" uid="uid://drk7lqqa0k4bm" path="res://Scripts/clickable_dialogue.gd" id="2_7406c"]
+[ext_resource type="Shader" uid="uid://ckh8q5j0grg38" path="res://Sprites/rowhome.gdshader" id="3_xjxx7"]
+[ext_resource type="Script" uid="uid://dtui3hlc6dw34" path="res://Scripts/house_pallette.gd" id="5_17q5j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cwiw2"]
+shader = ExtResource("3_xjxx7")
+shader_parameter/target_colors = PackedColorArray(1, 1, 1, 1, 0.63529414, 0.63529414, 0.63529414, 1, 0.49019608, 0.49019608, 0.49019608, 1, 0.4, 0.4, 0.4, 1, 0.38039216, 0.38039216, 0.38039216, 1, 0.27450982, 0.27450982, 0.27450982, 1)
+shader_parameter/replace_colors = PackedColorArray(0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1)
+
+[node name="IndustrialZone" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_v4kx7")
+area_doors = Array[String](["Base Door"])
+follow_palette_chance = 0.3
+palette = Color(0.773651, 0.00034615636, 0.74509305, 1)
+oppose_palette_chance = 0.145
+override_opposing_palette = Color(0.5632576, 0.49051, 0.83135676, 1)
+
+[node name="Slides" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BathroomGuy" type="Control" parent="Slides"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BathroomGuy" type="StaticBody2D" parent="Slides/BathroomGuy" node_paths=PackedStringArray("house")]
+z_index = 1
+position = Vector2(45, 402)
+input_pickable = true
+script = ExtResource("2_7406c")
+isPlaque = false
+approved_doors = Array[String](["Base Door"])
+current_door = "Knobless Base Door"
+house = NodePath("../Sprite2D")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/BathroomGuy/BathroomGuy"]
+polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="Slides/BathroomGuy/BathroomGuy"]
+z_index = 1
+color = Color(1, 1, 1, 0)
+uv = PackedVector2Array(58, 43, 56, 46)
+
+[node name="Image" type="Polygon2D" parent="Slides/BathroomGuy/BathroomGuy"]
+visible = false
+color = Color(0, 0, 1, 1)
+polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
+
+[node name="Control" type="Control" parent="Slides/BathroomGuy/BathroomGuy"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 194.0
+offset_right = 108.0
+offset_bottom = 234.0
+mouse_filter = 2
+
+[node name="TextBox" type="VBoxContainer" parent="Slides/BathroomGuy/BathroomGuy/Control"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Slides/BathroomGuy/BathroomGuy/Control/TextBox"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/BathroomGuy/BathroomGuy/Control/TextBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Slides/BathroomGuy"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_cwiw2")
+position = Vector2(576, 324)
+scale = Vector2(3, 3)
+flip_h = true
+script = ExtResource("5_17q5j")
+
+[node name="Sprite2D" type="Sprite2D" parent="Slides/BathroomGuy/Sprite2D"]
+position = Vector2(-159, 65.99999)
+
+[node name="Right" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = ">"
+
+[node name="Left" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 18.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "<"

@@ -1,4 +1,4 @@
-extends Control
+class_name Warehouse extends Control
 
 var window_theme := Theme.new()
 
@@ -136,6 +136,9 @@ func create_warning_label(text: String) -> Label:
 
 func update_map() -> void:
 	var reachable = get_reachable_neighborhoods("warehouse")
+	
+	for i in $HSplitContainer/Tabs/Map/Map/Lines.get_children():
+		i.queue_free()
 	
 	for button: Button in $HSplitContainer/Tabs/Map/Map/Buttons.get_children():
 		var neighborhood = button.text.to_snake_case()
