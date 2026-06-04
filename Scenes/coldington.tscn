@@ -35,7 +35,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="DrLebut" type="Control" parent="Slides"]
+[node name="DrLebut&SoccerPlayer" type="Control" parent="Slides"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,7 +44,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="DrLebut" type="StaticBody2D" parent="Slides/DrLebut" node_paths=PackedStringArray("house")]
+[node name="DrLebut" type="StaticBody2D" parent="Slides/DrLebut&SoccerPlayer" node_paths=PackedStringArray("house")]
 z_index = 1
 position = Vector2(522, 348)
 input_pickable = true
@@ -54,20 +54,20 @@ approved_doors = Array[String](["Ice Door"])
 current_door = "Melted Door"
 house = NodePath("../House")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/DrLebut/DrLebut"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/DrLebut&SoccerPlayer/DrLebut"]
 polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)
 
-[node name="Polygon2D" type="Polygon2D" parent="Slides/DrLebut/DrLebut"]
+[node name="Polygon2D" type="Polygon2D" parent="Slides/DrLebut&SoccerPlayer/DrLebut"]
 z_index = 1
 color = Color(1, 1, 1, 0)
 uv = PackedVector2Array(58, 43, 56, 46)
 
-[node name="Image" type="Polygon2D" parent="Slides/DrLebut/DrLebut"]
+[node name="Image" type="Polygon2D" parent="Slides/DrLebut&SoccerPlayer/DrLebut"]
 visible = false
 color = Color(0, 0, 1, 1)
 polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
 
-[node name="Control" type="Control" parent="Slides/DrLebut/DrLebut"]
+[node name="Control" type="Control" parent="Slides/DrLebut&SoccerPlayer/DrLebut"]
 layout_mode = 3
 anchors_preset = 0
 offset_top = 194.0
@@ -75,7 +75,7 @@ offset_right = 108.0
 offset_bottom = 234.0
 mouse_filter = 2
 
-[node name="TextBox" type="VBoxContainer" parent="Slides/DrLebut/DrLebut/Control"]
+[node name="TextBox" type="VBoxContainer" parent="Slides/DrLebut&SoccerPlayer/DrLebut/Control"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -85,15 +85,66 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="Slides/DrLebut/DrLebut/Control/TextBox"]
+[node name="Label" type="Label" parent="Slides/DrLebut&SoccerPlayer/DrLebut/Control/TextBox"]
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/DrLebut/DrLebut/Control/TextBox"]
+[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/DrLebut&SoccerPlayer/DrLebut/Control/TextBox"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="House" type="Sprite2D" parent="Slides/DrLebut"]
+[node name="SoccerPlayer" type="StaticBody2D" parent="Slides/DrLebut&SoccerPlayer" node_paths=PackedStringArray("house")]
+z_index = 1
+position = Vector2(138, 348)
+input_pickable = true
+script = ExtResource("2_yishy")
+isPlaque = false
+approved_doors = Array[String](["Brick Door"])
+current_door = "Melted Door"
+house = NodePath("../House3")
+override_primary_color = Color(0, 0.56078434, 0.23529412, 1)
+override_secondary_color = Color(0.6901961, 1, 0.9843137, 1)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/DrLebut&SoccerPlayer/SoccerPlayer"]
+polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="Slides/DrLebut&SoccerPlayer/SoccerPlayer"]
+z_index = 1
+color = Color(1, 1, 1, 0)
+uv = PackedVector2Array(58, 43, 56, 46)
+
+[node name="Image" type="Polygon2D" parent="Slides/DrLebut&SoccerPlayer/SoccerPlayer"]
+visible = false
+color = Color(0, 0, 1, 1)
+polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
+
+[node name="Control" type="Control" parent="Slides/DrLebut&SoccerPlayer/SoccerPlayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 194.0
+offset_right = 108.0
+offset_bottom = 234.0
+mouse_filter = 2
+
+[node name="TextBox" type="VBoxContainer" parent="Slides/DrLebut&SoccerPlayer/SoccerPlayer/Control"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Slides/DrLebut&SoccerPlayer/SoccerPlayer/Control/TextBox"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/DrLebut&SoccerPlayer/SoccerPlayer/Control/TextBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="House" type="Sprite2D" parent="Slides/DrLebut&SoccerPlayer"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_efbqg")
 position = Vector2(576, 258)
@@ -101,10 +152,10 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_x71tj")
 script = ExtResource("7_in1w6")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/DrLebut/House"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/DrLebut&SoccerPlayer/House"]
 position = Vector2(0, 70)
 
-[node name="House2" type="Sprite2D" parent="Slides/DrLebut"]
+[node name="House2" type="Sprite2D" parent="Slides/DrLebut&SoccerPlayer"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_efbqg")
 position = Vector2(960, 258)
@@ -112,10 +163,10 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_x71tj")
 script = ExtResource("7_in1w6")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/DrLebut/House2"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/DrLebut&SoccerPlayer/House2"]
 position = Vector2(0, 70)
 
-[node name="House3" type="Sprite2D" parent="Slides/DrLebut"]
+[node name="House3" type="Sprite2D" parent="Slides/DrLebut&SoccerPlayer"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_efbqg")
 position = Vector2(192, 258)
@@ -123,7 +174,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_x71tj")
 script = ExtResource("7_in1w6")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/DrLebut/House3"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/DrLebut&SoccerPlayer/House3"]
 position = Vector2(0, 70)
 
 [node name="Right" type="Button" parent="."]
