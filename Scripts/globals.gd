@@ -94,6 +94,7 @@ var all_doors: Array[Door] = [
 	Door.new("Ice Door", "Very cold", 210, 235, -1, "", [], 100),
 	Door.new("Melted Door", "It's dripping", 130, 135, 5, "Ice Door", ["Freezer"]),
 	Door.new("Brick Door", "Solid", 140, 165),
+	Door.new("Bee Door", "A faint buzzing", 115, 125),
 ]
 @onready var doors_in_shop: Array[Door] = [
 	make_door_by_name("Base Door"),
@@ -160,7 +161,9 @@ const ALL_NPCS = [
 	"John Top",
 	
 	"Dr Lebut",
-	"Soccer Player"
+	"Soccer Player",
+	
+	"Bathroom Guy",
 ]
 
 const NEIGHBORHOOD_INHABITANTS = {
@@ -170,7 +173,7 @@ const NEIGHBORHOOD_INHABITANTS = {
 	"mansion_lane": ["John Bottom", "John Top"],
 	"coldington": ["Dr Lebut", "Soccer Player"],
 	"industrial_zone": ["Jeff"],
-	"junk_pit": ["Bathroom Buy"],
+	"junk_pit": ["Bathroom Guy"],
 }
 
 const NEIGHBORHOOD_UNLOCK_NPCS = {
