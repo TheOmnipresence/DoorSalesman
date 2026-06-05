@@ -18,8 +18,8 @@ var days: int:
 			for house in houses[neighborhood]:
 				var current_house = houses[neighborhood][house]
 				
-				if npc_data.has(house.npc):
-					if not npc_data[house.npc].taken:
+				if npc_data.has(current_house.npc):
+					if not npc_data[current_house.npc].taken:
 						continue
 				
 				if randi_range(0,99) < make_door_by_name(current_house.door).breakability and (not (current_house.door == "ice_door" and neighborhood == "coldington") or randi_range(0,3) == 0):
@@ -358,6 +358,23 @@ func send_to_place(place_name: String) -> void:
 		await get_tree().process_frame
 	
 	hours += 6
+	
+	var empty_truck_slots = Globals.STORAGE_UPGRADES.truck[Globals.truck_storage_level].space - truck_inventory.size()
+	if empty_truck_slots > 0:
+		for i in warehouse_inventory:
+			if not i in truck_inventory:
+				truck_inventory.append(i)
+				empty_truck_slots -= 1
+				if empty_truck_slots <= 0:
+					break
+	var empty_carry_slots = Globals.STORAGE_UPGRADES.carry[Globals.carry_storage_level].space - carry_inventory.size()
+	if empty_carry_slots > 0:
+		for i in truck_inventory:
+			if not i in carry_inventory:
+				carry_inventory.append(i)
+				empty_carry_slots -= 1
+				if empty_carry_slots <= 0:
+					break
 	
 	var scene_parent = get_tree().current_scene.get_child(0).get_node("Tabs/View")
 	scene_parent.get_child(0).queue_free()
