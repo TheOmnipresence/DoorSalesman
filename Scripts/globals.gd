@@ -7,6 +7,7 @@ var hours: int = 12:
 		if hours > 24:
 			hours -= 24
 			days += 1
+
 var days: int:
 	set(value):
 		days = value
@@ -16,6 +17,10 @@ var days: int:
 				continue
 			for house in houses[neighborhood]:
 				var current_house = houses[neighborhood][house]
+				
+				if npc_data.has(house.npc):
+					if not npc_data[house.npc].taken:
+						continue
 				
 				if randi_range(0,99) < make_door_by_name(current_house.door).breakability and (not (current_house.door == "ice_door" and neighborhood == "coldington") or randi_range(0,3) == 0):
 					var possible_replacements = []
