@@ -38,7 +38,7 @@ func update_all() -> void:
 	get_window().theme = window_theme
 	get_window().theme_changed.connect(func(): if get_window().theme != window_theme: get_window().theme = window_theme)
 	
-	$Money.text = "Money: " + str(Globals.money)
+	$Money.text = "Money: $" + str(Globals.money)
 
 
 func force_update_doors() -> void:

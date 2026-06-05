@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://it0cegvmcl7i"]
+[gd_scene load_steps=18 format=3 uid="uid://it0cegvmcl7i"]
 
 [ext_resource type="Script" uid="uid://cmx2so6nuas6h" path="res://Scripts/housing.gd" id="1_etbla"]
 [ext_resource type="Script" uid="uid://drk7lqqa0k4bm" path="res://Scripts/clickable_dialogue.gd" id="2_yishy"]
@@ -23,7 +23,7 @@ metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 [sub_resource type="Resource" id="Resource_tdrhw"]
 script = ExtResource("3_etbla")
 key = "unlock"
-text = "Go look at this junk pit"
+text = "*mulffled* Go look at this junk pit"
 options = Array[ExtResource("3_etbla")]([SubResource("Resource_mnrpm")])
 action_condition = SubResource("Resource_2hv2p")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
@@ -37,6 +37,31 @@ metadata/_custom_type_script = "uid://cf1tkwliq8ivp"
 [sub_resource type="Resource" id="Resource_x71tj"]
 script = ExtResource("3_etbla")
 action_condition = SubResource("Resource_58hvk")
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_etbla"]
+script = ExtResource("3_etbla")
+key = "yay"
+text = "*muffled* here."
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_yishy"]
+script = ExtResource("3_etbla")
+key = "show"
+text = "I have some doors"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_in1w6"]
+script = ExtResource("3_etbla")
+key = "bye"
+text = "Okay, goodbye"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[sub_resource type="Resource" id="Resource_efbqg"]
+script = ExtResource("3_etbla")
+key = "greet"
+text = "I don't want to talk"
+options = Array[ExtResource("3_etbla")]([SubResource("Resource_yishy"), SubResource("Resource_in1w6")])
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_efbqg"]
@@ -133,7 +158,9 @@ input_pickable = true
 script = ExtResource("2_yishy")
 diaTree = Dictionary[String, ExtResource("3_etbla")]({
 "/false/false/": SubResource("Resource_tdrhw"),
-"/false/false/unlock/": SubResource("Resource_x71tj")
+"/false/false/unlock/": SubResource("Resource_x71tj"),
+"/false/true/take_old/": SubResource("Resource_etbla"),
+"/y/": SubResource("Resource_efbqg")
 })
 isPlaque = false
 approved_doors = Array[String](["Brick Door"])
