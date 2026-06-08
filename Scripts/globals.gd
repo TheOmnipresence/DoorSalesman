@@ -211,7 +211,7 @@ func _ready() -> void:
 func connect_script(_conn: ConnectionInfo, _json: Dictionary) -> void:
 	is_archipelago = true
 	got_money = true
-	Archipelago.conn.deathlink.connect(go_bankrupt.bind(true))
+	Archipelago.conn.deathlink.connect(func(s,c,j): go_bankrupt(true, s, c, j))
 	Archipelago.set_deathlink(is_equal_approx(Archipelago.conn.slot_data["death_link"], 1.0))
 	Archipelago.conn.obtained_item.connect(get_ap_item)
 	Archipelago.conn.force_scout_all()
@@ -251,7 +251,6 @@ func go_bankrupt(from_deathlink := false, source := "", cause := "", _json := {}
 	if is_archipelago:
 		for i in ap_items_recieved:
 			get_ap_item(i, false)
-		
 		if not from_deathlink:
 			send_deathlink()
 		else:
