@@ -377,10 +377,11 @@ func send_to_place(place_name: String) -> void:
 					break
 	
 	var scene_parent = get_tree().current_scene.get_child(0).get_node("Tabs/View")
-	scene_parent.get_child(0).queue_free()
+	for i in scene_parent.get_children():
+		i.queue_free()
 	if place_name != "warehouse":
 		var place_node = load("res://Scenes/" + place_name + ".tscn").instantiate()
-		get_tree().process_frame.connect(func(): place_node.name = place_name.to_pascal_case(), CONNECT_ONE_SHOT)
+		get_tree().process_frame.connect(func(): if is_instance_valid(place_node): place_node.name = place_name.to_pascal_case(), CONNECT_ONE_SHOT)
 		scene_parent.add_child(place_node)
 	else:
 		scene_parent.add_child(Node.new())
