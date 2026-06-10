@@ -20,6 +20,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("mouse2"):
 		Globals.money += 100
+	
+	if Globals.items_collected_from_shop.size() >= Globals.shop_inventory.size():
+		Globals.finish_archipelago()
 
 
 func update_all() -> void:
