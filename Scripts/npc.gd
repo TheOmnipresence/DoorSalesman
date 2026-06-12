@@ -27,6 +27,12 @@ var old_door: String
 
 func _enter_tree() -> void:
 	old_door = current_door
+	if Globals.npc_data.has(str(name).to_snake_case()):
+		if not Globals.npc_data[str(name).to_snake_case()].first:
+			await get_tree().process_frame
+			await get_tree().process_frame
+			await get_tree().process_frame
+			old_door = current_door
 
 
 ## Used in [method enterDialouge] to control the pressing of the choice buttons
