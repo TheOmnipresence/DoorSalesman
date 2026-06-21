@@ -191,6 +191,8 @@ var is_archipelago := false
 
 var archipelago_locations_found: Array[String] = []
 
+var finished_archipelago := false
+
 var ap_items_recieved: Array[NetworkItem] = []
 
 var deathlink_amnesty: int = 0
@@ -433,6 +435,8 @@ func send_shop_ap(item: Item) -> void:
 
 
 func send_ap_item(loc_name: String, loc_id: int) -> void:
+	if not is_archipelago:
+		return
 	if not archipelago_locations_found.has(loc_name):
 		#print("Outgoing location: ", id)
 		Archipelago.collect_location(loc_id)
