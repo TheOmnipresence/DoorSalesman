@@ -42,6 +42,9 @@ func update_all() -> void:
 	get_window().theme_changed.connect(func(): if get_window().theme != window_theme: get_window().theme = window_theme)
 	
 	$Money.text = "Money: $" + str(Globals.money)
+	
+	for i in $PopupContainer.get_children():
+		i.queue_free()
 
 
 func force_update_doors() -> void:
