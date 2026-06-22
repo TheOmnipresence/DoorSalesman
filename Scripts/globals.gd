@@ -83,7 +83,7 @@ var all_doors: Array[Door] = [
 	Door.new("Oak Door", "Kinda fancy", 60, 100),
 	Door.new("Cracked Oak Door", "Little less fancy", 45, 75, 10, "Oak Door"),
 	Door.new("Hole Oak Door", "oof", 35, 40, 20, "Oak Door"),
-	Door.new("Ripped Screen Door", "In peices", 10, 5, 10, "Screen Door"),
+	Door.new("Ripped Screen Door", "In pieces", 10, 5, 10, "Screen Door"),
 	Door.new("Screen Door", "See-through", 25, 55),
 	Door.new("Ewhs Door", "elliptical window handle star door", 90, 115),
 	Door.new("Fractured Ewhs Door", "fractured elliptical window handle star door", 70, 90, 15, "Ewhs Door", ["Glassworking"]),
@@ -218,7 +218,18 @@ func connect_script(_conn: ConnectionInfo, _json: Dictionary) -> void:
 	Archipelago.conn.obtained_item.connect(get_ap_item)
 	Archipelago.conn.force_scout_all()
 	warehouse_inventory = []
+	if Archipelago.conn.slot_data.has("keep_spelling_errors"):
+		if Archipelago.conn.slot_data["keep_spelling_errors"]:
+			set_bad_spelling()
 	#get_tree().current_scene.update_all()
+
+
+func set_bad_spelling() -> void:
+	#all_doors[7].description = "In peices"
+	
+	for i in all_doors + doors_in_shop + warehouse_inventory + truck_inventory + carry_inventory:
+		if i.item_name == "Ripped Screen Door":
+			i.description = "In peices"
 
 
 func go_bankrupt(from_deathlink := false, source := "", cause := "", _json := {}) -> void:

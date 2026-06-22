@@ -23,6 +23,9 @@ func _process(_delta: float) -> void:
 	
 	if Globals.items_collected_from_shop.size() >= Globals.shop_inventory.size():
 		Globals.finish_archipelago()
+	
+	if Input.is_action_pressed("e") and Input.is_action_pressed("i"):
+		Globals.set_bad_spelling()
 
 
 func update_all() -> void:
