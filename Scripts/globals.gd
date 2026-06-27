@@ -56,7 +56,7 @@ var STORAGE_UPGRADES = {
 	"warehouse": [
 		Storage.new(9, "Warehouse Storage 1"),
 		Storage.new(18, "Warehouse Storage 2", "More doors in the warehouse", "industrial_zone", 400),
-		Storage.new(26, "Warehouse Storage 3", "Even more doors in the warehouse", "junk_pit", 520),
+		#Storage.new(26, "Warehouse Storage 3", "Even more doors in the warehouse", "junk_pit", 520),
 	],
 	"truck": [
 		Storage.new(2, "Car Trunk"),
