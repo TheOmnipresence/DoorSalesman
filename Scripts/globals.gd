@@ -221,6 +221,7 @@ func connect_script(_conn: ConnectionInfo, _json: Dictionary) -> void:
 	if Archipelago.conn.slot_data.has("keep_spelling_errors"):
 		if Archipelago.conn.slot_data["keep_spelling_errors"]:
 			set_bad_spelling()
+	#Archipelago.remove_location.connect()
 	#get_tree().current_scene.update_all()
 
 
