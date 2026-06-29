@@ -10,10 +10,6 @@ func _ready() -> void:
 	$HSplitContainer/Tabs/Map/BankruptButton.pressed.connect(Globals.go_bankrupt)
 	
 	Globals.update_brought_doors.connect(update_brought_doors)
-	#for i in Globals.all_doors.map(func(e: Globals.Door): return "\"" + e.item_name + "\": " + str(e.sell_for) + ","):
-		#print(i)
-	#for i in Globals.shop_inventory:
-		#print(i.item_name + ", " + str(i.cost))
 	update_all()
 
 

@@ -71,7 +71,7 @@ func run_dialogue(dialogue_tree: Dictionary[String,Dialouge]) -> void:
 			continue
 		elif dialogue_tree[path].key == "take_old":
 			Globals.npc_data[str(name).to_snake_case()]["taken"] = true
-			if Globals.is_archipelago and not str(name) == "BathroomGuy" and Globals.npc_data[str(name).to_snake_case()]["first"]:
+			if Globals.is_archipelago and (not str(name) == "BathroomGuy") and not Globals.archipelago_locations_found.has(str(name).capitalize() + " Old Door"):
 				Globals.send_ap_item(str(name).capitalize() + " Old Door", Globals.ALL_NPCS.find(str(name).capitalize()) + 1000)
 			else:
 				Globals.warehouse_inventory.append(Globals.make_door_by_name(old_door))

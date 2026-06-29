@@ -206,6 +206,7 @@ const DEATHLINK_MESSAGES = [
 
 func _ready() -> void:
 	Archipelago.connected.connect(connect_script)
+	Archipelago.remove_location.connect(remove_location)
 	Archipelago.disconnected.connect((func(): is_archipelago = false))
 
 
@@ -221,8 +222,27 @@ func connect_script(_conn: ConnectionInfo, _json: Dictionary) -> void:
 	if Archipelago.conn.slot_data.has("keep_spelling_errors"):
 		if Archipelago.conn.slot_data["keep_spelling_errors"]:
 			set_bad_spelling()
-	#Archipelago.remove_location.connect()
 	#get_tree().current_scene.update_all()
+
+
+## Removes the archipelago location with id [param loc_id]
+func remove_location(loc_id: int) -> void:
+	if loc_id <= 0:
+		return
+	print(loc_id)
+	var loc_name := ""
+	if loc_id < 1000:
+		var item_res = shop_inventory[loc_id - 1]
+		if not items_collected_from_shop.has(item_res):
+			items_collected_from_shop.append(item_res)
+		loc_name = item_res.shipment.capitalize() + " shop item "
+	elif loc_id < 2000:
+		loc_name = ALL_NPCS[loc_id - 1000].capitalize() + " Old Door"
+	else:
+		loc_name = NEIGHBORHOOD_UNLOCK_NPCS.values()[loc_id - 2000].capitalize() + " neighborhood unlock"
+	
+	if not archipelago_locations_found.has(loc_name):
+		archipelago_locations_found.append(loc_name)
 
 
 func set_bad_spelling() -> void:
@@ -451,9 +471,10 @@ func send_ap_item(loc_name: String, loc_id: int) -> void:
 		return
 	if not archipelago_locations_found.has(loc_name):
 		#print("Outgoing location: ", id)
+		print(loc_name)
 		Archipelago.collect_location(loc_id)
 		Archipelago.conn.scout(loc_id,0,archipelago_popup)
-		archipelago_locations_found.append(loc_name)
+		#archipelago_locations_found.append(loc_name)
 
 
 func archipelago_popup(info: NetworkItem) -> void:
