@@ -229,13 +229,13 @@ func connect_script(_conn: ConnectionInfo, _json: Dictionary) -> void:
 func remove_location(loc_id: int) -> void:
 	if loc_id <= 0:
 		return
-	print(loc_id)
+	
 	var loc_name := ""
 	if loc_id < 1000:
 		var item_res = shop_inventory[loc_id - 1]
 		if not items_collected_from_shop.has(item_res):
 			items_collected_from_shop.append(item_res)
-		loc_name = item_res.shipment.capitalize() + " shop item "
+		loc_name = item_res.shipment.capitalize() + " shop item " + shop_inventory.filter(func(e): return e.shipment == item_res.shipment).find(item_res)
 	elif loc_id < 2000:
 		loc_name = ALL_NPCS[loc_id - 1000].capitalize() + " Old Door"
 	else:
@@ -463,18 +463,15 @@ func collect_item(item_name: String, shop_item: Item = null, called_from_archipe
 
 
 func send_shop_ap(item: Item) -> void:
-	send_ap_item(item.item_name, shop_inventory.find(item) + 1)
+	send_ap_item(item.shipment.capitalize() + " shop item " + str(shop_inventory.filter(func(e): return e.shipment == item.shipment).find(item)), shop_inventory.find(item) + 1)
 
 
 func send_ap_item(loc_name: String, loc_id: int) -> void:
 	if not is_archipelago:
 		return
 	if not archipelago_locations_found.has(loc_name):
-		#print("Outgoing location: ", id)
-		print(loc_name)
 		Archipelago.collect_location(loc_id)
-		Archipelago.conn.scout(loc_id,0,archipelago_popup)
-		#archipelago_locations_found.append(loc_name)
+		Archipelago.conn.scout(loc_id, 0, archipelago_popup)
 
 
 func archipelago_popup(info: NetworkItem) -> void:
