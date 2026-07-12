@@ -206,8 +206,8 @@ const DEATHLINK_MESSAGES = [
 
 func _ready() -> void:
 	Archipelago.connected.connect(connect_script)
+	Archipelago.disconnected.connect(disconnect_script)
 	Archipelago.remove_location.connect(remove_location)
-	Archipelago.disconnected.connect((func(): is_archipelago = false))
 
 
 ## The connection script for archipelago
@@ -219,10 +219,21 @@ func connect_script(_conn: ConnectionInfo, _json: Dictionary) -> void:
 	Archipelago.conn.obtained_item.connect(get_ap_item)
 	Archipelago.conn.force_scout_all()
 	warehouse_inventory = []
+	money = 0
+	go_bankrupt(false, "", "", {}, true)
 	if Archipelago.conn.slot_data.has("keep_spelling_errors"):
 		if Archipelago.conn.slot_data["keep_spelling_errors"]:
 			set_bad_spelling()
 	#get_tree().current_scene.update_all()
+
+
+func disconnect_script() -> void:
+	await go_bankrupt(false, "", "", {}, true)
+	is_archipelago = false
+	archipelago_locations_found = []
+	items_collected_from_shop = []
+	ap_items_recieved = []
+	get_tree().reload_current_scene()
 
 
 ## Removes the archipelago location with id [param loc_id]
@@ -235,7 +246,7 @@ func remove_location(loc_id: int) -> void:
 		var item_res = shop_inventory[loc_id - 1]
 		if not items_collected_from_shop.has(item_res):
 			items_collected_from_shop.append(item_res)
-		loc_name = item_res.shipment.capitalize() + " shop item " + shop_inventory.filter(func(e): return e.shipment == item_res.shipment).find(item_res)
+		loc_name = item_res.shipment.capitalize() + " shop item " + str(shop_inventory.filter(func(e): return e.shipment == item_res.shipment).find(item_res))
 	elif loc_id < 2000:
 		loc_name = ALL_NPCS[loc_id - 1000].capitalize() + " Old Door"
 	else:
@@ -253,7 +264,7 @@ func set_bad_spelling() -> void:
 			i.description = "In peices"
 
 
-func go_bankrupt(from_deathlink := false, source := "", cause := "", _json := {}) -> void:
+func go_bankrupt(from_deathlink := false, source := "", cause := "", _json := {}, full_clear := false) -> void:
 	npc_data = {}
 	houses = {}
 	money = 0
@@ -283,8 +294,9 @@ func go_bankrupt(from_deathlink := false, source := "", cause := "", _json := {}
 	await send_to_place("warehouse")
 	
 	if is_archipelago:
-		for i in ap_items_recieved:
-			get_ap_item(i, false)
+		if not full_clear:
+			for i in ap_items_recieved:
+				get_ap_item(i, false)
 		if not from_deathlink:
 			send_deathlink()
 		else:
@@ -293,11 +305,12 @@ func go_bankrupt(from_deathlink := false, source := "", cause := "", _json := {}
 
 ## Sends the deathlink packet, accounting for amnesty
 func send_deathlink() -> void:
-	deathlink_amnesty += 1
-	if deathlink_amnesty >= Archipelago.conn.slot_data["death_link_amnesty"]:
-		deathlink_amnesty = 0
-		var death_cause = DEATHLINK_MESSAGES.pick_random() % Archipelago.conn.get_player().get_name()
-		Archipelago.conn.send_deathlink(death_cause)
+	if Archipelago.is_deathlink():
+		deathlink_amnesty += 1
+		if deathlink_amnesty >= Archipelago.conn.slot_data["death_link_amnesty"]:
+			deathlink_amnesty = 0
+			var death_cause = DEATHLINK_MESSAGES.pick_random() % Archipelago.conn.get_player().get_name()
+			Archipelago.conn.send_deathlink(death_cause)
 
 
 ## Sends the Archipelago goal signal

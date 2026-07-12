@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=31 format=3 uid="uid://bw332wcpnntrs"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://bw332wcpnntrs"]
 
 [ext_resource type="Texture2D" uid="uid://41ab3tf7nljf" path="res://Sprites/omni_anim.png" id="1_bkd5k"]
 
@@ -208,7 +208,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xep3x")
 }],
-"loop": false,
+"loop": 0,
 "name": &"default",
 "speed": 20.0
 }]
