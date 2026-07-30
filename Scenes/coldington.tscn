@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://ckh8q5j0grg38" path="res://Sprites/rowhome.gdshader" id="5_58hvk"]
 [ext_resource type="Texture2D" uid="uid://cpgeit8ulu5l4" path="res://Sprites/rowhome_grayscale.png" id="6_x71tj"]
 [ext_resource type="Script" uid="uid://dtui3hlc6dw34" path="res://Scripts/house_pallette.gd" id="7_in1w6"]
+[ext_resource type="Texture2D" uid="uid://dmr4l8hlrwqob" path="res://Sprites/for_sale.png" id="8_yishy"]
 
 [sub_resource type="Resource" id="Resource_2hv2p"]
 script = ExtResource("4_yishy")
@@ -240,6 +241,12 @@ script = ExtResource("7_in1w6")
 
 [node name="Sprite2D" type="Sprite2D" parent="Slides/DrLebut&SoccerPlayer/House3" unique_id=1978142266]
 position = Vector2(0, 70)
+
+[node name="ForSale" type="Sprite2D" parent="Slides/DrLebut&SoccerPlayer" unique_id=1223385822]
+texture_filter = 1
+position = Vector2(960, 465)
+scale = Vector2(3, 3)
+texture = ExtResource("8_yishy")
 
 [node name="Right" type="Button" parent="." unique_id=299735524]
 layout_mode = 1

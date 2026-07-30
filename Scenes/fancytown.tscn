@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://cu56woltfh57q"]
+[gd_scene format=3 uid="uid://cu56woltfh57q"]
 
 [ext_resource type="Script" uid="uid://cmx2so6nuas6h" path="res://Scripts/housing.gd" id="1_jnjbb"]
 [ext_resource type="Script" uid="uid://drk7lqqa0k4bm" path="res://Scripts/clickable_dialogue.gd" id="2_1krux"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://ckh8q5j0grg38" path="res://Sprites/rowhome.gdshader" id="5_hik22"]
 [ext_resource type="Texture2D" uid="uid://cpgeit8ulu5l4" path="res://Sprites/rowhome_grayscale.png" id="6_j246b"]
 [ext_resource type="Script" uid="uid://dtui3hlc6dw34" path="res://Scripts/house_pallette.gd" id="7_g2n5j"]
+[ext_resource type="Texture2D" uid="uid://dmr4l8hlrwqob" path="res://Sprites/for_sale.png" id="8_v6xlm"]
 
 [sub_resource type="Resource" id="Resource_1krux"]
 script = ExtResource("4_jha2e")
@@ -327,7 +328,13 @@ text = "Thanks for the door"
 action_condition = SubResource("Resource_2crwa")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
-[node name="Fancytown" type="Control"]
+[sub_resource type="Resource" id="Resource_btod0"]
+script = ExtResource("3_v6xlm")
+key = "har"
+text = "You knock but still, nobody answers"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
+[node name="Fancytown" type="Control" unique_id=1438599516]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -342,7 +349,7 @@ palette = Color(0.42, 0.224, 0, 1)
 oppose_palette_chance = 1.0
 override_opposing_palette = Color(0.7882353, 0.7882353, 0.7882353, 1)
 
-[node name="Slides" type="Control" parent="."]
+[node name="Slides" type="Control" parent="." unique_id=1584139759]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -351,7 +358,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Poshman&HoleGuy" type="Control" parent="Slides"]
+[node name="Poshman&HoleGuy" type="Control" parent="Slides" unique_id=262533681]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -360,7 +367,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Poshman" type="StaticBody2D" parent="Slides/Poshman&HoleGuy" node_paths=PackedStringArray("house")]
+[node name="Poshman" type="StaticBody2D" parent="Slides/Poshman&HoleGuy" unique_id=599187955 node_paths=PackedStringArray("house")]
 z_index = 1
 position = Vector2(522, 348)
 input_pickable = true
@@ -387,20 +394,20 @@ approved_doors = Array[String](["Oak Door"])
 current_door = "Cracked Oak Door"
 house = NodePath("../House")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/Poshman&HoleGuy/Poshman"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/Poshman&HoleGuy/Poshman" unique_id=2020660992]
 polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)
 
-[node name="Polygon2D" type="Polygon2D" parent="Slides/Poshman&HoleGuy/Poshman"]
+[node name="Polygon2D" type="Polygon2D" parent="Slides/Poshman&HoleGuy/Poshman" unique_id=574043378]
 z_index = 1
 color = Color(1, 1, 1, 0)
 uv = PackedVector2Array(58, 43, 56, 46)
 
-[node name="Image" type="Polygon2D" parent="Slides/Poshman&HoleGuy/Poshman"]
+[node name="Image" type="Polygon2D" parent="Slides/Poshman&HoleGuy/Poshman" unique_id=1793021860]
 visible = false
 color = Color(0, 0, 1, 1)
 polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
 
-[node name="Control" type="Control" parent="Slides/Poshman&HoleGuy/Poshman"]
+[node name="Control" type="Control" parent="Slides/Poshman&HoleGuy/Poshman" unique_id=1566429068]
 layout_mode = 3
 anchors_preset = 0
 offset_top = 194.0
@@ -408,7 +415,7 @@ offset_right = 108.0
 offset_bottom = 234.0
 mouse_filter = 2
 
-[node name="TextBox" type="VBoxContainer" parent="Slides/Poshman&HoleGuy/Poshman/Control"]
+[node name="TextBox" type="VBoxContainer" parent="Slides/Poshman&HoleGuy/Poshman/Control" unique_id=1303408557]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -418,15 +425,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="Slides/Poshman&HoleGuy/Poshman/Control/TextBox"]
+[node name="Label" type="Label" parent="Slides/Poshman&HoleGuy/Poshman/Control/TextBox" unique_id=1315003404]
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/Poshman&HoleGuy/Poshman/Control/TextBox"]
+[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/Poshman&HoleGuy/Poshman/Control/TextBox" unique_id=1438693714]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="HoleGuy" type="StaticBody2D" parent="Slides/Poshman&HoleGuy" node_paths=PackedStringArray("house")]
+[node name="HoleGuy" type="StaticBody2D" parent="Slides/Poshman&HoleGuy" unique_id=2084511627 node_paths=PackedStringArray("house")]
 z_index = 1
 position = Vector2(138, 348)
 input_pickable = true
@@ -453,20 +460,20 @@ approved_doors = Array[String](["Oak Door"])
 current_door = "Hole Oak Door"
 house = NodePath("../House3")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/Poshman&HoleGuy/HoleGuy"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/Poshman&HoleGuy/HoleGuy" unique_id=1724069938]
 polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)
 
-[node name="Polygon2D" type="Polygon2D" parent="Slides/Poshman&HoleGuy/HoleGuy"]
+[node name="Polygon2D" type="Polygon2D" parent="Slides/Poshman&HoleGuy/HoleGuy" unique_id=895135068]
 z_index = 1
 color = Color(1, 1, 1, 0)
 uv = PackedVector2Array(58, 43, 56, 46)
 
-[node name="Image" type="Polygon2D" parent="Slides/Poshman&HoleGuy/HoleGuy"]
+[node name="Image" type="Polygon2D" parent="Slides/Poshman&HoleGuy/HoleGuy" unique_id=1040275468]
 visible = false
 color = Color(0, 0, 1, 1)
 polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
 
-[node name="Control" type="Control" parent="Slides/Poshman&HoleGuy/HoleGuy"]
+[node name="Control" type="Control" parent="Slides/Poshman&HoleGuy/HoleGuy" unique_id=44650564]
 layout_mode = 3
 anchors_preset = 0
 offset_top = 194.0
@@ -474,7 +481,7 @@ offset_right = 108.0
 offset_bottom = 234.0
 mouse_filter = 2
 
-[node name="TextBox" type="VBoxContainer" parent="Slides/Poshman&HoleGuy/HoleGuy/Control"]
+[node name="TextBox" type="VBoxContainer" parent="Slides/Poshman&HoleGuy/HoleGuy/Control" unique_id=1133537467]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -484,15 +491,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="Slides/Poshman&HoleGuy/HoleGuy/Control/TextBox"]
+[node name="Label" type="Label" parent="Slides/Poshman&HoleGuy/HoleGuy/Control/TextBox" unique_id=1889218953]
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/Poshman&HoleGuy/HoleGuy/Control/TextBox"]
+[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/Poshman&HoleGuy/HoleGuy/Control/TextBox" unique_id=1318822568]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="House" type="Sprite2D" parent="Slides/Poshman&HoleGuy"]
+[node name="House" type="Sprite2D" parent="Slides/Poshman&HoleGuy" unique_id=1340280858]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ekhcp")
 position = Vector2(576, 258)
@@ -500,10 +507,10 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_j246b")
 script = ExtResource("7_g2n5j")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/Poshman&HoleGuy/House"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/Poshman&HoleGuy/House" unique_id=1936649589]
 position = Vector2(0, 70)
 
-[node name="House2" type="Sprite2D" parent="Slides/Poshman&HoleGuy"]
+[node name="House2" type="Sprite2D" parent="Slides/Poshman&HoleGuy" unique_id=498374286]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ekhcp")
 position = Vector2(960, 258)
@@ -511,10 +518,10 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_j246b")
 script = ExtResource("7_g2n5j")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/Poshman&HoleGuy/House2"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/Poshman&HoleGuy/House2" unique_id=223012870]
 position = Vector2(0, 70)
 
-[node name="House3" type="Sprite2D" parent="Slides/Poshman&HoleGuy"]
+[node name="House3" type="Sprite2D" parent="Slides/Poshman&HoleGuy" unique_id=496998618]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ekhcp")
 position = Vector2(192, 258)
@@ -522,10 +529,10 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_j246b")
 script = ExtResource("7_g2n5j")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/Poshman&HoleGuy/House3"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/Poshman&HoleGuy/House3" unique_id=1640275007]
 position = Vector2(0, 70)
 
-[node name="Gold" type="Control" parent="Slides"]
+[node name="Gold" type="Control" parent="Slides" unique_id=809328709]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -535,7 +542,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Gold" type="StaticBody2D" parent="Slides/Gold" node_paths=PackedStringArray("house")]
+[node name="Gold" type="StaticBody2D" parent="Slides/Gold" unique_id=1396463138 node_paths=PackedStringArray("house")]
 z_index = 1
 position = Vector2(522, 348)
 input_pickable = true
@@ -564,20 +571,20 @@ approved_doors = Array[String](["Gold Oak Door"])
 current_door = "Oak Door"
 house = NodePath("../House4")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/Gold/Gold"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/Gold/Gold" unique_id=254240568]
 polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)
 
-[node name="Polygon2D" type="Polygon2D" parent="Slides/Gold/Gold"]
+[node name="Polygon2D" type="Polygon2D" parent="Slides/Gold/Gold" unique_id=1654529558]
 z_index = 1
 color = Color(1, 1, 1, 0)
 uv = PackedVector2Array(58, 43, 56, 46)
 
-[node name="Image" type="Polygon2D" parent="Slides/Gold/Gold"]
+[node name="Image" type="Polygon2D" parent="Slides/Gold/Gold" unique_id=1379082251]
 visible = false
 color = Color(0, 0, 1, 1)
 polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
 
-[node name="Control" type="Control" parent="Slides/Gold/Gold"]
+[node name="Control" type="Control" parent="Slides/Gold/Gold" unique_id=599377428]
 layout_mode = 3
 anchors_preset = 0
 offset_top = 194.0
@@ -585,7 +592,7 @@ offset_right = 108.0
 offset_bottom = 234.0
 mouse_filter = 2
 
-[node name="TextBox" type="VBoxContainer" parent="Slides/Gold/Gold/Control"]
+[node name="TextBox" type="VBoxContainer" parent="Slides/Gold/Gold/Control" unique_id=1439695692]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -595,15 +602,66 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="Slides/Gold/Gold/Control/TextBox"]
+[node name="Label" type="Label" parent="Slides/Gold/Gold/Control/TextBox" unique_id=2079976648]
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/Gold/Gold/Control/TextBox"]
+[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/Gold/Gold/Control/TextBox" unique_id=697999978]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="House4" type="Sprite2D" parent="Slides/Gold"]
+[node name="NobodyStill" type="StaticBody2D" parent="Slides/Gold" unique_id=1046156729 node_paths=PackedStringArray("house")]
+z_index = 1
+position = Vector2(138, 348)
+input_pickable = true
+script = ExtResource("2_1krux")
+diaTree = Dictionary[String, ExtResource("3_v6xlm")]({
+"/": SubResource("Resource_btod0")
+})
+isPlaque = false
+current_door = "Oak Door"
+house = NodePath("../House6")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/Gold/NobodyStill" unique_id=495462404]
+polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="Slides/Gold/NobodyStill" unique_id=346707812]
+z_index = 1
+color = Color(1, 1, 1, 0)
+uv = PackedVector2Array(58, 43, 56, 46)
+
+[node name="Image" type="Polygon2D" parent="Slides/Gold/NobodyStill" unique_id=1448712651]
+visible = false
+color = Color(0, 0, 1, 1)
+polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
+
+[node name="Control" type="Control" parent="Slides/Gold/NobodyStill" unique_id=2079001060]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 194.0
+offset_right = 108.0
+offset_bottom = 234.0
+mouse_filter = 2
+
+[node name="TextBox" type="VBoxContainer" parent="Slides/Gold/NobodyStill/Control" unique_id=889420017]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Slides/Gold/NobodyStill/Control/TextBox" unique_id=1941718132]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/Gold/NobodyStill/Control/TextBox" unique_id=1171196716]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="House4" type="Sprite2D" parent="Slides/Gold" unique_id=2000016588]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ekhcp")
 position = Vector2(576, 258)
@@ -611,10 +669,10 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_j246b")
 script = ExtResource("7_g2n5j")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/Gold/House4"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/Gold/House4" unique_id=1161765041]
 position = Vector2(0, 70)
 
-[node name="House5" type="Sprite2D" parent="Slides/Gold"]
+[node name="House5" type="Sprite2D" parent="Slides/Gold" unique_id=1375457888]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ekhcp")
 position = Vector2(960, 258)
@@ -622,10 +680,10 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_j246b")
 script = ExtResource("7_g2n5j")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/Gold/House5"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/Gold/House5" unique_id=1195742530]
 position = Vector2(0, 70)
 
-[node name="House6" type="Sprite2D" parent="Slides/Gold"]
+[node name="House6" type="Sprite2D" parent="Slides/Gold" unique_id=742475171]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ekhcp")
 position = Vector2(192, 258)
@@ -633,10 +691,10 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_j246b")
 script = ExtResource("7_g2n5j")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/Gold/House6"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/Gold/House6" unique_id=1688266051]
 position = Vector2(0, 70)
 
-[node name="Right" type="Button" parent="."]
+[node name="Right" type="Button" parent="." unique_id=328199572]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -650,7 +708,7 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 32
 text = ">"
 
-[node name="Left" type="Button" parent="."]
+[node name="Left" type="Button" parent="." unique_id=1925600268]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -660,3 +718,9 @@ offset_right = 18.0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
 text = "<"
+
+[node name="ForSale" type="Sprite2D" parent="." unique_id=1711763564]
+texture_filter = 1
+position = Vector2(960, 465)
+scale = Vector2(3, 3)
+texture = ExtResource("8_v6xlm")

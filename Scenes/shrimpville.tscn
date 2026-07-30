@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://d38xjml56pg4n"]
+[gd_scene format=3 uid="uid://d38xjml56pg4n"]
 
 [ext_resource type="Script" uid="uid://cmx2so6nuas6h" path="res://Scripts/housing.gd" id="1_c0cq2"]
 [ext_resource type="Script" uid="uid://drk7lqqa0k4bm" path="res://Scripts/clickable_dialogue.gd" id="1_lyanp"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://ckh8q5j0grg38" path="res://Sprites/rowhome.gdshader" id="5_vdm02"]
 [ext_resource type="Texture2D" uid="uid://cpgeit8ulu5l4" path="res://Sprites/rowhome_grayscale.png" id="6_ioxou"]
 [ext_resource type="Script" uid="uid://dtui3hlc6dw34" path="res://Scripts/house_pallette.gd" id="7_ioxou"]
+[ext_resource type="Texture2D" uid="uid://dmr4l8hlrwqob" path="res://Sprites/for_sale.png" id="8_ubx8d"]
 
 [sub_resource type="Resource" id="Resource_6iq6q"]
 script = ExtResource("3_cgy2h")
@@ -349,6 +350,12 @@ text = "Great"
 action_condition = SubResource("Resource_0nqti")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
+[sub_resource type="Resource" id="Resource_1dvcg"]
+script = ExtResource("2_bgw1h")
+key = "har"
+text = "You knock but nobody answers"
+metadata/_custom_type_script = "uid://dvfxph6aeapdn"
+
 [sub_resource type="Resource" id="Resource_3p8fw"]
 script = ExtResource("3_cgy2h")
 toRun = "unlock_coldington"
@@ -380,7 +387,7 @@ script = ExtResource("2_bgw1h")
 action_condition = SubResource("Resource_qqc4d")
 metadata/_custom_type_script = "uid://dvfxph6aeapdn"
 
-[node name="Shrimpville" type="Control"]
+[node name="Shrimpville" type="Control" unique_id=103648225]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -392,7 +399,7 @@ script = ExtResource("1_c0cq2")
 area_doors = Array[String](["Scratched Door", "Scratched Door", "Ripped Screen Door", "Plain Door"])
 palette = Color(0.7019608, 0.2784314, 0.34117648, 1)
 
-[node name="Slides" type="Control" parent="."]
+[node name="Slides" type="Control" parent="." unique_id=1973446081]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -401,7 +408,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="May&Doug" type="Control" parent="Slides"]
+[node name="May&Doug" type="Control" parent="Slides" unique_id=786506839]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -410,7 +417,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="May" type="StaticBody2D" parent="Slides/May&Doug" node_paths=PackedStringArray("house")]
+[node name="May" type="StaticBody2D" parent="Slides/May&Doug" unique_id=1518333568 node_paths=PackedStringArray("house")]
 z_index = 1
 position = Vector2(522, 348)
 input_pickable = true
@@ -437,20 +444,20 @@ approved_doors = Array[String](["Base Door", "Oak Door"])
 current_door = "Scratched Door"
 house = NodePath("../House")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/May&Doug/May"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/May&Doug/May" unique_id=257656366]
 polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)
 
-[node name="Polygon2D" type="Polygon2D" parent="Slides/May&Doug/May"]
+[node name="Polygon2D" type="Polygon2D" parent="Slides/May&Doug/May" unique_id=242061409]
 z_index = 1
 color = Color(1, 1, 1, 0)
 uv = PackedVector2Array(58, 43, 56, 46)
 
-[node name="Image" type="Polygon2D" parent="Slides/May&Doug/May"]
+[node name="Image" type="Polygon2D" parent="Slides/May&Doug/May" unique_id=712214089]
 visible = false
 color = Color(0, 0, 1, 1)
 polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
 
-[node name="Control" type="Control" parent="Slides/May&Doug/May"]
+[node name="Control" type="Control" parent="Slides/May&Doug/May" unique_id=1665866840]
 layout_mode = 3
 anchors_preset = 0
 offset_top = 194.0
@@ -458,7 +465,7 @@ offset_right = 108.0
 offset_bottom = 234.0
 mouse_filter = 2
 
-[node name="TextBox" type="VBoxContainer" parent="Slides/May&Doug/May/Control"]
+[node name="TextBox" type="VBoxContainer" parent="Slides/May&Doug/May/Control" unique_id=1747139421]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -468,15 +475,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="Slides/May&Doug/May/Control/TextBox"]
+[node name="Label" type="Label" parent="Slides/May&Doug/May/Control/TextBox" unique_id=1596648079]
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/May&Doug/May/Control/TextBox"]
+[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/May&Doug/May/Control/TextBox" unique_id=967792171]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Doug" type="StaticBody2D" parent="Slides/May&Doug" node_paths=PackedStringArray("house")]
+[node name="Doug" type="StaticBody2D" parent="Slides/May&Doug" unique_id=918893382 node_paths=PackedStringArray("house")]
 z_index = 1
 position = Vector2(138, 348)
 input_pickable = true
@@ -503,20 +510,20 @@ approved_doors = Array[String](["Base Door", "Oak Door", "Screen Door"])
 current_door = "Scratched Door"
 house = NodePath("../House3")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/May&Doug/Doug"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/May&Doug/Doug" unique_id=2065924401]
 polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)
 
-[node name="Polygon2D" type="Polygon2D" parent="Slides/May&Doug/Doug"]
+[node name="Polygon2D" type="Polygon2D" parent="Slides/May&Doug/Doug" unique_id=156305584]
 z_index = 1
 color = Color(1, 1, 1, 0)
 uv = PackedVector2Array(58, 43, 56, 46)
 
-[node name="Image" type="Polygon2D" parent="Slides/May&Doug/Doug"]
+[node name="Image" type="Polygon2D" parent="Slides/May&Doug/Doug" unique_id=1119187096]
 visible = false
 color = Color(0, 0, 1, 1)
 polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
 
-[node name="Control" type="Control" parent="Slides/May&Doug/Doug"]
+[node name="Control" type="Control" parent="Slides/May&Doug/Doug" unique_id=702071980]
 layout_mode = 3
 anchors_preset = 0
 offset_top = 194.0
@@ -524,7 +531,7 @@ offset_right = 108.0
 offset_bottom = 234.0
 mouse_filter = 2
 
-[node name="TextBox" type="VBoxContainer" parent="Slides/May&Doug/Doug/Control"]
+[node name="TextBox" type="VBoxContainer" parent="Slides/May&Doug/Doug/Control" unique_id=601430540]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -534,15 +541,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="Slides/May&Doug/Doug/Control/TextBox"]
+[node name="Label" type="Label" parent="Slides/May&Doug/Doug/Control/TextBox" unique_id=1623798475]
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/May&Doug/Doug/Control/TextBox"]
+[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/May&Doug/Doug/Control/TextBox" unique_id=1212103925]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="House" type="Sprite2D" parent="Slides/May&Doug"]
+[node name="House" type="Sprite2D" parent="Slides/May&Doug" unique_id=2139321212]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ubx8d")
 position = Vector2(576, 258)
@@ -550,10 +557,10 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_ioxou")
 script = ExtResource("7_ioxou")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/May&Doug/House"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/May&Doug/House" unique_id=931263100]
 position = Vector2(0, 70)
 
-[node name="House2" type="Sprite2D" parent="Slides/May&Doug"]
+[node name="House2" type="Sprite2D" parent="Slides/May&Doug" unique_id=1009259159]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ubx8d")
 position = Vector2(960, 258)
@@ -561,10 +568,10 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_ioxou")
 script = ExtResource("7_ioxou")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/May&Doug/House2"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/May&Doug/House2" unique_id=879196217]
 position = Vector2(0, 70)
 
-[node name="House3" type="Sprite2D" parent="Slides/May&Doug"]
+[node name="House3" type="Sprite2D" parent="Slides/May&Doug" unique_id=911823146]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ubx8d")
 position = Vector2(192, 258)
@@ -572,11 +579,16 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_ioxou")
 script = ExtResource("7_ioxou")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/May&Doug/House3"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/May&Doug/House3" unique_id=1392874931]
 position = Vector2(0, 70)
 
-[node name="MrBrown&Liliana" type="Control" parent="Slides"]
-visible = false
+[node name="ForSale" type="Sprite2D" parent="Slides/May&Doug" unique_id=2093471333]
+texture_filter = 1
+position = Vector2(960, 465)
+scale = Vector2(3, 3)
+texture = ExtResource("8_ubx8d")
+
+[node name="MrBrown&Liliana" type="Control" parent="Slides" unique_id=696005318]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -585,7 +597,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MrBrown" type="StaticBody2D" parent="Slides/MrBrown&Liliana" node_paths=PackedStringArray("house")]
+[node name="MrBrown" type="StaticBody2D" parent="Slides/MrBrown&Liliana" unique_id=1458856820 node_paths=PackedStringArray("house")]
 z_index = 1
 position = Vector2(522, 348)
 input_pickable = true
@@ -612,20 +624,20 @@ approved_doors = Array[String](["Base Door", "Oak Door", "Scratched Door", "Scre
 current_door = "Ripped Screen Door"
 house = NodePath("../House4")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/MrBrown&Liliana/MrBrown"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/MrBrown&Liliana/MrBrown" unique_id=397371349]
 polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)
 
-[node name="Polygon2D" type="Polygon2D" parent="Slides/MrBrown&Liliana/MrBrown"]
+[node name="Polygon2D" type="Polygon2D" parent="Slides/MrBrown&Liliana/MrBrown" unique_id=1996462086]
 z_index = 1
 color = Color(1, 1, 1, 0)
 uv = PackedVector2Array(58, 43, 56, 46)
 
-[node name="Image" type="Polygon2D" parent="Slides/MrBrown&Liliana/MrBrown"]
+[node name="Image" type="Polygon2D" parent="Slides/MrBrown&Liliana/MrBrown" unique_id=1040195231]
 visible = false
 color = Color(0, 0, 1, 1)
 polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
 
-[node name="Control" type="Control" parent="Slides/MrBrown&Liliana/MrBrown"]
+[node name="Control" type="Control" parent="Slides/MrBrown&Liliana/MrBrown" unique_id=1977212625]
 layout_mode = 3
 anchors_preset = 0
 offset_top = 194.0
@@ -633,7 +645,7 @@ offset_right = 108.0
 offset_bottom = 234.0
 mouse_filter = 2
 
-[node name="TextBox" type="VBoxContainer" parent="Slides/MrBrown&Liliana/MrBrown/Control"]
+[node name="TextBox" type="VBoxContainer" parent="Slides/MrBrown&Liliana/MrBrown/Control" unique_id=760102927]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -643,15 +655,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="Slides/MrBrown&Liliana/MrBrown/Control/TextBox"]
+[node name="Label" type="Label" parent="Slides/MrBrown&Liliana/MrBrown/Control/TextBox" unique_id=1706067543]
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/MrBrown&Liliana/MrBrown/Control/TextBox"]
+[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/MrBrown&Liliana/MrBrown/Control/TextBox" unique_id=243472142]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Liliana" type="StaticBody2D" parent="Slides/MrBrown&Liliana" node_paths=PackedStringArray("house")]
+[node name="Liliana" type="StaticBody2D" parent="Slides/MrBrown&Liliana" unique_id=1239578987 node_paths=PackedStringArray("house")]
 z_index = 1
 position = Vector2(138, 348)
 input_pickable = true
@@ -680,20 +692,20 @@ house = NodePath("../House6")
 override_primary_color = Color(0.44705883, 0.2901961, 0.7294118, 1)
 override_secondary_color = Color(0.164577, 0.36749554, 0.71822435, 1)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/MrBrown&Liliana/Liliana"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/MrBrown&Liliana/Liliana" unique_id=1516914262]
 polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)
 
-[node name="Polygon2D" type="Polygon2D" parent="Slides/MrBrown&Liliana/Liliana"]
+[node name="Polygon2D" type="Polygon2D" parent="Slides/MrBrown&Liliana/Liliana" unique_id=122114327]
 z_index = 1
 color = Color(1, 1, 1, 0)
 uv = PackedVector2Array(58, 43, 56, 46)
 
-[node name="Image" type="Polygon2D" parent="Slides/MrBrown&Liliana/Liliana"]
+[node name="Image" type="Polygon2D" parent="Slides/MrBrown&Liliana/Liliana" unique_id=877713649]
 visible = false
 color = Color(0, 0, 1, 1)
 polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
 
-[node name="Control" type="Control" parent="Slides/MrBrown&Liliana/Liliana"]
+[node name="Control" type="Control" parent="Slides/MrBrown&Liliana/Liliana" unique_id=1911132901]
 layout_mode = 3
 anchors_preset = 0
 offset_top = 194.0
@@ -701,7 +713,7 @@ offset_right = 108.0
 offset_bottom = 234.0
 mouse_filter = 2
 
-[node name="TextBox" type="VBoxContainer" parent="Slides/MrBrown&Liliana/Liliana/Control"]
+[node name="TextBox" type="VBoxContainer" parent="Slides/MrBrown&Liliana/Liliana/Control" unique_id=1352055073]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -711,15 +723,66 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="Slides/MrBrown&Liliana/Liliana/Control/TextBox"]
+[node name="Label" type="Label" parent="Slides/MrBrown&Liliana/Liliana/Control/TextBox" unique_id=1371976731]
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/MrBrown&Liliana/Liliana/Control/TextBox"]
+[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/MrBrown&Liliana/Liliana/Control/TextBox" unique_id=1048309543]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="House4" type="Sprite2D" parent="Slides/MrBrown&Liliana"]
+[node name="Nobody" type="StaticBody2D" parent="Slides/MrBrown&Liliana" unique_id=75314053 node_paths=PackedStringArray("house")]
+z_index = 1
+position = Vector2(906, 348)
+input_pickable = true
+script = ExtResource("1_lyanp")
+diaTree = Dictionary[String, ExtResource("2_bgw1h")]({
+"/": SubResource("Resource_1dvcg")
+})
+isPlaque = false
+current_door = "Ripped Screen Door"
+house = NodePath("../House5")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/MrBrown&Liliana/Nobody" unique_id=2049614018]
+polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="Slides/MrBrown&Liliana/Nobody" unique_id=1919750516]
+z_index = 1
+color = Color(1, 1, 1, 0)
+uv = PackedVector2Array(58, 43, 56, 46)
+
+[node name="Image" type="Polygon2D" parent="Slides/MrBrown&Liliana/Nobody" unique_id=1022333775]
+visible = false
+color = Color(0, 0, 1, 1)
+polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
+
+[node name="Control" type="Control" parent="Slides/MrBrown&Liliana/Nobody" unique_id=1558385053]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 194.0
+offset_right = 108.0
+offset_bottom = 234.0
+mouse_filter = 2
+
+[node name="TextBox" type="VBoxContainer" parent="Slides/MrBrown&Liliana/Nobody/Control" unique_id=100856898]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Slides/MrBrown&Liliana/Nobody/Control/TextBox" unique_id=1361915355]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/MrBrown&Liliana/Nobody/Control/TextBox" unique_id=1154607751]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="House4" type="Sprite2D" parent="Slides/MrBrown&Liliana" unique_id=174437957]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ubx8d")
 position = Vector2(576, 258)
@@ -727,10 +790,10 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_ioxou")
 script = ExtResource("7_ioxou")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/MrBrown&Liliana/House4"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/MrBrown&Liliana/House4" unique_id=525185450]
 position = Vector2(0, 70)
 
-[node name="House5" type="Sprite2D" parent="Slides/MrBrown&Liliana"]
+[node name="House5" type="Sprite2D" parent="Slides/MrBrown&Liliana" unique_id=191912024]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ubx8d")
 position = Vector2(960, 258)
@@ -738,10 +801,10 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_ioxou")
 script = ExtResource("7_ioxou")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/MrBrown&Liliana/House5"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/MrBrown&Liliana/House5" unique_id=380808]
 position = Vector2(0, 70)
 
-[node name="House6" type="Sprite2D" parent="Slides/MrBrown&Liliana"]
+[node name="House6" type="Sprite2D" parent="Slides/MrBrown&Liliana" unique_id=639026571]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ubx8d")
 position = Vector2(192, 258)
@@ -749,10 +812,10 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_ioxou")
 script = ExtResource("7_ioxou")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/MrBrown&Liliana/House6"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/MrBrown&Liliana/House6" unique_id=249014480]
 position = Vector2(0, 70)
 
-[node name="IceMan" type="Control" parent="Slides"]
+[node name="IceMan" type="Control" parent="Slides" unique_id=699557105]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -762,7 +825,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="IceMan" type="StaticBody2D" parent="Slides/IceMan" node_paths=PackedStringArray("house")]
+[node name="IceMan" type="StaticBody2D" parent="Slides/IceMan" unique_id=1872173832 node_paths=PackedStringArray("house")]
 z_index = 1
 position = Vector2(522, 348)
 input_pickable = true
@@ -778,20 +841,20 @@ house = NodePath("../House7")
 override_primary_color = Color(0.32941177, 0.70980394, 1, 1)
 override_secondary_color = Color(0.6901961, 1, 0.9843137, 1)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/IceMan/IceMan"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slides/IceMan/IceMan" unique_id=1528226739]
 polygon = PackedVector2Array(0, 0, 0, 240, 108, 240, 108, 0)
 
-[node name="Polygon2D" type="Polygon2D" parent="Slides/IceMan/IceMan"]
+[node name="Polygon2D" type="Polygon2D" parent="Slides/IceMan/IceMan" unique_id=658047007]
 z_index = 1
 color = Color(1, 1, 1, 0)
 uv = PackedVector2Array(58, 43, 56, 46)
 
-[node name="Image" type="Polygon2D" parent="Slides/IceMan/IceMan"]
+[node name="Image" type="Polygon2D" parent="Slides/IceMan/IceMan" unique_id=1540123124]
 visible = false
 color = Color(0, 0, 1, 1)
 polygon = PackedVector2Array(0, 0, 34, 43, 41, -3)
 
-[node name="Control" type="Control" parent="Slides/IceMan/IceMan"]
+[node name="Control" type="Control" parent="Slides/IceMan/IceMan" unique_id=942014019]
 layout_mode = 3
 anchors_preset = 0
 offset_top = 194.0
@@ -799,7 +862,7 @@ offset_right = 108.0
 offset_bottom = 234.0
 mouse_filter = 2
 
-[node name="TextBox" type="VBoxContainer" parent="Slides/IceMan/IceMan/Control"]
+[node name="TextBox" type="VBoxContainer" parent="Slides/IceMan/IceMan/Control" unique_id=1205133355]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -809,15 +872,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="Slides/IceMan/IceMan/Control/TextBox"]
+[node name="Label" type="Label" parent="Slides/IceMan/IceMan/Control/TextBox" unique_id=1840337004]
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/IceMan/IceMan/Control/TextBox"]
+[node name="ChoiceContainer" type="HBoxContainer" parent="Slides/IceMan/IceMan/Control/TextBox" unique_id=135706111]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="House7" type="Sprite2D" parent="Slides/IceMan"]
+[node name="House7" type="Sprite2D" parent="Slides/IceMan" unique_id=1453941461]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ubx8d")
 position = Vector2(576, 258)
@@ -825,10 +888,10 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_ioxou")
 script = ExtResource("7_ioxou")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/IceMan/House7"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/IceMan/House7" unique_id=979776996]
 position = Vector2(0, 70)
 
-[node name="House8" type="Sprite2D" parent="Slides/IceMan"]
+[node name="House8" type="Sprite2D" parent="Slides/IceMan" unique_id=549308086]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ubx8d")
 position = Vector2(960, 258)
@@ -836,10 +899,10 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_ioxou")
 script = ExtResource("7_ioxou")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/IceMan/House8"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/IceMan/House8" unique_id=1040159991]
 position = Vector2(0, 70)
 
-[node name="House9" type="Sprite2D" parent="Slides/IceMan"]
+[node name="House9" type="Sprite2D" parent="Slides/IceMan" unique_id=992642143]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ubx8d")
 position = Vector2(192, 258)
@@ -847,10 +910,22 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_ioxou")
 script = ExtResource("7_ioxou")
 
-[node name="Sprite2D" type="Sprite2D" parent="Slides/IceMan/House9"]
+[node name="Sprite2D" type="Sprite2D" parent="Slides/IceMan/House9" unique_id=1377337682]
 position = Vector2(0, 70)
 
-[node name="Right" type="Button" parent="."]
+[node name="ForSale" type="Sprite2D" parent="Slides/IceMan" unique_id=664208638]
+texture_filter = 1
+position = Vector2(960, 465)
+scale = Vector2(3, 3)
+texture = ExtResource("8_ubx8d")
+
+[node name="ForSale2" type="Sprite2D" parent="Slides/IceMan" unique_id=1516579613]
+texture_filter = 1
+position = Vector2(192, 465)
+scale = Vector2(3, 3)
+texture = ExtResource("8_ubx8d")
+
+[node name="Right" type="Button" parent="." unique_id=148731272]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -864,7 +939,7 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 32
 text = ">"
 
-[node name="Left" type="Button" parent="."]
+[node name="Left" type="Button" parent="." unique_id=1681554277]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
