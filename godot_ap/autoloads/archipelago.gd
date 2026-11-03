@@ -633,7 +633,7 @@ func handle_datapackage_checksums(checksums: Dictionary) -> void:
 	DirAccess.make_dir_recursive_absolute("user://ap/datapacks/") # Ensure the directory exists, for later
 	var cachefile: FileAccess = FileAccess.open("user://ap/datapacks/cache.dat", FileAccess.READ)
 	if cachefile:
-		_datapack_cache = cachefile.get_var(true)
+		_datapack_cache = cachefile.get_var(false)
 		cachefile.close()
 	_datapack_pending = []
 	for game: String in checksums.keys():
@@ -847,7 +847,7 @@ func load_console(console_scene: Node, as_child := true) -> bool:
 		if not output_console_container:
 			return false
 	if as_child: add_child.call_deferred(console_scene)
-	console_scene.ready.connect(func():
+	var connect_console := (func():
 		output_console = output_console_container.console
 		output_console_container.typing_bar.send_text.connect(func(s: String):
 			cmd_manager.call_cmd(s)
@@ -856,11 +856,15 @@ func load_console(console_scene: Node, as_child := true) -> bool:
 		output_console.tree_exiting.connect(close_console)
 		output_console_container.typing_bar.cmd_manager = cmd_manager
 		on_attach_console.emit())
+	if console_scene.is_node_ready():
+		connect_console.call()
+	else:
+		console_scene.ready.connect(connect_console)
 	return true
 ## Opens a default Archipelago text console popup
 func open_console() -> void:
 	if output_console: return
-	load_console(load("res://godot_ap/ui/ap_console_window.tscn").instantiate())
+	load_console(load("%s/ui/ap_console_window.tscn" % get_folder_base()).instantiate())
 ## Closes the currently attached console
 func close_console() -> void:
 	if output_console:
@@ -1191,6 +1195,12 @@ static func get_item_classification(flags: int) -> String:
 						s += ","
 					s += get_item_classification(1<<q)
 			return s
+
+## Gets the path to the godot_ap folder, usually just [code]"res://godot_ap"[/code] [br]
+## This way, the folder can be inside another folder, such as addons 
+## (would then return [code]"res://addons/godot_ap"[/code])
+static func get_folder_base() -> String:
+	return (AP as GDScript).resource_path.get_base_dir().get_base_dir()
 
 func _cmd_nil(_msg: String): pass
 func _autofill_locs(msg: String) -> Array[String]:

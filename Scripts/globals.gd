@@ -168,6 +168,8 @@ const ALL_NPCS = [
 	"Dr Lebut",
 	"Soccer Player",
 	
+	"Jeff",
+	
 	"Bathroom Guy",
 ]
 

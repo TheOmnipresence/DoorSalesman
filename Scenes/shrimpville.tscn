@@ -589,6 +589,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("8_ubx8d")
 
 [node name="MrBrown&Liliana" type="Control" parent="Slides" unique_id=696005318]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

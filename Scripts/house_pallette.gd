@@ -27,9 +27,11 @@ func set_apperance() -> void:
 	material = material.duplicate_deep()
 	var primary_color = Color.from_hsv(randf_range(0,1), 0.6, 0.5, 1)
 	if randi_range(0,99) < roundi(get_parent().get_parent().get_parent().follow_palette_chance * 100):
+		print("folllow")
 		primary_color = get_parent().get_parent().get_parent().palette
 	var secondary_color: Color
 	if randi_range(0,99) < roundi(get_parent().get_parent().get_parent().oppose_palette_chance * 100):
+		print("oppose")
 		secondary_color = Color.WHITE - primary_color
 		if get_parent().get_parent().get_parent().override_opposing_palette != Color.TRANSPARENT:
 			secondary_color = get_parent().get_parent().get_parent().override_opposing_palette
@@ -42,6 +44,7 @@ func set_apperance() -> void:
 	colors.append(darken(secondary_color, -0.2))
 	colors.append(darken(primary_color, 0.2))
 	colors.append(secondary_color)
+	print(colors.map(func(e): return e.to_html(false)))
 	material.set_shader_parameter("replace_colors", colors)
 	
 	var door = get_parent().get_parent().get_parent().area_doors.pick_random().to_snake_case()
